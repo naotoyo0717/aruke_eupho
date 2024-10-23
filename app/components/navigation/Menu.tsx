@@ -6,7 +6,7 @@ import { User } from "@prisma/client"
 
 import useLoginModel from '@/app/hooks/useLoginModal'
 import useSignupModel from '@/app/hooks/useSignupModal'
-//import useProfileModel from '@/app/hooks/useProfileModal'
+import useProfileModel from '@/app/hooks/useProfileModal'
 import MenuItem from '@/app/components/navigation/MenuItem'
 import Image from 'next/image'
 
@@ -19,7 +19,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
     const [isOpen, setIsOpen] = useState(false)
     const loginModel = useLoginModel()
     const signupModel = useSignupModel()
-    //const profileModel = useProfileModel()
+    const profileModel = useProfileModel()
 
         // メニューオープン
         const toggleOpen = useCallback(() => {
@@ -35,6 +35,13 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                     alt="avator"
                     fill
                 />
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <div>{currentUser?.name}でログイン中</div>
+                <div>{currentUser?.image}</div>
                 </div>
 
                 {isOpen && (
@@ -42,13 +49,13 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                         <div className="cursor-pointer">
                             {currentUser ? (
                                 <>
-                                    {/* <MenuItem
+                                    <MenuItem
                                         label="プロフィール"
                                         onClick={() => {
                                             profileModel.onOpen()
                                             setIsOpen(false)
                                         }}
-                                    /> */}
+                                    />
                                     <MenuItem
                                         label="ログアウト"
                                         onClick={() => {

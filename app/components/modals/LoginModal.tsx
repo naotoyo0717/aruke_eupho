@@ -64,7 +64,7 @@ const schema = z.object({
   
         toast.success('ログインしました!')
         loginModal.onClose()
-        router.refresh()
+        router.push('/top')
       } catch (error) {
         toast.error('エラーが発生しました。' + error)
       } finally {

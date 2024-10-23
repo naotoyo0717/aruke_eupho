@@ -1,9 +1,8 @@
 'use client'
 
 import { useCallback } from 'react'
-import { CldUploadWidget } from 'next-cloudinary'
+import { CldUploadWidget, CloudinaryUploadWidgetResults, } from 'next-cloudinary'
 import { TbPhotoPlus } from 'react-icons/tb'
-
 import Image from 'next/image'
 
 declare global {
@@ -16,34 +15,30 @@ type ImageUploadProps = {
   value: string
 }
 
-type UploadResult = {
-  info: {
-    secure_url: string
-  }
-}
-
 // 画像アップロード
 const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
   const handleUpload = useCallback(
-    (result: UploadResult) => {
-      console.log(result.info.secure_url)
-      onChange(result.info.secure_url)
+    (result: CloudinaryUploadWidgetResults) => {
+      // result.infoがCloudinaryUploadWidgetInfo型であることを確認
+      if (typeof result.info !== 'string' && result.info?.secure_url) {
+        const secureUrl = result.info.secure_url
+        console.log(secureUrl)
+        onChange(secureUrl)
+      }
     },
     [onChange]
   )
 
   return (
     <CldUploadWidget
-      uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+      onSuccess={handleUpload}
+      uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_UPLOAD_PRESET}
       options={{
         maxFiles: 1,
         sources: ['local'],
       }}
     >
-      {({ open, widget }) => {
-        // widget が存在する場合、イベントリスナーを追加する
-        widget?.addEventListener('upload', handleUpload)
-
+      {({ open }) => {
         return (
           <div
             onClick={() => open?.()}

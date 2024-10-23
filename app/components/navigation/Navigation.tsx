@@ -13,8 +13,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentUser }) => {
     return (
         <header className="shadow-lg shadow-grey-100">
             <div className="container mx-auto flex max-w-screen-sm items-center justify-between px-5">
-                <Link href="/" className="cursor-pointer text-xl font-bold">
-                    FullStackChannel
+                <Link href="/signin" className="cursor-pointer text-xl font-bold">
+                    ああああ
                 </Link>
                 
                 <div className='flex items-center justify-center space-x-2'>

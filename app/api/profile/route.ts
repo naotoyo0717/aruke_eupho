@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import getCurrentUser from '@/app/actions/getCurrentUser'
 import prisma from '@/app/lib/prisma'
 
+
+
 // プロフィール編集
 export async function PATCH(request: Request) {
   try {
