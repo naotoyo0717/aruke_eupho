@@ -4,7 +4,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
-import useLoginModal from '@/app/hooks/useLoginModal'
+import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react"
 //import { useRouter } from 'next/navigation';
 
@@ -34,7 +34,6 @@ export function LoginButton() {
             onClick={() => {
                 loginModal.onOpen()
                 setIsOpen(!isOpen);
-                // router.push('/top');
             }}>
             ログイン
         </Button>

@@ -10,6 +10,7 @@ type NavigationProps = {
 
 //ナビゲーション
 const Navigation: React.FC<NavigationProps> = ({ currentUser }) => {
+    console.log("navigation:ああああああああ")
     return (
         <header className="shadow-lg shadow-grey-100">
             <div className="container mx-auto flex max-w-screen-sm items-center justify-between px-5">

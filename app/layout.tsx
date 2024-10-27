@@ -17,6 +17,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const currentUser = await getCurrentUser()
+  console.log("ああああああああああああああ");
   return (
     <html>
       <body className={inter.className}>
@@ -32,11 +33,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Navigation currentUser={currentUser} />
             
             <main className='container mx-auto max-w-screen-sm flex-1 px-1 py-5'>{children}</main>
-            <footer className='py-5'>
+            {/* <footer className='py-5'>
               <div className='text-center text-sm'>
                 Copyright © ああああ
               </div>
-            </footer>
+            </footer> */}
           </div>
         </AuthContext>
       </body>

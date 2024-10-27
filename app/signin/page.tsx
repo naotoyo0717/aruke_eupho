@@ -1,34 +1,39 @@
-'use Client'
 
-import { SignupButton } from "../components/ui_parts/Buttons";
-import { LoginButton } from "../components/ui_parts/Buttons";
-import { LogoutButton } from "../components/ui_parts/Buttons"
+
+import { LoginButton, LogoutButton, SignupButton } from "../components/ui_parts/Buttons";
+import { SigninTitle } from "../components/ui_parts/SigninTitle";
 //import styles from "../../app/styles/signin.module.css"
 import UserIcon from "../components/ui_parts/UserIcon";
 import UserStatus from "../components/ui_parts/UserStatus";
 import getCurrentUser from '@/app/actions/getCurrentUser'
+import styles from "@/app/statics/styles/signin.module.css";
 
 
 
 export default async function SignIn() {
     const currentUser = await getCurrentUser();
+    console.log("あああああああああああああああああ");
     return (
-        <>
-            <UserStatus/>
-            <div>
-                <UserIcon currentUser={currentUser}/>
+        <div className={styles.bg}>
+            <div className = {styles.frame}>
+                <div className={styles.body}>
+                    <div className={styles.user}>
+                        <UserStatus/>
+                        <UserIcon currentUser={currentUser}/>
+                    </div>
+                    <SigninTitle/>
+                    {currentUser ? (
+                        <>
+                            <LogoutButton/>
+                        </>
+                    ): (
+                        <>
+                            <SignupButton/>
+                            <LoginButton/>
+                        </>
+                    )}
+                </div>
             </div>
-            <h1>歩け！聖地巡礼♪</h1>
-            {currentUser ? (
-                <>
-                    <LogoutButton/>
-                </>
-            ): (
-                <>
-                    <SignupButton/>
-                    <LoginButton/>
-                </>
-            )}
-        </>
+        </div>
     )
 }

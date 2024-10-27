@@ -1,5 +1,6 @@
 import getCurrentUser from "@/app/actions/getCurrentUser"
 
+
 //メインイメージ
 const Home = async() => {
   const currentUser = await getCurrentUser()
