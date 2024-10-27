@@ -8,7 +8,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: -2;
+    /* z-index: -1; */
     overflow: hidden;
 }
 
@@ -31,9 +31,7 @@
     height: 92.5vh;
     text-align: center;
     border: 15px solid #3BC1FF;
-    margin-top: 2rem;
-    margin-right: 2rem;
-    margin-left: 2rem;
+    margin: 2rem 2rem 0;
 }
 
 .user {
