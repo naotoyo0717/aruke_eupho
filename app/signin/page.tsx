@@ -24,10 +24,10 @@ export default async function SignIn() {
                             <LogoutButton/>
                         </>
                     ): (
-                        <>
+                        <div className={styles.signinButtons}>
                             <SignupButton/>
                             <LoginButton/>
-                        </>
+                        </div>
                     )}
                 </div>
             </div>

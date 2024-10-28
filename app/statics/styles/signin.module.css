@@ -41,3 +41,8 @@
     align-items: center;
     gap: 2rem;
 }
+
+.signinButtons {
+    display: flex;
+    gap: 3rem;
+}
