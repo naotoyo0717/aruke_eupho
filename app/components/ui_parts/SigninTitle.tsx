@@ -9,7 +9,6 @@ export function SigninTitle() {
             <div className={`${styles.SigninTitle} ${mPlus1p.className}`}>
                 歩け！聖地巡礼♪
             </div>
-            <hr className={styles.horizontalLine}></hr>
         </>
     )
 }

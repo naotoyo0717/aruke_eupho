@@ -1,6 +1,7 @@
 'use Client'
 
 import { LoginButton, LogoutButton, SignupButton } from "../components/ui_parts/Buttons";
+import SigninFooter from "../components/ui_parts/SigninFooter";
 import { SigninTitle } from "../components/ui_parts/SigninTitle";
 import UserIcon from "../components/ui_parts/UserIcon";
 import UserStatus from "../components/ui_parts/UserStatus";
@@ -20,9 +21,9 @@ export default async function SignIn() {
                     </div>
                     <SigninTitle/>
                     {currentUser ? (
-                        <>
+                        <div className={styles.signinButtons}>
                             <LogoutButton/>
-                        </>
+                        </div>
                     ): (
                         <div className={styles.signinButtons}>
                             <SignupButton/>
@@ -30,6 +31,7 @@ export default async function SignIn() {
                         </div>
                     )}
                 </div>
+                <SigninFooter/>
             </div>
         </>
     )

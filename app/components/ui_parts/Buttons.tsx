@@ -1,14 +1,10 @@
-'use client' // ← クライアントコンポーネントであることを宣言
-
+'use client'
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
-//import styles from "@/app/statics/styles/Button.module.css";
-//import { useRouter } from 'next/navigation';
-
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +17,16 @@ export function SignupButton() {
                 setIsOpen(!isOpen);
             }}
             sx={{
-                width: '10rem',
-                height: '3rem',
-                borderRadius: '10px'
+                width: '13rem',
+                height: '4rem',
+                borderRadius: '10px',
+                backgroundColor: '#3BC1FF',     // 背景色
+                color: '#FFFFFF',               // テキスト色を白に
+                fontWeight: 'bold',
+                fontSize: '1.2rem', 
+                '&:hover': {
+                    backgroundColor: '#35A8E0', // ホバー時の色を設定（任意）
+                },
             }}>
             サインアップ
         </Button>
@@ -33,7 +36,6 @@ export function SignupButton() {
 export function LoginButton() {
     const [isOpen, setIsOpen] = useState(false);
     const loginModal = useLoginModal()
-    //const router = useRouter();
     return (
         <Button
             variant="contained"
@@ -42,9 +44,16 @@ export function LoginButton() {
                 setIsOpen(!isOpen);
             }}
             sx={{
-                width: '10rem',
-                heiht: '3rem',
-                borderRadius: '10px'
+                width: '13rem',
+                heiht: '4rem',
+                borderRadius: '10px',
+                backgroundColor: '#3BC1FF',     // 背景色
+                color: '#FFFFFF',               // テキスト色を白に
+                fontWeight: 'bold',
+                fontSize: '1.2rem', 
+                '&:hover': {
+                    backgroundColor: '#35A8E0', // ホバー時の色を設定（任意）
+                },
             }}>
             ログイン
         </Button>
@@ -59,9 +68,16 @@ export function LogoutButton() {
                 signOut()
             }}
             sx={{
-                width: '10rem',
-                height: '3ewm',
-                borderRadius: '10px'
+                width: '13rem',
+                height: '4rem',
+                borderRadius: '10px',
+                backgroundColor: '#3BC1FF',     // 背景色
+                color: '#FFFFFF',               // テキスト色を白に
+                fontWeight: 'bold',
+                fontSize: '1.2rem', 
+                '&:hover': {
+                    backgroundColor: '#35A8E0', // ホバー時の色を設定（任意）
+                },
             }}>
             ログアウト
         </Button>

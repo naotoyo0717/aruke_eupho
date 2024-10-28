@@ -1,12 +1,5 @@
 .SigninTitle {
-    font-size: 7rem;
+    font-size: 8rem;
     color: #443322;
     font-weight: bold;
-}
-
-.horizontalLine {
-    border: none;
-    height: 10px;
-    background-color: #443322;
-    margin: 20px 0; 
 }

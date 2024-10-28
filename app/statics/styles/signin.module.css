@@ -43,6 +43,7 @@
 }
 
 .signinButtons {
+    margin-top: 4rem;
     display: flex;
     gap: 3rem;
 }
