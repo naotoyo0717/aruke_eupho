@@ -2,7 +2,9 @@
 
 import { User } from '@prisma/client'
 import Menu from '@/app/components/navigation/Menu'
+import MenuIcon from '@mui/icons-material/Menu';
 import Link from "next/link"
+import styles from "@/app/statics/styles/navigation.module.css";
 
 type NavigationProps = {
     currentUser: User | null
@@ -11,14 +13,23 @@ type NavigationProps = {
 //ナビゲーション
 const Navigation: React.FC<NavigationProps> = ({ currentUser }) => {
     return (
-        <header className="shadow-lg shadow-grey-100">
-            <div className="container mx-auto flex max-w-screen-sm items-center justify-between px-5">
-                <Link href="/signin" className="cursor-pointer text-xl font-bold">
-                    ああああ
-                </Link>
-                
-                <div className='flex items-center justify-center space-x-2'>
-                    <Menu currentUser={currentUser} />
+        <header>
+            <div className={styles.navigation}>
+                <div className={styles.menuIcon}>
+                    <MenuIcon sx={{ fontSize: 55, color: "white" }}/>
+                </div>
+                <div className={styles.title}>
+                        <Link href="/signin">
+                            <h1>歩け！聖地巡礼 ♪</h1>
+                        </Link>
+                    </div>
+                <div className={styles.container2}>
+                    <div className={styles.visitCount}>
+                        <h2>巡礼済○/○</h2>
+                    </div>
+                    <div className={styles.userIcon}>
+                        <Menu currentUser={currentUser} />
+                    </div>
                 </div>
             </div>
         </header>
