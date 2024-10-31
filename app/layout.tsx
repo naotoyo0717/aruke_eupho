@@ -1,6 +1,6 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-//import Navigation from '@/app/components/navigation/Navigation'
+import Navigation from '@/app/components/navigation/Navigation'
 import AuthContext from '@/app/context/AuthContext'
 import SignupModal from '@/app/components/modals/SignupModal'
 import LoginModal from '@/app/components/modals/LoginModal'
@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <ProfileModal currentUser={currentUser}/>
 
           <div className='flex min-h-screen flex-col'>
-            {/* <Navigation currentUser={currentUser} /> */}
+            <Navigation currentUser={currentUser} />
             
             <main className='container mx-auto max-w-screen-sm flex-1 px-1 py-5'>{children}</main>
             {/* <footer className='py-5'>
