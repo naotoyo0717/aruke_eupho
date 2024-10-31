@@ -28,20 +28,20 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
 
         return (
             <div className="relative">
-                <div className="relative h-10 w-10 cursor-pointer" onClick={toggleOpen}>
+                <div className="relative h-12 w-12 cursor-pointer" onClick={toggleOpen}>
                 <Image
                     src={currentUser?.image || '/default.png'}
                     className="rounded-full object-cover"
                     alt="avator"
                     fill
                 />
-                <br></br>
+                {/* <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
                 <div>{currentUser?.name}でログイン中</div>
-                <div>{currentUser?.image}</div>
+                <div>{currentUser?.image}</div> */}
                 </div>
 
                 {isOpen && (
