@@ -1,10 +1,10 @@
 'use client'
 
-import { User } from '@prisma/client'
-import Menu from '@/app/components/navigation/Menu'
-import MenuIcon from '@mui/icons-material/Menu';
-import Link from "next/link"
+import { User } from '@prisma/client';
+import Menu from '@/app/components/navigation/Menu';
+import Link from "next/link";
 import styles from "@/app/statics/styles/navigation.module.css";
+import DrawerMenu from './DrawerMenu';
 
 type NavigationProps = {
     currentUser: User | null
@@ -16,7 +16,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentUser }) => {
         <header>
             <div className={styles.navigation}>
                 <div className={styles.menuIcon}>
-                    <MenuIcon sx={{ fontSize: 55, color: "white" }}/>
+                    <DrawerMenu/>
                 </div>
                 <div className={styles.title}>
                         <Link href="/signin">
