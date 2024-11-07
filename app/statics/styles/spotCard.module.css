@@ -1,0 +1,99 @@
+.cardWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.selected{
+    background-color: #FF951C;
+    padding: 0.5rem;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.unselected{
+    background-color: #DBF3FF;
+    padding: 0.5rem;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cardContent{
+    background-color: #DBF3FF;
+    width: 68vw;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0;
+    border-radius: 10px;
+    color: #443322;
+}
+
+.cardHeader{
+    display: flex;
+    align-content: space-between;
+}
+
+.cardImage{
+    max-width: 50rem;
+    margin: 0.5rem;
+    height: 10rem;
+    border-radius: 5px;
+}
+
+.contentHeader{
+    width: 58vw;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1rem;
+}
+
+.contentHeader h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-left: 5%;
+    width: 30rem;
+    padding-top: 1rem;
+}
+
+.contentHeaderButton{
+    padding-right: 3rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.checkButton{
+    margin-bottom: 4px;
+}
+
+.spotExplanation{
+    padding-top: 1rem;
+    margin-left: 5%;
+    font-size: 1.3rem;
+}
+
+.spotAddress{
+    width: 52vw;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+}
+
+.spotAddressText{
+    display: flex;
+    margin-top: 1.2rem;
+}
+
+.spotAddressText p{
+    margin-left: auto;
+}
+
+.spotSelectButton{
+    padding-right: 1rem;
+
+}
+
+.cardHooter{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+}

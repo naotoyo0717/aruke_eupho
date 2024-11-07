@@ -6,6 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { useState } from 'react';
 import styles from "@/app/statics/styles/navigation.module.css"
+
 type MenuItem = {
     title: string;
     href: string;

@@ -1,5 +1,4 @@
 'use client'
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
@@ -20,12 +19,12 @@ export function SignupButton() {
                 width: '13rem',
                 height: '4rem',
                 borderRadius: '10px',
-                backgroundColor: '#3BC1FF',     // 背景色
-                color: '#FFFFFF',               // テキスト色を白に
+                backgroundColor: '#3BC1FF',
+                color: '#FFFFFF',
                 fontWeight: 'bold',
                 fontSize: '1.2rem', 
                 '&:hover': {
-                    backgroundColor: '#35A8E0', // ホバー時の色を設定（任意）
+                    backgroundColor: '#35A8E0',
                 },
             }}>
             サインアップ
@@ -47,12 +46,12 @@ export function LoginButton() {
                 width: '13rem',
                 heiht: '4rem',
                 borderRadius: '10px',
-                backgroundColor: '#3BC1FF',     // 背景色
-                color: '#FFFFFF',               // テキスト色を白に
+                backgroundColor: '#3BC1FF',
+                color: '#FFFFFF',
                 fontWeight: 'bold',
                 fontSize: '1.2rem', 
                 '&:hover': {
-                    backgroundColor: '#35A8E0', // ホバー時の色を設定（任意）
+                    backgroundColor: '#35A8E0',
                 },
             }}>
             ログイン
@@ -84,3 +83,34 @@ export function LogoutButton() {
     );
 }
 
+interface SelectedSpotButtonProps {
+    isSelected: boolean;
+    setIsSelected: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export function SelectedSpotButton({ isSelected, setIsSelected }: SelectedSpotButtonProps) {
+    const handleClick = () => {
+        setIsSelected(!isSelected);
+    };
+
+    return (
+        <Button
+            variant="contained"
+            onClick={handleClick}
+            sx={{
+                width: '10rem',
+                height: '3rem',
+                borderRadius: '10px',
+                backgroundColor: isSelected ? '#FF951C' : '#3BC1FF',
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+                fontSize: '1rem',
+                '&:hover': {
+                    backgroundColor: isSelected ? '#E08718' : '#2FA8E6',
+                },
+            }}
+        >
+            {isSelected ? 'ルートから削除' : 'ルートに追加'}
+        </Button>
+    );
+}
