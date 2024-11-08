@@ -5,6 +5,7 @@ import { SelectedSpotButton } from '../ui_parts/Buttons';
 import CheckBox from './CheckBox';
 import CommentButton from './CommentButton';
 import styles from '@/app/statics/styles/spotCard.module.css'
+import { spotArray } from '@/app/statics/spotList';
 
 interface SpotCardProps {
     isSelected: boolean;
@@ -19,14 +20,14 @@ export default function SpotCard({ isSelected, setIsSelected }: SpotCardProps) {
                 <div className={styles.cardContent}>
                     <div className={styles.cardHeader}>
                         <img
-                            src="/card_img.jpg"
+                            src={spotArray[0].pictureUrl}
                             alt="Kumiko Benti"
                             className={styles.cardImage}
                         />
                         <div>
 
                             <div className={styles.contentHeader}>
-                                <h2>No1. 久美子ベンチ</h2>{/*タイトル*/}
+                                <h2>No.{spotArray[0].id} {spotArray[0].title}</h2>{/*タイトル*/}
                                 <div className={styles.contentHeaderButton}>
                                     <div>
                                         <CommentButton/>
@@ -37,14 +38,14 @@ export default function SpotCard({ isSelected, setIsSelected }: SpotCardProps) {
                                 </div>
                             </div>
                             <div className={styles.spotExplanation}>
-                                <p>横前久美子が学校帰りによく立ち寄っているベンチ</p>{/*説明*/}
+                                <p>{spotArray[0].explanation}</p>{/*説明*/}
                             </div>
 
                             <div className={styles.cardHooter}>
                                 <div className={styles.spotAddress}> 
                                     <div className={styles.spotAddressText}>
                                         <PlaceIcon/>
-                                        <p>Togawa-1-3 Uji, Kyoto 611-0021</p>{/*住所*/}
+                                        <p>{spotArray[0].address}</p>{/*住所*/}
                                     </div>
                                     <div className={styles.spotSelectButton}>
                                         <SelectedSpotButton isSelected={isSelected} setIsSelected={setIsSelected} />
