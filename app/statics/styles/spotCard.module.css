@@ -19,7 +19,7 @@
 
 .cardContent{
     background-color: #DBF3FF;
-    width: 68vw;
+    width: 73rem;
     display: flex;
     justify-content: space-between;
     padding-bottom: 0;
@@ -40,7 +40,7 @@
 }
 
 .contentHeader{
-    width: 58vw;
+    width: 62rem;
     display: flex;
     justify-content: space-between;
     padding-right: 1rem;
@@ -72,7 +72,7 @@
 }
 
 .spotAddress{
-    width: 52vw;
+    width: 56rem;
     display: flex;
     justify-content: space-between;
     margin-left: 5%;

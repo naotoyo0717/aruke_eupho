@@ -28,7 +28,7 @@ export default function SpotCard({ isSelected, setIsSelected }: SpotCardProps) {
                             <div className={styles.contentHeader}>
                                 <h2>No1. 久美子ベンチ</h2>{/*タイトル*/}
                                 <div className={styles.contentHeaderButton}>
-                                    <div className={styles.commentButton}>
+                                    <div>
                                         <CommentButton/>
                                     </div>
                                     <div className={styles.checkButton}>
