@@ -4,6 +4,7 @@ import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
+import { boolean } from 'zod';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -85,7 +86,7 @@ export function LogoutButton() {
 
 interface SelectedSpotButtonProps {
     isSelected: boolean;
-    setIsSelected: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsSelected: (value: boolean) => void;
 }
 
 export function SelectedSpotButton({ isSelected, setIsSelected }: SelectedSpotButtonProps) {

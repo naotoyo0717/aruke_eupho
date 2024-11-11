@@ -1,51 +1,47 @@
-//import Image from 'next/image';
-
 import PlaceIcon from '@mui/icons-material/Place';
 import { SelectedSpotButton } from '../ui_parts/Buttons';
 import CheckBox from './CheckBox';
 import CommentButton from './CommentButton';
-import styles from '@/app/statics/styles/spotCard.module.css'
-import { spotArray } from '@/app/statics/spotList';
+import styles from '@/app/statics/styles/spotCard.module.css';
+import { SpotArrayType } from '@/app/statics/spotList';
 
 interface SpotCardProps {
     isSelected: boolean;
-    setIsSelected: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsSelected: () => void;
+    item: SpotArrayType;
 }
 
-export default function SpotCard({ isSelected, setIsSelected }: SpotCardProps) {
+export default function SpotCard({ isSelected, setIsSelected, item }: SpotCardProps) {
     return (
-        <>
         <div className={styles.cardWrapper}>
             <div className={`${styles.spotCard} ${isSelected ? styles.selected : styles.unselected}`}>
                 <div className={styles.cardContent}>
                     <div className={styles.cardHeader}>
                         <img
-                            src={spotArray[0].pictureUrl}
-                            alt="Kumiko Benti"
+                            src={item.pictureUrl}
+                            alt={item.title}
                             className={styles.cardImage}
                         />
                         <div>
-
                             <div className={styles.contentHeader}>
-                                <h2>No.{spotArray[0].id} {spotArray[0].title}</h2>{/*タイトル*/}
+                                <h2>No.{item.id} {item.title}</h2>
                                 <div className={styles.contentHeaderButton}>
                                     <div>
-                                        <CommentButton/>
+                                        <CommentButton />
                                     </div>
                                     <div className={styles.checkButton}>
-                                        <CheckBox/>
+                                        <CheckBox />
                                     </div>
                                 </div>
                             </div>
                             <div className={styles.spotExplanation}>
-                                <p>{spotArray[0].explanation}</p>{/*説明*/}
+                                <p>{item.explanation}</p>
                             </div>
-
                             <div className={styles.cardHooter}>
-                                <div className={styles.spotAddress}> 
+                                <div className={styles.spotAddress}>
                                     <div className={styles.spotAddressText}>
-                                        <PlaceIcon/>
-                                        <p>{spotArray[0].address}</p>{/*住所*/}
+                                        <PlaceIcon />
+                                        <p>{item.address}</p>
                                     </div>
                                     <div className={styles.spotSelectButton}>
                                         <SelectedSpotButton isSelected={isSelected} setIsSelected={setIsSelected} />
@@ -57,6 +53,5 @@ export default function SpotCard({ isSelected, setIsSelected }: SpotCardProps) {
                 </div>
             </div>
         </div>
-        </>
     );
 }
