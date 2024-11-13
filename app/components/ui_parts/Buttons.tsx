@@ -71,12 +71,12 @@ export function LogoutButton() {
                 width: '13rem',
                 height: '4rem',
                 borderRadius: '10px',
-                backgroundColor: '#3BC1FF',     // 背景色
-                color: '#FFFFFF',               // テキスト色を白に
+                backgroundColor: '#3BC1FF',
+                color: '#FFFFFF',
                 fontWeight: 'bold',
                 fontSize: '1.2rem', 
                 '&:hover': {
-                    backgroundColor: '#35A8E0', // ホバー時の色を設定（任意）
+                    backgroundColor: '#35A8E0',
                 },
             }}>
             ログアウト
