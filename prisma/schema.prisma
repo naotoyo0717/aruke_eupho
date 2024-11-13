@@ -14,15 +14,16 @@ datasource db {
 }
 
 model User {
-  id             String    @id @default(uuid())
+  id             String      @id @default(uuid())
   name           String?
-  email          String?   @unique
+  email          String?     @unique
   emailVerified  DateTime?
   image          String?
   hashedPassword String?
-  createdAt      DateTime  @default(now())
-  updateAt       DateTime  @updatedAt
+  createdAt      DateTime    @default(now())
+  updateAt       DateTime    @updatedAt
   accounts       Account[]
+  userSpots      UserSpot[]  // ユーザーが訪問したスポット情報
 }
 
 model Account {
@@ -43,3 +44,27 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+model Spot {
+  id          Int         @id @default(autoincrement())
+  title       String
+  pictureUrl  String
+  explanation String
+  address     String
+  userSpots   UserSpot[]  // このスポットを訪問したユーザー情報
+}
+
+model UserSpot {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  spotId    Int
+  visited   Boolean  @default(false)
+  selected  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  spot      Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, spotId]) // 同じユーザーが同じスポットを複数回登録できないようにする
+  @@index([userId])
+  @@index([spotId])
+}
