@@ -33,9 +33,11 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                     src={currentUser?.image || '/default.png'}
                     className="rounded-full object-cover"
                     alt="avator"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     fill
                 />
-                {/* <br></br>
+                {/*　認証デバッグ用
+                <br></br>
                 <br></br>
                 <br></br>
                 <br></br>

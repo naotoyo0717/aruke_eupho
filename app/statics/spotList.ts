@@ -51,7 +51,7 @@ export const spotArray: SpotArrayType[] = [
     },
     { 
         id: 7,
-        title: " 朝霧橋前",
+        title: "朝霧橋前",
         pictureUrl: "/syuiti_date.jpg",
         explanation: "久美子と秀一がイチャついてた場所",
         address: "TUji, Kyoto 611-0021"
