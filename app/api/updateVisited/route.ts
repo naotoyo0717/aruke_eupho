@@ -6,17 +6,13 @@ const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
     try {
-        // ユーザー情報を非同期で取得
         const currentUser = await getCurrentUser();
 
-        // ユーザーが認証されていない場合
         if (!currentUser) {
             return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
         }
 
         const userId = currentUser.id;
-
-        // リクエストボディからデータを取得
         const { spotId, visited } = await request.json();
 
         // データ型のバリデーション
@@ -24,13 +20,13 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
         }
 
-        // UserSpotテーブルを更新（存在しない場合は作成）
+        // 最新のUserSpotデータを更新または作成
         const updatedSpot = await prisma.userSpot.upsert({
             where: {
                 userId_spotId: {
                     userId,
-                    spotId
-                }
+                    spotId,
+                },
             },
             update: {
                 visited: visited,
@@ -39,6 +35,17 @@ export async function POST(request: Request) {
                 userId,
                 spotId,
                 visited,
+            },
+        });
+
+        // 古いレコードの削除処理
+        await prisma.userSpot.deleteMany({
+            where: {
+                userId,
+                spotId,
+                id: {
+                    not: updatedSpot.id, // 最新のレコード以外を削除
+                },
             },
         });
 

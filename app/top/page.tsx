@@ -37,8 +37,29 @@ export default function Top() {
         };
     
         fetchSpots();
+
+    //     const fetchVisited = async () => {
+    //         try {
+    //             const response = await fetch('api/searchVisited', {
+    //                 method: 'GET',
+    //             });
+
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to search visited');
+    //             }
+
+    //             const data = await response.json();
+    //             console.log('Visited spots', data);
+    //             setVisited(data);
+    //         } catch (error) {
+    //             console.error('Error searching visited:', error);
+    //        
+    //     };
+
+    //     fetchVisited();
     }, []);
 
+    //sconsole.log({visited});
     const toggleSelect = (id: number) => {
         setSelectedSpots(prevState => ({
             ...prevState,
