@@ -36,15 +36,15 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     fill
                 />
-                {/*　認証デバッグ用
+                
+                {/* <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
-                <br></br>
-                <div>{currentUser?.name}でログイン中</div>
+                <div>{currentUser?.id}でログイン中</div>
                 <div>{currentUser?.image}</div> */}
-                </div>
+            </div> 
 
                 {isOpen && (
                     <div className="absolute right-0 z-10 w-40 overflow-hidden rounded-lg bg-white text-sm shadow-lg shadow-grey-100">
@@ -90,6 +90,6 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             </div>
 
         )
-}
+    }
 
 export default Menu 

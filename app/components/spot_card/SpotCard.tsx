@@ -9,9 +9,14 @@ interface SpotCardProps {
     isSelected: boolean;
     setIsSelected: () => void;
     item: SpotArrayType;
+    userId: string; // 追加
 }
 
-export default function SpotCard({ isSelected, setIsSelected, item }: SpotCardProps) {
+export default function SpotCard({ isSelected, setIsSelected, item, userId }: SpotCardProps) {
+    const handleVisitedChange = (visited: boolean) => {
+        console.log(`Spot ${item.id} visited status:`, visited);
+    };
+
     return (
         <div className={styles.cardWrapper}>
             <div className={`${styles.spotCard} ${isSelected ? styles.selected : styles.unselected}`}>
@@ -30,7 +35,12 @@ export default function SpotCard({ isSelected, setIsSelected, item }: SpotCardPr
                                         <CommentButton />
                                     </div>
                                     <div className={styles.checkButton}>
-                                        <CheckBox />
+                                        <CheckBox 
+                                            spotId={item.id} 
+                                            userId={userId}
+                                            visited={item.visited}
+                                            onChange={handleVisitedChange} 
+                                        />
                                     </div>
                                 </div>
                             </div>
