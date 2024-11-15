@@ -9,10 +9,9 @@ interface SpotCardProps {
     isSelected: boolean;
     setIsSelected: () => void;
     item: SpotArrayType;
-    userId: string; // 追加
 }
 
-export default function SpotCard({ isSelected, setIsSelected, item, userId }: SpotCardProps) {
+export default function SpotCard({ isSelected, setIsSelected, item, }: SpotCardProps) {
     const handleVisitedChange = (visited: boolean) => {
         console.log(`Spot ${item.id} visited status:`, visited);
     };
@@ -37,7 +36,6 @@ export default function SpotCard({ isSelected, setIsSelected, item, userId }: Sp
                                     <div className={styles.checkButton}>
                                         <CheckBox 
                                             spotId={item.id} 
-                                            userId={userId}
                                             visited={item.visited}
                                             onChange={handleVisitedChange} 
                                         />

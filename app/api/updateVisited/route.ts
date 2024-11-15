@@ -1,12 +1,23 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
     try {
+        // ユーザー情報を非同期で取得
+        const currentUser = await getCurrentUser();
+
+        // ユーザーが認証されていない場合
+        if (!currentUser) {
+            return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
+        }
+
+        const userId = currentUser.id;
+
         // リクエストボディからデータを取得
-        const { userId, spotId, visited } = await request.json();
+        const { spotId, visited } = await request.json();
 
         // データ型のバリデーション
         if (typeof userId !== 'string' || typeof spotId !== 'number' || typeof visited !== 'boolean') {
@@ -17,8 +28,8 @@ export async function POST(request: Request) {
         const updatedSpot = await prisma.userSpot.upsert({
             where: {
                 userId_spotId: {
-                    userId: userId,
-                    spotId: spotId
+                    userId,
+                    spotId
                 }
             },
             update: {

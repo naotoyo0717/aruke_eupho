@@ -12,7 +12,6 @@ type SpotType = {
     visited: boolean;
 };
 
-const userId = '14176751-297a-484e-8f98-152cfd4172ea';
 
 export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
@@ -56,7 +55,6 @@ export default function Top() {
                     isSelected={!!selectedSpots[item.id]}
                     setIsSelected={() => toggleSelect(item.id)}
                     item={item}
-                    userId={userId}
                 />
             ))}
         </>

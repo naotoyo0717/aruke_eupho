@@ -4,7 +4,6 @@ import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
-import { boolean } from 'zod';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
