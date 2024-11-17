@@ -12,7 +12,7 @@ export default function CheckBox({ spotId, visited, onChange }: CheckBoxProps) {
     const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = event.target.checked;
 
-        // 親コンポーネントに状態を更新
+        // まず親コンポーネントに状態を更新
         onChange(isChecked);
 
         console.log('Sending data:', { spotId, visited: isChecked });
@@ -30,10 +30,13 @@ export default function CheckBox({ spotId, visited, onChange }: CheckBoxProps) {
             });
 
             if (!response.ok) {
-                console.error('Failed to update visited status');
+                throw new Error('Failed to update visited status');
             }
         } catch (error) {
+            // APIリクエストが失敗した場合、親の状態を元に戻す
             console.error('Failed to update visited status:', error);
+            // 親の状態を元に戻す処理を加えたほうがよい
+            onChange(visited);  // 状態を元に戻す
         }
     };
 

@@ -4,7 +4,7 @@ export interface SpotArrayType {
     pictureUrl: string;
     explanation: string;
     address: string;
-    visited: boolean
+    visited: boolean;
 }
 
 // export const spotArray: SpotArrayType[] = [

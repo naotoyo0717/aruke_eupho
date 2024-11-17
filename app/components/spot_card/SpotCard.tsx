@@ -9,11 +9,21 @@ interface SpotCardProps {
     isSelected: boolean;
     setIsSelected: () => void;
     item: SpotArrayType;
+    visited: boolean;
+    onVisitedChange: (id: number, visited: boolean) => void; // 親から渡すvisited変更の関数
 }
 
-export default function SpotCard({ isSelected, setIsSelected, item, }: SpotCardProps) {
-    const handleVisitedChange = (visited: boolean) => {
-        console.log(`Spot ${item.id} visited status:`, visited);
+export default function SpotCard({
+    isSelected,
+    setIsSelected,
+    item,
+    visited,
+    onVisitedChange,
+}: SpotCardProps) {
+    // visited の状態が変わったときに親に通知する
+    const handleVisitedChange = (newVisited: boolean) => {
+        console.log(`Spot ${item.id} visited status:`, newVisited);
+        onVisitedChange(item.id, newVisited); // 親に通知
     };
 
     return (
@@ -34,10 +44,10 @@ export default function SpotCard({ isSelected, setIsSelected, item, }: SpotCardP
                                         <CommentButton />
                                     </div>
                                     <div className={styles.checkButton}>
-                                        <CheckBox 
-                                            spotId={item.id} 
-                                            visited={item.visited}
-                                            onChange={handleVisitedChange} 
+                                        <CheckBox
+                                            spotId={item.id}
+                                            visited={visited}
+                                            onChange={handleVisitedChange} // 親の関数を渡す
                                         />
                                     </div>
                                 </div>
@@ -52,7 +62,10 @@ export default function SpotCard({ isSelected, setIsSelected, item, }: SpotCardP
                                         <p>{item.address}</p>
                                     </div>
                                     <div className={styles.spotSelectButton}>
-                                        <SelectedSpotButton isSelected={isSelected} setIsSelected={setIsSelected} />
+                                        <SelectedSpotButton
+                                            isSelected={isSelected}
+                                            setIsSelected={setIsSelected}
+                                        />
                                     </div>
                                 </div>
                             </div>

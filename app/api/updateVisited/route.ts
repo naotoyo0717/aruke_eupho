@@ -9,7 +9,7 @@ export async function POST(request: Request) {
         const currentUser = await getCurrentUser();
 
         if (!currentUser) {
-            return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
+            return NextResponse.json({ error: 'ユーザーIDが見つかりません。' }, { status: 401 });
         }
 
         const userId = currentUser.id;
