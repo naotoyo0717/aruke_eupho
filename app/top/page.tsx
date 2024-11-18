@@ -41,7 +41,7 @@ export default function Top() {
                 const data: { spotId: number }[] = await response.json();
                 setVisited(data);
             } catch (error) {
-                console.error('Error searching visited:', error);//
+                console.error('Error searching visited:', error);
             }
         };
 
