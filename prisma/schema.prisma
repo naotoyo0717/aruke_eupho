@@ -50,7 +50,6 @@ model Spot {
   pictureUrl  String
   explanation String
   address     String
-  visited     Boolean @default(false)
   userSpots   UserSpot[]  // このスポットを訪問したユーザー情報
 }
 

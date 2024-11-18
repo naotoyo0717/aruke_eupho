@@ -20,7 +20,19 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
         }
 
-        // 最新のUserSpotデータを更新または作成
+        // `visited`がfalseの場合、該当レコードを削除
+        if (!visited) {
+            await prisma.userSpot.deleteMany({
+                where: {
+                    userId,
+                    spotId,
+                },
+            });
+
+            return NextResponse.json({ message: 'Record deleted successfully' });
+        }
+
+        // `visited`がtrueの場合は、レコードを更新または作成
         const updatedSpot = await prisma.userSpot.upsert({
             where: {
                 userId_spotId: {
@@ -29,23 +41,12 @@ export async function POST(request: Request) {
                 },
             },
             update: {
-                visited: visited,
+                visited: true,
             },
             create: {
                 userId,
                 spotId,
-                visited,
-            },
-        });
-
-        // 古いレコードの削除処理
-        await prisma.userSpot.deleteMany({
-            where: {
-                userId,
-                spotId,
-                id: {
-                    not: updatedSpot.id, // 最新のレコード以外を削除
-                },
+                visited: true,
             },
         });
 
