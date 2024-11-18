@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
-//import { SpotArrayType } from '@/app/statics/spotList';
 
 type SpotType = {
     id: number;
@@ -68,6 +67,7 @@ export default function Top() {
             {spots.map((item) => {
                 // visited 配列内に item.id と一致する spotId があれば visited とする
                 const isVisited = visited.some((v) => v.spotId === item.id);
+                // some: 配列の中に特定の条件を満たす要素が1つでもあるかどうかを確認するメソッド
 
                 return (
                     <SpotCard

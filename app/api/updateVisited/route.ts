@@ -17,7 +17,7 @@ export async function POST(request: Request) {
 
         // データ型のバリデーション
         if (typeof userId !== 'string' || typeof spotId !== 'number' || typeof visited !== 'boolean') {
-            return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
+            return NextResponse.json({ error: 'ユーザー情報を取得できませんでした。' }, { status: 400 });
         }
 
         // `visited`がfalseの場合、該当レコードを削除
@@ -29,10 +29,11 @@ export async function POST(request: Request) {
                 },
             });
 
-            return NextResponse.json({ message: 'Record deleted successfully' });
+            return NextResponse.json({ message: '行の削除に成功しました。' });
         }
 
         // `visited`がtrueの場合は、レコードを更新または作成
+        // upsert: データが存在すれば更新し、存在しなければ新しく作成
         const updatedSpot = await prisma.userSpot.upsert({
             where: {
                 userId_spotId: {
