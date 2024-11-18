@@ -15,7 +15,7 @@ type SpotType = {
 
 export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
-    const [visited, setVisited] = useState<{ spotId: number }[]>([]); // visited 配列
+    const [visited, setVisited] = useState<{ spotId: number }[]>([]);
     const [selectedSpots, setSelectedSpots] = useState<{ [key: number]: boolean }>({});
 
     useEffect(() => {
