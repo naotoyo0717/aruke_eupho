@@ -24,9 +24,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentUser }) => {
                         </Link>
                     </div>
                 <div className={styles.container2}>
-                    <div className={styles.visitCount}>
-                        <h2>巡礼済○/○</h2>
-                    </div>
+                    {/* <div className={styles.visitCount}>
+                    </div> */}
                     <div className={styles.userIcon}>
                         <Menu currentUser={currentUser} />
                     </div>

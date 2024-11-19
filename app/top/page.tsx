@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
-
+import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
 type SpotType = {
     id: number;
     title: string;
@@ -16,7 +16,7 @@ export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
     const [visited, setVisited] = useState<{ spotId: number }[]>([]);
     const [selectedSpots, setSelectedSpots] = useState<{ [key: number]: boolean }>({});
-
+    const [visitedCounter, setVisitedCounter] = useState<number>(0);
     useEffect(() => {
         const fetchSpots = async () => {
             try {
@@ -39,6 +39,7 @@ export default function Top() {
                 }
                 const data: { spotId: number }[] = await response.json();
                 setVisited(data);
+                setVisitedCounter(data.length);
             } catch (error) {
                 console.error('Error searching visited:', error);
             }
@@ -53,9 +54,13 @@ export default function Top() {
             // 既にvisitedされている場合、削除または更新
             const isAlreadyVisited = prevVisited.some((spot) => spot.spotId === id);
             if (newVisited && !isAlreadyVisited) {
-                return [...prevVisited, { spotId: id }];
+                const updatedVisited = [...prevVisited, { spotId: id }];
+                setVisitedCounter(updatedVisited.length); // 新しいvisitedを加えた後にカウントを更新
+                return updatedVisited;
             } else if (!newVisited && isAlreadyVisited) {
-                return prevVisited.filter((spot) => spot.spotId !== id);
+                const updatedVisited = prevVisited.filter((spot) => spot.spotId !== id);
+                setVisitedCounter(updatedVisited.length); // 新しいvisitedを削除した後にカウントを更新
+                return updatedVisited;
             }
             return prevVisited;
         });
@@ -63,11 +68,10 @@ export default function Top() {
 
     return (
         <>
-            <h1>トップページ</h1>
+            <VisitedCounter visitedCounter={visitedCounter} /> 
             {spots.map((item) => {
                 // visited 配列内に item.id と一致する spotId があれば visited とする
                 const isVisited = visited.some((v) => v.spotId === item.id);
-                // some: 配列の中に特定の条件を満たす要素が1つでもあるかどうかを確認するメソッド
 
                 return (
                     <SpotCard
