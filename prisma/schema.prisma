@@ -58,7 +58,7 @@ model UserSpot {
   userId    String
   spotId    Int
   visited   Boolean  //@default(false)　多分呼び出し側とdefault(false)が衝突しててエラーが出てた。
-  // selected  Boolean  @default(false)
+  selected  Boolean  @default(false)
   createdAt DateTime @default(now())
 
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)

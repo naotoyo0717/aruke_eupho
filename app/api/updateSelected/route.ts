@@ -13,22 +13,23 @@ export async function POST(request: Request) {
         }
 
         const userId = currentUser.id;
-        const { spotId, visited } = await request.json();
+        const { spotId, selected } = await request.json();
 
         // データ型のバリデーション
-        if (typeof userId !== 'string' || typeof spotId !== 'number' || typeof visited !== 'boolean') {
-            return NextResponse.json({ error: 'ユーザー情報を取得できませんでした。' }, { status: 400 });
+        if (typeof userId !== 'string' || typeof spotId !== 'number' || typeof selected !== 'boolean') {
+            return NextResponse.json({ error: '入力データが不正です。' }, { status: 400 });
         }
 
-        // `visited`がfalseの場合、該当レコードの`visited`カラムを`false`に更新
-        if (!visited) {
+        // `selected`の値に基づいて処理
+        if (selected) {
+            // `selected`が`false`の場合、該当レコードの`selected`カラムを`false`に更新
             const updatedSpot = await prisma.userSpot.updateMany({
                 where: {
                     userId,
                     spotId,
                 },
                 data: {
-                    visited: false,
+                    selected: false,
                 },
             });
 
@@ -40,7 +41,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ message: '行の更新に成功しました。', updatedSpot });
         }
 
-        // `visited`がtrueの場合は、レコードを更新または作成
+        // `selected`が`true`の場合は、レコードを更新または作成
         const updatedSpot = await prisma.userSpot.upsert({
             where: {
                 userId_spotId: {
@@ -49,20 +50,20 @@ export async function POST(request: Request) {
                 },
             },
             update: {
-                visited: true,
+                selected: true,
             },
             create: {
                 userId,
                 spotId,
-                visited: true,
-                selected: false,
+                visited: false, // 新規作成時、`visited`はデフォルトで`false`
+                selected: true,
             },
         });
 
         return NextResponse.json(updatedSpot);
     } catch (error) {
-        console.error('Failed to update visited status:', error);
-        return NextResponse.json({ error: 'Failed to update visited status' }, { status: 500 });
+        console.error('Failed to update selected status:', error);
+        return NextResponse.json({ error: 'Failed to update selected status' }, { status: 500 });
     } finally {
         // PrismaClientを明示的に閉じる
         await prisma.$disconnect();

@@ -84,13 +84,37 @@ export function LogoutButton() {
 }
 
 interface SelectedSpotButtonProps {
+    spotId: number;
     isSelected: boolean;
     setIsSelected: (value: boolean) => void;
 }
 
-export function SelectedSpotButton({ isSelected, setIsSelected }: SelectedSpotButtonProps) {
-    const handleClick = () => {
+export function SelectedSpotButton({ spotId, isSelected, setIsSelected,}: SelectedSpotButtonProps) {
+
+    const toggleSelected = () => {
         setIsSelected(!isSelected);
+    }
+    const handleClick = async () => { // 修正済み
+
+        try {
+            const response = await fetch('/api/updateSelected', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    spotId: spotId,
+                    selected: isSelected,
+                }),
+            });
+            
+            if (!response.ok) {
+                throw new Error('selectedの更新に失敗しました。');
+            }
+        } catch (error) {
+            console.error('selectedの更新に失敗しました。', error);
+        }
+        toggleSelected();
     };
 
     return (

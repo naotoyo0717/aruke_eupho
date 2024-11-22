@@ -13,6 +13,7 @@ interface SpotCardProps {
     onVisitedChange: (id: number, visited: boolean) => void; // 親から渡すvisited変更の関数
 }
 
+
 export default function SpotCard({
     isSelected,
     setIsSelected,
@@ -63,6 +64,7 @@ export default function SpotCard({
                                     </div>
                                     <div className={styles.spotSelectButton}>
                                         <SelectedSpotButton
+                                            spotId={item.id}
                                             isSelected={isSelected}
                                             setIsSelected={setIsSelected}
                                         />
