@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import PlaceIcon from '@mui/icons-material/Place';
 import { SelectedSpotButton } from '../ui_parts/Buttons';
 import CheckBox from './CheckBox';
