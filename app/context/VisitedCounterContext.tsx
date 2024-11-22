@@ -5,7 +5,7 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 type VisitedCounterContextType = {
     visitedCounter: number;
     incrementCounter: () => void;
-    decrementCounter: () => void;
+    decrementCounter: () => void;//
 };
 
 const VisitedCounterContext = createContext<VisitedCounterContextType | undefined>(undefined);
