@@ -138,3 +138,53 @@ export function SelectedSpotButton({ spotId, isSelected, setIsSelected,}: Select
         </Button>
     );
 }
+
+
+export function ResetSelectionButton() {
+
+    const handleClick = async () => {
+        try {
+            const response = await fetch('/api/resetSelected', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'リセットに失敗しました。');
+            }
+
+            const result = await response.json();
+            console.log('リセット成功:', result);
+
+        } catch (error) {
+            console.error('APIエラー:', error);
+        } 
+        window.location.reload()
+    };
+
+    return (
+        <div>
+            <Button
+                onClick={handleClick}
+                variant="contained"
+                sx={{
+                    width: '7rem',
+                    height: '2rem',
+                    borderRadius: '6px',
+                    backgroundColor: '#FF951C',
+                    color: '#FFFFFF',
+                    fontWeight: 'bold',
+                    fontSize: '1rem',
+                    '&:hover': {
+                        backgroundColor: '#E08718',
+                    },
+                }}
+            >
+                全削除
+            </Button>
+        </div>
+    );
+}
