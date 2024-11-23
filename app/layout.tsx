@@ -1,4 +1,3 @@
-// layout.tsx
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Navigation from '@/app/components/navigation/Navigation'
@@ -31,12 +30,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <LoginModal />
               <ProfileModal currentUser={currentUser} />
               <Navigation currentUser={currentUser} />
-              <div className='flex min-h-screen flex-col'>
-                <main className='container mx-auto max-w-screen-sm flex-1 px-1 py-5'>
+              <div className="layout-wrapper">
+                <main className="main-container">
                   {children}
                 </main>
-                <Footer />
               </div>
+              <Footer /> 
             </VisitedCounterProvider>
         </AuthContext>
       </body>

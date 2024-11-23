@@ -4,6 +4,7 @@ import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
+import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -188,3 +189,55 @@ export function ResetSelectionButton() {
         </div>
     );
 }
+
+export function FilterSpotButton() {
+    const [filter, setFilter] = useState<string>('');
+  
+    const handleChange = async (event: SelectChangeEvent<string>) => {
+      const selectedFilter = event.target.value;
+      setFilter(selectedFilter);
+  
+      try {
+        const response = await fetch(`/api/getFilterSpots?filter=${selectedFilter}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || '絞り込みに失敗しました。');
+        }
+  
+        const result = await response.json();
+        console.log('絞り込み成功:', result);
+      } catch (error) {
+        console.error('APIエラー:', error);
+      }
+    };
+  
+    return (
+      <Box sx={{ width: '10rem' }}>
+        <FormControl fullWidth>
+          <InputLabel id="filterSpotLabel">絞り込み</InputLabel>
+          <Select
+            labelId="filterSpotLabel"
+            id="filterSpot"
+            value={filter}
+            label="Spot"
+            onChange={handleChange}
+          >
+            <MenuItem value="0">全て</MenuItem>
+            <MenuItem value="1">定番</MenuItem>
+            <MenuItem value="2">未チェック</MenuItem>
+            <MenuItem value="3">京阪宇治近辺</MenuItem>
+            <MenuItem value="4">JR宇治近辺</MenuItem>
+            <MenuItem value="5">京阪黄檗近辺</MenuItem>
+            <MenuItem value="6">京阪六地蔵</MenuItem>
+            <MenuItem value="7">その他</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+    );
+  }

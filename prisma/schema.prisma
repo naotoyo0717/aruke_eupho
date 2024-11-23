@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 //npx prisma migrate dev --name init
-//npx prisma migrate reset
+//npx prisma migrate 
 
 
 generator client {
@@ -54,6 +54,8 @@ model Spot {
   pictureUrl  String
   explanation String
   address     String
+  nearStation Int?
+  standard    Boolean     @default(false)
   userSpots   UserSpot[]  // このスポットを訪問したユーザー情報
 }
 

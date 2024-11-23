@@ -1,0 +1,4 @@
+.topButtons {
+    display: flex;
+    justify-content: space-between;
+}

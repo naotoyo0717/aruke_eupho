@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
 import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
-import { ResetSelectionButton } from "../components/ui_parts/Buttons";
+import { FilterSpotButton, ResetSelectionButton } from "../components/ui_parts/Buttons";
+import styles from "@/app/statics/styles/topButtons.module.css";
+//import Footer from "../components/footer/Footer";
 
 type SpotType = {
     id: number;
@@ -92,8 +94,13 @@ export default function Top() {
 
     return (
         <>
-            <ResetSelectionButton/>
-            <VisitedCounter visitedCounter={visitedCounter} />
+            <div className={styles.topButtons}>
+                <div>
+                    <ResetSelectionButton/>
+                    <FilterSpotButton />
+                </div>
+                <VisitedCounter visitedCounter={visitedCounter} />
+            </div>
             {spots.map((item) => {
                 const isVisited = visited.some((v) => v.spotId === item.id);
                 const isSelected = !!selectedSpots[item.id]; // 修正
@@ -113,6 +120,7 @@ export default function Top() {
                     />
                 );
             })}
+
         </>
     );
     

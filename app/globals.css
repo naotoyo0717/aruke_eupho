@@ -27,3 +27,17 @@ body::before {
 body {
     background-image: url('/top_bg.gif');
 }
+
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+ 
+.main-container {
+    width: 100vw;
+    margin: 0 auto;
+    flex: 1;
+    padding: 1rem 0.25rem;
+}
