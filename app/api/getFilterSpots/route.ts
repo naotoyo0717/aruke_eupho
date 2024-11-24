@@ -6,9 +6,9 @@ const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const filter = searchParams.get('filter'); // クエリパラメータからフィルター値を取得
+  const filter = searchParams.get('filter');
 
-  const parsedFilter = filter ? parseInt(filter, 10) : 0; // null の場合はデフォルト値 0 を使用
+  let parsedFilter = filter ? parseInt(filter, 10) : 0;
 
   try {
     let filteredSpots;
@@ -65,7 +65,35 @@ export async function GET(req: Request) {
       });
 
       console.log({ unCheckedSpots });
+    } else if (parsedFilter === 3) {
+      unCheckedSpots = await prisma.userSpot.findMany({
+        where: {
+          userId: userId,
+          visited: true,
+        },
+        orderBy: {
+          id: 'asc',
+        },
+      });
+
+      // unCheckedSpots から spotId を取り出し
+      const checkedSpotIds = unCheckedSpots.map((spot) => spot.spotId);
+
+      // spotId に一致しないスポットを取得
+      filteredSpots = await prisma.spot.findMany({
+        where: {
+            id: {
+              in: checkedSpotIds, // 取り出したspotIdが含まれないスポットを取得
+            },
+          },
+        orderBy: {
+          id: 'asc',
+        },
+      });
+
+      console.log({ unCheckedSpots });
     } else {
+      parsedFilter = parsedFilter - 3;
       filteredSpots = await prisma.spot.findMany({
         where: {
           nearStation: parsedFilter,

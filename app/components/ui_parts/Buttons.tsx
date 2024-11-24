@@ -5,6 +5,7 @@ import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { SpotType } from '@/app/types';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -190,7 +191,12 @@ export function ResetSelectionButton() {
     );
 }
 
-export function FilterSpotButton() {
+
+interface FilterSpotButtonProps {
+    setSpots: React.Dispatch<React.SetStateAction<SpotType[]>>;
+};
+
+export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
     const [filter, setFilter] = useState<string>('');
   
     const handleChange = async (event: SelectChangeEvent<string>) => {
@@ -209,9 +215,10 @@ export function FilterSpotButton() {
           const errorData = await response.json();
           throw new Error(errorData.error || '絞り込みに失敗しました。');
         }
-  
+        
         const result = await response.json();
         console.log('絞り込み成功:', result);
+        setSpots(result);
       } catch (error) {
         console.error('APIエラー:', error);
       }
@@ -231,11 +238,12 @@ export function FilterSpotButton() {
             <MenuItem value="0">全て</MenuItem>
             <MenuItem value="1">定番</MenuItem>
             <MenuItem value="2">未チェック</MenuItem>
-            <MenuItem value="3">京阪宇治近辺</MenuItem>
-            <MenuItem value="4">JR宇治近辺</MenuItem>
-            <MenuItem value="5">京阪黄檗近辺</MenuItem>
-            <MenuItem value="6">京阪六地蔵</MenuItem>
-            <MenuItem value="7">その他</MenuItem>
+            <MenuItem value="3">チェック済み</MenuItem>
+            <MenuItem value="4">京阪宇治近辺</MenuItem>{/*1*/}
+            <MenuItem value="5">JR宇治近辺</MenuItem>{/*2*/}
+            <MenuItem value="6">京阪黄檗近辺</MenuItem>{/*3*/}
+            <MenuItem value="7">京阪六地蔵</MenuItem>{/*4*/}
+            <MenuItem value="8">その他</MenuItem>{/*5*/}
           </Select>
         </FormControl>
       </Box>

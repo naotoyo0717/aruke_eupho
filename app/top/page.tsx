@@ -5,16 +5,17 @@ import SpotCard from "@/app/components/spot_card/SpotCard";
 import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
 import { FilterSpotButton, ResetSelectionButton } from "../components/ui_parts/Buttons";
 import styles from "@/app/statics/styles/topButtons.module.css";
+import { SpotType } from "../types";
 //import Footer from "../components/footer/Footer";
 
-type SpotType = {
-    id: number;
-    title: string;
-    explanation: string;
-    address: string;
-    pictureUrl: string;
-    visited: boolean;
-};
+// type SpotType = {
+//     id: number;
+//     title: string;
+//     explanation: string;
+//     address: string;
+//     pictureUrl: string;
+//     visited: boolean;
+// };
 
 export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
@@ -97,7 +98,7 @@ export default function Top() {
             <div className={styles.topButtons}>
                 <div>
                     <ResetSelectionButton/>
-                    <FilterSpotButton />
+                    <FilterSpotButton setSpots = {setSpots}/>
                 </div>
                 <VisitedCounter visitedCounter={visitedCounter} />
             </div>
