@@ -4,12 +4,12 @@ import { SelectedSpotButton } from '../ui_parts/Buttons';
 import CheckBox from './CheckBox';
 import CommentButton from './CommentButton';
 import styles from '@/app/statics/styles/spotCard.module.css';
-import { SpotArrayType } from '@/app/statics/spotList';
+import { SpotType } from '@/app/types';
 
 interface SpotCardProps {
     isSelected: boolean;
     setIsSelected: () => void;
-    item: SpotArrayType;
+    item: SpotType;
     visited: boolean;
     onVisitedChange: (id: number, visited: boolean) => void; // 親から渡すvisited変更の関数
 }
@@ -27,6 +27,22 @@ export default function SpotCard({
         console.log(`Spot ${item.id} visited status:`, newVisited);
         onVisitedChange(item.id, newVisited); // 親に通知
     };
+
+
+function getNearStation(stationNumber: number): string {
+    switch (stationNumber) {
+        case 1:
+            return "京阪宇治";
+        case 2:
+            return "JR宇治";
+        case 3:
+            return "京阪黄檗";
+        case 4:
+            return "京阪六地蔵"
+        default:
+            return "なし";
+    }
+}
 
     return (
         <div className={styles.cardWrapper}>
@@ -62,6 +78,7 @@ export default function SpotCard({
                                     <div className={styles.spotAddressText}>
                                         <PlaceIcon />
                                         <p>{item.address}</p>
+                                        <p>&nbsp;&nbsp;【最寄り: {getNearStation(item.nearStation)}】</p>
                                     </div>
                                     <div className={styles.spotSelectButton}>
                                         <SelectedSpotButton

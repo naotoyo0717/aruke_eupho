@@ -191,6 +191,30 @@ export function ResetSelectionButton() {
     );
 }
 
+export function OpenMapButton() {
+    return (
+        <Button
+            variant="contained"
+            onClick={() => {
+                console.log("map画面に移動");
+            }}
+            sx={{
+                width: '9rem',
+                height: '3rem',
+                borderRadius: '10px',
+                backgroundColor: '#3BC1FF',
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+                fontSize: '1.2rem', 
+                '&:hover': {
+                    backgroundColor: '#35A8E0',
+                },
+            }}>
+            MAPへ
+        </Button>
+    );
+}
+
 
 interface FilterSpotButtonProps {
     setSpots: React.Dispatch<React.SetStateAction<SpotType[]>>;

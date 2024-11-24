@@ -1,11 +1,12 @@
-export interface SpotArrayType {
-    id: number;
-    title: string;
-    pictureUrl: string;
-    explanation: string;
-    address: string;
-    visited: boolean;
-}
+// export interface SpotArrayType {
+//     id: number;
+//     title: string;
+//     pictureUrl: string;
+//     explanation: string;
+//     address: string;
+//     nearStation: number;
+//     visited: boolean;
+// }
 
 // export const spotArray: SpotArrayType[] = [
 //     { 

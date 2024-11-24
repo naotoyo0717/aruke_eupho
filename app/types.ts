@@ -9,6 +9,7 @@ export type SpotType = {
     title: string;
     explanation: string;
     address: string;
+    nearStation: number;
     pictureUrl: string;
     visited: boolean;
 };

@@ -3,19 +3,9 @@
 import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
 import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
-import { FilterSpotButton, ResetSelectionButton } from "../components/ui_parts/Buttons";
+import { FilterSpotButton, OpenMapButton, ResetSelectionButton } from "../components/ui_parts/Buttons";
 import styles from "@/app/statics/styles/topButtons.module.css";
 import { SpotType } from "../types";
-//import Footer from "../components/footer/Footer";
-
-// type SpotType = {
-//     id: number;
-//     title: string;
-//     explanation: string;
-//     address: string;
-//     pictureUrl: string;
-//     visited: boolean;
-// };
 
 export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
@@ -101,6 +91,10 @@ export default function Top() {
                     <FilterSpotButton setSpots = {setSpots}/>
                 </div>
                 <VisitedCounter visitedCounter={visitedCounter} />
+            </div>
+            <div>
+                <h2>巡礼したい場所をルートに追加してください。</h2>
+                <OpenMapButton/>
             </div>
             {spots.map((item) => {
                 const isVisited = visited.some((v) => v.spotId === item.id);
