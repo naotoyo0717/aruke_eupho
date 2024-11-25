@@ -249,27 +249,44 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
     };
   
     return (
-      <Box sx={{ width: '10rem' }}>
-        <FormControl fullWidth>
-          <InputLabel id="filterSpotLabel">絞り込み</InputLabel>
-          <Select
-            labelId="filterSpotLabel"
-            id="filterSpot"
-            value={filter}
-            label="Spot"
-            onChange={handleChange}
-          >
-            <MenuItem value="0">全て</MenuItem>
-            <MenuItem value="1">定番</MenuItem>
-            <MenuItem value="2">未チェック</MenuItem>
-            <MenuItem value="3">チェック済み</MenuItem>
-            <MenuItem value="4">京阪宇治近辺</MenuItem>{/*1*/}
-            <MenuItem value="5">JR宇治近辺</MenuItem>{/*2*/}
-            <MenuItem value="6">京阪黄檗近辺</MenuItem>{/*3*/}
-            <MenuItem value="7">京阪六地蔵</MenuItem>{/*4*/}
-            <MenuItem value="8">その他</MenuItem>{/*5*/}
-          </Select>
-        </FormControl>
-      </Box>
+        <FormControl 
+  sx={{ m: 1, minWidth: 140 }} 
+  size="small" // サイズを小さく設定
+>
+  <InputLabel 
+    id="filterSpotLabel" 
+    sx={{
+      backgroundColor: '#faf6f0',
+      //'#fff8ed', // 背景色を設定して重なりを防止
+      px: 1, // ラベル内の左右の余白を調整
+      transform: 'translate(14px, -6px) scale(0.75)', // ラベル位置を微調整
+    }}
+  >
+    絞り込み
+  </InputLabel>
+  <Select
+    labelId="filterSpotLabel"
+    id="filterSpot"
+    value={filter}
+    label="Spot"
+    onChange={handleChange}
+    sx={{
+      '& .MuiSelect-select': {
+        padding: '8px', // 内側の余白を調整
+      },
+    }}
+  >
+    <MenuItem value="0">全て</MenuItem>
+    <MenuItem value="1">定番</MenuItem>
+    <MenuItem value="2">未チェック</MenuItem>
+    <MenuItem value="3">チェック済み</MenuItem>
+    <MenuItem value="4">京阪宇治近辺</MenuItem>
+    <MenuItem value="5">JR宇治近辺</MenuItem>
+    <MenuItem value="6">京阪黄檗近辺</MenuItem>
+    <MenuItem value="7">京阪六地蔵</MenuItem>
+    <MenuItem value="8">その他</MenuItem>
+  </Select>
+</FormControl>
+
     );
   }

@@ -86,13 +86,13 @@ export default function Top() {
     return (
         <>
             <div className={styles.topButtons}>
-                <div>
+                <div className={styles.filterButtons}>
                     <ResetSelectionButton/>
                     <FilterSpotButton setSpots = {setSpots}/>
                 </div>
                 <VisitedCounter visitedCounter={visitedCounter} />
             </div>
-            <div>
+            <div className={styles.topButtonsContent}>
                 <h2>巡礼したい場所をルートに追加してください。</h2>
                 <OpenMapButton/>
             </div>
@@ -115,6 +115,9 @@ export default function Top() {
                     />
                 );
             })}
+            <div className={styles.topBottom}>
+                <OpenMapButton/>
+            </div>
 
         </>
     );

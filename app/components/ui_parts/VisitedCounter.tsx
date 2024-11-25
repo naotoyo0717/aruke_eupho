@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
+import styles from "@/app/statics/styles/visitedCounter.module.css"
 
 interface VisitedCounterProps {
     visitedCounter: number;
@@ -30,7 +31,9 @@ export function VisitedCounter({ visitedCounter }: VisitedCounterProps) {
 
     return (
         <div>
-            <div>巡礼済 {visitedCounter}/{allPlaces}</div>
+            <div className={styles.visitedCounter}>
+                巡礼済 {visitedCounter}/{allPlaces}
+            </div>
         </div>
     );
 }
