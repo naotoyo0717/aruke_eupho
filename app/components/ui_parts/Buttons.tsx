@@ -4,8 +4,9 @@ import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
-import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { SpotType } from '@/app/types';
+import { useRouter } from 'next/navigation';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -192,11 +193,12 @@ export function ResetSelectionButton() {
 }
 
 export function OpenMapButton() {
+    const router = useRouter()
     return (
         <Button
             variant="contained"
             onClick={() => {
-                console.log("map画面に移動");
+                router.push('/map')
             }}
             sx={{
                 width: '9rem',

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
+import Loading from "../loading";
 import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
 import { FilterSpotButton, OpenMapButton, ResetSelectionButton } from "../components/ui_parts/Buttons";
 import styles from "@/app/statics/styles/topButtons.module.css";
@@ -12,6 +13,7 @@ export default function Top() {
     const [visited, setVisited] = useState<{ spotId: number }[]>([]);
     const [selectedSpots, setSelectedSpots] = useState<{ [key: number]: boolean }>({});
     const [visitedCounter, setVisitedCounter] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const fetchSpots = async () => {
@@ -49,22 +51,32 @@ export default function Top() {
                 }
                 const data: { spotId: number }[] = await response.json();
                 console.log(data);
-        
-                // data を `{ [key: number]: boolean }` 型に変換
-                const formattedData = data.reduce((acc, item) => {
-                    acc[item.spotId] = true; // 選択済みのスポットを `true` として設定
+
+                const formattedData = data.reduce((acc, item) => { //データをオブジェクトに変換 reduce: 配列を一つ一つ処理して、結果をまとめる関数。
+                    acc[item.spotId] = true;
                     return acc;
-                }, {} as { [key: number]: boolean });
-        
-                setSelectedSpots(formattedData); // 型に一致したデータを渡す
+                }, {} as { [key: number]: boolean }); //ただの型定義。
+
+                // item が { spotId: 1 } の場合 → acc[1] = true。
+                
+
+                setSelectedSpots(formattedData);
             } catch (error) {
                 console.log('Error searching selected:', error);
             }
         };
 
-        fetchSpots();
-        fetchVisited();
-        fetchSelected();
+        const fetchData = async () => {
+            try {
+                await Promise.all([fetchSpots(), fetchVisited(), fetchSelected()]);
+                setIsLoading(false);
+            } catch (error) {
+                console.error('Error during data fetching:', error);
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
     }, []);
 
     const handleVisitedChange = (id: number, newVisited: boolean) => {
@@ -87,39 +99,44 @@ export default function Top() {
         <>
             <div className={styles.topButtons}>
                 <div className={styles.filterButtons}>
-                    <ResetSelectionButton/>
-                    <FilterSpotButton setSpots = {setSpots}/>
+                    <ResetSelectionButton />
+                    <FilterSpotButton setSpots={setSpots} />
                 </div>
                 <VisitedCounter visitedCounter={visitedCounter} />
             </div>
             <div className={styles.topButtonsContent}>
                 <h2>巡礼したい場所をルートに追加してください。</h2>
-                <OpenMapButton/>
-            </div>
-            {spots.map((item) => {
-                const isVisited = visited.some((v) => v.spotId === item.id);
-                const isSelected = !!selectedSpots[item.id]; // 修正
-                return (
-                    <SpotCard
-                        key={item.id}
-                        isSelected={isSelected}
-                        setIsSelected={() =>
-                            setSelectedSpots((prevState) => ({
-                                ...prevState,
-                                [item.id]: !prevState[item.id],
-                            }))
-                        }
-                        item={item}
-                        visited={isVisited}
-                        onVisitedChange={handleVisitedChange}
-                    />
-                );
-            })}
-            <div className={styles.topBottom}>
-                <OpenMapButton/>
+                <OpenMapButton />
             </div>
 
+            {/* Loading部分の条件付きレンダリング */}
+            {isLoading ? (
+                <Loading />
+            ) : (
+                spots.map((item) => {
+                    const isVisited = visited.some((v) => v.spotId === item.id);
+                    const isSelected = !!selectedSpots[item.id];
+                    return (
+                        <SpotCard
+                            key={item.id}
+                            isSelected={isSelected}
+                            setIsSelected={() =>
+                                setSelectedSpots((prevState) => ({
+                                    ...prevState,
+                                    [item.id]: !prevState[item.id],
+                                }))
+                            }
+                            item={item}
+                            visited={isVisited}
+                            onVisitedChange={handleVisitedChange}
+                        />
+                    );
+                })
+            )}
+
+            <div className={styles.topBottom}>
+                <OpenMapButton />
+            </div>
         </>
     );
-    
 }
