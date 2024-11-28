@@ -56,6 +56,8 @@ model Spot {
   address     String
   nearStation Int?
   standard    Boolean     @default(false)
+  latitude    Float?      @default(0.0)
+  longitude   Float?      @default(0.0)
   userSpots   UserSpot[]  // このスポットを訪問したユーザー情報
 }
 

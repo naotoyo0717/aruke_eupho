@@ -34,9 +34,10 @@
 }
 
 .cardImage{
-    max-width: 50rem;
+    /* max-width: 50rem; */
     margin: 0.5rem;
-    height: 10rem;
+    margin-left: 0.8rem;
+    /* height: 10rem; */
     border-radius: 5px;
 }
 
@@ -44,7 +45,7 @@
     width: 62rem;
     display: flex;
     justify-content: space-between;
-    padding-right: 1rem;
+    padding-right: 0.5rem;
 }
 
 .contentHeader h2{
@@ -90,7 +91,7 @@
 
 .spotSelectButton{
     padding-right: 1rem;
-
+    padding-bottom: 0.5rem;
 }
 
 .cardHooter{

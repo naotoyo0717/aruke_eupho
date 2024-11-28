@@ -1,10 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 import PlaceIcon from '@mui/icons-material/Place';
 import { SelectedSpotButton } from '../ui_parts/Buttons';
 import CheckBox from './CheckBox';
 import CommentButton from './CommentButton';
 import styles from '@/app/statics/styles/spotCard.module.css';
 import { SpotType } from '@/app/types';
+import Image from 'next/image';
 
 interface SpotCardProps {
     isSelected: boolean;
@@ -49,7 +49,9 @@ function getNearStation(stationNumber: number): string {
             <div className={`${styles.spotCard} ${isSelected ? styles.selected : styles.unselected}`}>
                 <div className={styles.cardContent}>
                     <div className={styles.cardHeader}>
-                        <img
+                        <Image
+                            width={200}
+                            height={150}
                             src={item.pictureUrl}
                             alt={item.title}
                             className={styles.cardImage}
