@@ -24,3 +24,9 @@ export type SpotLocationType = {
     latitude: number;
     longitude: number;
 };
+
+export type WayPoint = {
+    name: string;
+    lat: number;
+    lng: number;
+};

@@ -7,6 +7,8 @@ import {
   DirectionsRenderer,
   OverlayView,
 } from '@react-google-maps/api';
+import Loading from '@/app/loading';
+
 
 interface MapProps {
   apiKey: string;
@@ -66,7 +68,11 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints }) => {
   }, [origin, waypoints, googleLoaded]);
 
   return (
-    <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)}>
+    <LoadScript
+      googleMapsApiKey={apiKey}
+      onLoad={() => setGoogleLoaded(true)}
+      loadingElement={<Loading />} // カスタムローディングコンポーネントを指定
+    >
       <GoogleMap
         mapContainerStyle={{ height: '100vh', width: '100%' }}
         center={origin}
