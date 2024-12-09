@@ -192,13 +192,20 @@ export function ResetSelectionButton() {
     );
 }
 
-export function OpenMapButton() {
+type OpenMapButtonProps = {
+    startingPoint: number;
+    // setStartingPoint: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export function OpenMapButton({
+    startingPoint,
+}: OpenMapButtonProps) {
     const router = useRouter()
     return (
         <Button
             variant="contained"
             onClick={() => {
-                router.push('/map')
+                router.push(`/map?startingPoint=${startingPoint}`);
             }}
             sx={{
                 width: '9rem',
@@ -252,43 +259,111 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
   
     return (
         <FormControl 
-  sx={{ m: 1, minWidth: 140 }} 
-  size="small" // サイズを小さく設定
->
-  <InputLabel 
-    id="filterSpotLabel" 
-    sx={{
-      backgroundColor: '#faf6f0',
-      //'#fff8ed', // 背景色を設定して重なりを防止
-      px: 1, // ラベル内の左右の余白を調整
-      transform: 'translate(14px, -6px) scale(0.75)', // ラベル位置を微調整
-    }}
-  >
-    絞り込み
-  </InputLabel>
-  <Select
-    labelId="filterSpotLabel"
-    id="filterSpot"
-    value={filter}
-    label="Spot"
-    onChange={handleChange}
-    sx={{
-      '& .MuiSelect-select': {
-        padding: '8px', // 内側の余白を調整
-      },
-    }}
-  >
-    <MenuItem value="0">全て</MenuItem>
-    <MenuItem value="1">定番</MenuItem>
-    <MenuItem value="2">未チェック</MenuItem>
-    <MenuItem value="3">チェック済み</MenuItem>
-    <MenuItem value="4">京阪宇治近辺</MenuItem>
-    <MenuItem value="5">JR宇治近辺</MenuItem>
-    <MenuItem value="6">京阪黄檗近辺</MenuItem>
-    <MenuItem value="7">京阪六地蔵</MenuItem>
-    <MenuItem value="8">その他</MenuItem>
-  </Select>
-</FormControl>
+            sx={{ m: 1, minWidth: 140 }} 
+            size="small" // サイズを小さく設定
+        >
+            <InputLabel 
+                id="filterSpotLabel" 
+                sx={{
+                backgroundColor: '#faf6f0',
+                px: 1, // ラベル内の左右の余白を調整
+                transform: 'translate(14px, -6px) scale(0.75)', // ラベル位置を微調整
+                }}
+            >
+            絞り込み
+        </InputLabel>
+        <Select
+            labelId="filterSpotLabel"
+            id="filterSpot"
+            value={filter}
+            label="Spot"
+            onChange={handleChange}
+                sx={{
+                '& .MuiSelect-select': {
+                    padding: '8px', // 内側の余白を調整
+                },
+            }}
+        >
+            <MenuItem value="0">全て</MenuItem>
+            <MenuItem value="1">定番</MenuItem>
+            <MenuItem value="2">未チェック</MenuItem>
+            <MenuItem value="3">チェック済み</MenuItem>
+            <MenuItem value="4">京阪宇治近辺</MenuItem>
+            <MenuItem value="5">JR宇治近辺</MenuItem>
+            <MenuItem value="6">京阪黄檗近辺</MenuItem>
+            <MenuItem value="7">京阪六地蔵</MenuItem>
+            <MenuItem value="8">その他</MenuItem>
+        </Select>
+        </FormControl>
 
+        );
+    }
+
+
+type SelectStartingButtonProps = {
+    StartingPoint: number;
+    setStartingPoint: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export function SelectStartingButton({
+    StartingPoint,
+    setStartingPoint,
+  }: SelectStartingButtonProps) {
+    const handleChange = (event: SelectChangeEvent<string>) => {
+      const selectedStartingPoint = parseInt(event.target.value, 10);
+      setStartingPoint(selectedStartingPoint);
+    };
+  
+    return (
+      <FormControl
+        sx={{ m: 1, minWidth: 140 }}
+        size="small"
+      >
+        <InputLabel
+          id="selectStartingPoint"
+          sx={{
+            backgroundColor: "#faf6f0",
+            px: 1,
+            transform: "translate(14px, -6px) scale(0.75)",
+          }}
+        >
+          出発地点
+        </InputLabel>
+        <Select
+          labelId="startingSpotLabel"
+          id="startingSpot"
+          value={String(StartingPoint)} // 数値を文字列に変換して設定
+          label="Spot"
+          onChange={handleChange}
+          sx={{
+            "& .MuiSelect-select": {
+              padding: "8px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+            },
+          }}
+        >
+          <MenuItem value="0" sx={{ textAlign: "center" }}>
+            現在地
+          </MenuItem>
+          <MenuItem value="1" sx={{ textAlign: "center" }}>
+            京阪宇治
+          </MenuItem>
+          <MenuItem value="2" sx={{ textAlign: "center" }}>
+            京阪黄檗
+          </MenuItem>
+          <MenuItem value="3" sx={{ textAlign: "center" }}>
+            京阪六地蔵
+          </MenuItem>
+          <MenuItem value="4" sx={{ textAlign: "center" }}>
+            JR宇治駅
+          </MenuItem>
+          <MenuItem value="5" sx={{ textAlign: "center" }}>
+            JR京都駅
+          </MenuItem>
+        </Select>
+      </FormControl>
     );
   }

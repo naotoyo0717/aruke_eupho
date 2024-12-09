@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
 import Loading from "../loading";
 import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
-import { FilterSpotButton, OpenMapButton, ResetSelectionButton } from "../components/ui_parts/Buttons";
+import { FilterSpotButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/ui_parts/Buttons";
 import styles from "@/app/statics/styles/topButtons.module.css";
 import { SpotType } from "../types";
 
@@ -14,7 +14,8 @@ export default function Top() {
     const [selectedSpots, setSelectedSpots] = useState<{ [key: number]: boolean }>({});
     const [visitedCounter, setVisitedCounter] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-
+    const [startingPoint, setStartingPoint] = useState<number>(0);
+    
     useEffect(() => {
         const fetchSpots = async () => {
             try {
@@ -101,13 +102,21 @@ export default function Top() {
                 <div className={styles.filterButtons}>
                     <ResetSelectionButton />
                     <FilterSpotButton setSpots={setSpots} />
+                    <SelectStartingButton
+                        StartingPoint={startingPoint}
+                        setStartingPoint={setStartingPoint}/>
                 </div>
                 <VisitedCounter visitedCounter={visitedCounter} />
             </div>
             <div className={styles.topButtonsContent}>
-                <h2>巡礼したい場所をルートに追加してください。</h2>
-                <OpenMapButton />
-            </div>
+                    <h2>巡礼したい場所をルートに追加してください。</h2>
+                    <OpenMapButton 
+                        startingPoint={startingPoint}
+                    />
+                </div>
+            {/* <div className={styles.startingSpotButton}>
+                <SelectStartingButton/>
+            </div> */}
 
             {/* Loading部分の条件付きレンダリング */}
             {isLoading ? (
@@ -135,7 +144,7 @@ export default function Top() {
             )}
 
             <div className={styles.topBottom}>
-                <OpenMapButton />
+                <OpenMapButton startingPoint={startingPoint}/>
             </div>
         </>
     );

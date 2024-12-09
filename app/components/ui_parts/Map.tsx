@@ -73,6 +73,7 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints }) => {
       onLoad={() => setGoogleLoaded(true)}
       loadingElement={<Loading />} // カスタムローディングコンポーネントを指定
     >
+      <h1>出発地点：{origin.name}</h1>
       <GoogleMap
         mapContainerStyle={{ height: '100vh', width: '100%' }}
         center={origin}
@@ -103,9 +104,9 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints }) => {
 
       {/* 所要時間を表示 */}
       {duration && <div style={{ padding: '10px', fontSize: '1.2rem' }}>所要時間: {duration}</div>}
-
       {/* エラーメッセージ表示 */}
       {error && <div style={{ padding: '10px', color: 'red' }}>{error}</div>}
+
     </LoadScript>
   );
 };
