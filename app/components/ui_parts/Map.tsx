@@ -13,10 +13,10 @@ interface MapProps {
   apiKey: string;
   origin: { name: string; lat: number; lng: number };
   waypoints: { name: string; lat: number; lng: number }[];
-  selectedTransportOption: string;
+  //selectedTransportOption: string;
 }
 
-const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, selectedTransportOption }) => {
+const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, /*selectedTransportOption*/ }) => {
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
   const [googleLoaded, setGoogleLoaded] = useState(false);
   const [duration, setDuration] = useState<string>('');
@@ -36,8 +36,9 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, selectedTransportO
         origin: { lat: origin.lat, lng: origin.lng },
         destination: { lat: destination.lat, lng: destination.lng },
         waypoints: waypointList,
-        travelMode: selectedTransportOption as google.maps.TravelMode,
+        //travelMode: selectedTransportOption as google.maps.TravelMode,
         optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.WALKING,
       };
 
       directionsService.route(request, (result, status) => {
@@ -56,12 +57,12 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, selectedTransportO
         }
       });
     }
-  }, [origin, waypoints, selectedTransportOption, googleLoaded]);
+  }, [origin, waypoints, /*selectedTransportOption*/, googleLoaded]);
   
 
   return (
     <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)} loadingElement={<Loading />}>
-      <h1>出発地点：{origin.name} 交通手段：{selectedTransportOption}</h1>
+      <h1>出発地点：{origin.name} 交通手段：徒歩</h1>
       <GoogleMap mapContainerStyle={{ height: '100vh', width: '100%' }} center={origin} zoom={16}>
         {directions && <DirectionsRenderer directions={directions} />}
         <OverlayView position={origin} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
