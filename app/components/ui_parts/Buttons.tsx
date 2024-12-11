@@ -194,18 +194,19 @@ export function ResetSelectionButton() {
 
 type OpenMapButtonProps = {
     startingPoint: number;
-    // setStartingPoint: React.Dispatch<React.SetStateAction<number>>;
+    transportOption: number;
 };
 
 export function OpenMapButton({
     startingPoint,
+    transportOption
 }: OpenMapButtonProps) {
     const router = useRouter()
     return (
         <Button
             variant="contained"
             onClick={() => {
-                router.push(`/map?startingPoint=${startingPoint}`);
+                router.push(`/map?startingPoint=${startingPoint}&transportOption=${transportOption}`);
             }}
             sx={{
                 width: '9rem',
@@ -301,12 +302,12 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
 
 
 type SelectStartingButtonProps = {
-    StartingPoint: number;
+    startingPoint: number;
     setStartingPoint: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export function SelectStartingButton({
-    StartingPoint,
+    startingPoint,
     setStartingPoint,
   }: SelectStartingButtonProps) {
     const handleChange = (event: SelectChangeEvent<string>) => {
@@ -332,7 +333,7 @@ export function SelectStartingButton({
         <Select
           labelId="startingSpotLabel"
           id="startingSpot"
-          value={String(StartingPoint)} // 数値を文字列に変換して設定
+          value={String(startingPoint)} // 数値を文字列に変換して設定
           label="Spot"
           onChange={handleChange}
           sx={{
@@ -367,3 +368,62 @@ export function SelectStartingButton({
       </FormControl>
     );
   }
+
+type TransportOptionButtonProps = {
+    transportOption: number;
+    setTransportOption: React.Dispatch<React.SetStateAction<number>>;
+};
+    
+export function TransportOptionButton({
+    transportOption,
+    setTransportOption,
+    }: TransportOptionButtonProps) {
+    const handleChange = (event: SelectChangeEvent<string>) => {
+        const selectedTransport = parseInt(event.target.value, 10);
+        setTransportOption(selectedTransport);
+    };
+    
+    return (
+        <FormControl sx={{ m: 1, minWidth: 140 }} size="small">
+        <InputLabel
+            id="selectTransPort"
+            sx={{
+            backgroundColor: "#faf6f0",
+            px: 1,
+            transform: "translate(14px, -6px) scale(0.75)",
+            }}
+        >
+            出発地点
+        </InputLabel>
+        <Select
+            labelId="transportOptionLabel"
+            id="transportOption"
+            value={String(transportOption)} // TransportOptionを使用
+            label="Spot"
+            onChange={handleChange}
+            sx={{
+            "& .MuiSelect-select": {
+                padding: "8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+            },
+            }}
+        >
+            <MenuItem value="0" sx={{ textAlign: "center" }}>
+                徒歩
+            </MenuItem>
+            <MenuItem value="1" sx={{ textAlign: "center" }}>
+                公共交通機関
+            </MenuItem>
+            <MenuItem value="2" sx={{ textAlign: "center" }}>
+                車
+            </MenuItem>
+            <MenuItem value="3" sx={{ textAlign: "center" }}>
+                自転車
+            </MenuItem>
+        </Select>
+        </FormControl>
+    );
+}
