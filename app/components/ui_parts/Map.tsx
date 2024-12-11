@@ -13,10 +13,9 @@ interface MapProps {
   apiKey: string;
   origin: { name: string; lat: number; lng: number };
   waypoints: { name: string; lat: number; lng: number }[];
-  //selectedTransportOption: string;
 }
 
-const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, /*selectedTransportOption*/ }) => {
+const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints,}) => {
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
   const [googleLoaded, setGoogleLoaded] = useState(false);
   const [duration, setDuration] = useState<string>('');
@@ -36,7 +35,6 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, /*selectedTranspor
         origin: { lat: origin.lat, lng: origin.lng },
         destination: { lat: destination.lat, lng: destination.lng },
         waypoints: waypointList,
-        //travelMode: selectedTransportOption as google.maps.TravelMode,
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.WALKING,
       };
@@ -57,7 +55,7 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, /*selectedTranspor
         }
       });
     }
-  }, [origin, waypoints, /*selectedTransportOption*/, googleLoaded]);
+  }, [origin, waypoints, googleLoaded]);
   
 
   return (

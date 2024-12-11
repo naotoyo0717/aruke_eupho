@@ -12,7 +12,6 @@ const Page = () => {
   const transportOption = searchParams.get('transportOption');
   const [selectedWayPoints, setSelectedWayPoints] = useState<SpotLocationType[]>([]);
   const [origin, setOrigin] = useState<WayPoint>();
-  //const [selectedTransportOption, setSelectedTransportOption] = useState<string>('WALKING');
 
   useEffect(() => {
     const fetchSelectedLocation = async () => {
@@ -73,24 +72,7 @@ const Page = () => {
       }
     }
 
-    // switch (transportOptionInt) {
-    //   case 0:
-    //     setSelectedTransportOption('WALKING');
-    //     break;
-    //   case 1:
-    //     setSelectedTransportOption('TRANSIT');
-    //     break;
-    //   case 2:
-    //     setSelectedTransportOption('DRIVING');
-    //     break;
-    //   case 3:
-    //     setSelectedTransportOption('BICYCLING');
-    //     break;
-    //   default:
-    //     console.error('不明な交通手段です');
-    //     break;
-    // }
-  }, [startingPointInt, /*transportOptionInt*/]);
+  }, [startingPointInt]);
 
   const waypoints: WayPoint[] = selectedWayPoints.map((point) => ({
     name: point.title,
@@ -112,7 +94,6 @@ const Page = () => {
         apiKey={apiKey}
         origin={origin}
         waypoints={waypoints}
-        //selectedTransportOption={selectedTransportOption}
       />
     </div>
   );
