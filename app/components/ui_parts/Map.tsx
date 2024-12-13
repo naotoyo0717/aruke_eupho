@@ -5,7 +5,7 @@ import {
   DirectionsRenderer,
   OverlayView,
 } from '@react-google-maps/api';
-import Loading from '@/app/loading';
+//import Loading from '@/app/loading';
 
 interface MapProps {
   apiKey: string;
@@ -38,6 +38,8 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
         travelMode: google.maps.TravelMode.WALKING,
       };
 
+      console.log('Directions APIリクエスト:', request);
+
       directionsService.route(request, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK && result) {
           setDirections(result);
@@ -62,7 +64,7 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
       }, [origin, waypoints, googleLoaded, setDuration, order]);
 
   return (
-    <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)} loadingElement={<Loading />}>
+    <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)} /*loadingElement={<Loading />}*/>
       {error && <div style={{ padding: '10px', color: 'red' }}>{error}</div>}
 
       <GoogleMap

@@ -2,6 +2,7 @@ import { Checkbox } from "@mui/material";
 import { useState } from "react";
 import styles from "@/app/statics/styles/mapSideBar.module.css";
 import { SpotLocationType } from "@/app/types";
+import { MapSideBarBackButton } from "./Buttons";
 
 interface MapSideBarProps {
     origin: string;
@@ -48,6 +49,7 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
                     </div>
                 ))}
             </div>
+            <MapSideBarBackButton/>
         </div>
     );
 }

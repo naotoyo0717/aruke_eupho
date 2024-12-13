@@ -425,3 +425,25 @@ export function TransportOptionButton({
         </FormControl>
     );
 }
+
+export function MapSideBarBackButton() {
+    return (
+        <Button
+            href="/top"
+            variant='contained'
+            sx={{
+                width: '9rem',
+                height: '3rem',
+                borderRadius: '10px',
+                backgroundColor: '#3BC1FF',
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+                fontSize: '1.2rem', 
+                '&:hover': {
+                    backgroundColor: '#35A8E0',
+                },
+            }}>
+            選択に戻る
+        </Button>
+    );
+}

@@ -32,7 +32,7 @@ export default function DrawerMenu() {
                 <MenuIcon sx={{ fontSize: 55, color: "white" }}/>
             </Button>
             <Drawer anchor='left' open={show}>
-                <Box sx={{ height: '100vh', width: '17vw', backgroundColor: '#DBF3FF'}}>
+                <Box sx={{ height: '100vh', width: '17rem', backgroundColor: '#DBF3FF'}}>
                 <List>
                     <div className={styles.drawerCancel}>
                         <ListItemText

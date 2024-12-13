@@ -16,6 +16,10 @@ const Page = () => {
   const [duration, setDuration] = useState<string>('');
   const orderRef = useRef<number[]>([]); //refは値が変更されても画面の際レンダリングは実行されない。
 
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY || '';
+
+  const startingPointInt = Number(startingPoint);
+
   useEffect(() => {
     const fetchSelectedLocation = async () => {
       try {
@@ -30,13 +34,8 @@ const Page = () => {
         console.error('Error fetching SelectedLocation:', error);
       }
     };
-
     fetchSelectedLocation();
   }, []);
-
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY || '';
-
-  const startingPointInt = Number(startingPoint);
 
   useEffect(() => {
     if (startingPointInt === 0) {
@@ -91,21 +90,27 @@ const Page = () => {
   }
 
   return (
-    <div className={styles.mapPage}>
-      <MapSideBar
-        origin={origin.name}
-        duration={duration}
-        selectedWayPoints={selectedWayPoints}
-        order={orderRef}
+    !origin ? (
+      <div>
+        <Loading />
+      </div>
+    ) : (
+      <div className={styles.mapPage}>
+        <MapSideBar
+          origin={origin.name}
+          duration={duration}
+          selectedWayPoints={selectedWayPoints}
+          order={orderRef}
         />
-      <Map
-        apiKey={apiKey}
-        origin={origin}
-        waypoints={waypoints}
-        setDuration={setDuration}
-        order={orderRef}
-      />
-    </div>
+        <Map
+          apiKey={apiKey}
+          origin={origin}
+          waypoints={waypoints}
+          setDuration={setDuration}
+          order={orderRef}
+        />
+      </div>
+    )
   );
 };
 
