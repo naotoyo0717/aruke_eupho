@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ”響けユーフォニアム”の聖地巡礼観光案内アプリです。
 
 ## Getting Started
