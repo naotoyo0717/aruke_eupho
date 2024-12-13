@@ -194,19 +194,17 @@ export function ResetSelectionButton() {
 
 type OpenMapButtonProps = {
     startingPoint: number;
-    transportOption: number;
 };
 
 export function OpenMapButton({
     startingPoint,
-    transportOption
 }: OpenMapButtonProps) {
     const router = useRouter()
     return (
         <Button
             variant="contained"
             onClick={() => {
-                router.push(`/map?startingPoint=${startingPoint}&transportOption=${transportOption}`);
+                router.push(`/map?startingPoint=${startingPoint}`);
             }}
             sx={{
                 width: '9rem',

@@ -1,17 +1,20 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Map from '@/app/components/ui_parts/Map';
 import { SpotLocationType, WayPoint } from '../types';
 import { useSearchParams } from 'next/navigation';
 import Loading from '../loading';
+import MapSideBar from '../components/ui_parts/MapSideBar';
+import styles from "@/app/statics/styles/mapPage.module.css";
 
 const Page = () => {
   const searchParams = useSearchParams();
   const startingPoint = searchParams.get('startingPoint');
-  const transportOption = searchParams.get('transportOption');
   const [selectedWayPoints, setSelectedWayPoints] = useState<SpotLocationType[]>([]);
   const [origin, setOrigin] = useState<WayPoint>();
+  const [duration, setDuration] = useState<string>('');
+  const orderRef = useRef<number[]>([]); //refは値が変更されても画面の際レンダリングは実行されない。
 
   useEffect(() => {
     const fetchSelectedLocation = async () => {
@@ -34,7 +37,6 @@ const Page = () => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY || '';
 
   const startingPointInt = Number(startingPoint);
-  //const transportOptionInt = Number(transportOption);
 
   useEffect(() => {
     if (startingPointInt === 0) {
@@ -89,11 +91,19 @@ const Page = () => {
   }
 
   return (
-    <div>
+    <div className={styles.mapPage}>
+      <MapSideBar
+        origin={origin.name}
+        duration={duration}
+        selectedWayPoints={selectedWayPoints}
+        order={orderRef}
+        />
       <Map
         apiKey={apiKey}
         origin={origin}
         waypoints={waypoints}
+        setDuration={setDuration}
+        order={orderRef}
       />
     </div>
   );

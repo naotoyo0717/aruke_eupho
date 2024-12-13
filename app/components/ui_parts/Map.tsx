@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useState } from 'react';
 import {
   GoogleMap,
@@ -13,12 +11,13 @@ interface MapProps {
   apiKey: string;
   origin: { name: string; lat: number; lng: number };
   waypoints: { name: string; lat: number; lng: number }[];
+  setDuration: React.Dispatch<React.SetStateAction<string>>;
+  order: React.MutableRefObject<number[]>;
 }
 
-const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints,}) => {
+const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order }) => {
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
   const [googleLoaded, setGoogleLoaded] = useState(false);
-  const [duration, setDuration] = useState<string>('');
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
@@ -49,31 +48,40 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints,}) => {
           const hours = Math.floor(totalDuration / 3600);
           const minutes = Math.floor((totalDuration % 3600) / 60);
           setDuration(`${hours}時間 ${minutes}分`);
+
+          // useRef を利用して order を保存
+          order.current = result.routes[0].waypoint_order;
         } else {
           setError('経路の取得に失敗しました。再度お試しください。');
           console.error('Directions request failed due to ' + status);
         }
       });
-    }
-  }, [origin, waypoints, googleLoaded]);
-  
+          
+          
+        }
+      }, [origin, waypoints, googleLoaded, setDuration, order]);
 
   return (
     <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)} loadingElement={<Loading />}>
-      <h1>出発地点：{origin.name} 交通手段：徒歩</h1>
-      <GoogleMap mapContainerStyle={{ height: '100vh', width: '100%' }} center={origin} zoom={16}>
+      {error && <div style={{ padding: '10px', color: 'red' }}>{error}</div>}
+
+      <GoogleMap
+        mapContainerStyle={{ height: '100vh', width: '100%' }}
+        center={origin}
+        zoom={15}
+      >
         {directions && <DirectionsRenderer directions={directions} />}
+
         <OverlayView position={origin} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
           <div style={labelStyle}>{origin.name}</div>
         </OverlayView>
+
         {waypoints.map((waypoint, index) => (
           <OverlayView key={index} position={waypoint} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
             <div style={labelStyle}>{waypoint.name}</div>
           </OverlayView>
         ))}
       </GoogleMap>
-      {duration && <div style={{ padding: '10px', fontSize: '1.2rem' }}>所要時間: {duration}</div>}
-      {error && <div style={{ padding: '10px', color: 'red' }}>{error}</div>}
     </LoadScript>
   );
 };
@@ -87,3 +95,4 @@ const labelStyle: React.CSSProperties = {
   pointerEvents: 'none',
   color: '#443322',
 };
+ 
