@@ -1,6 +1,98 @@
-.mapSideBarItem {
-    /* display: flex;
-    justify-content: center; */
-    background-color: #DBF3FF;
+.mapSideBar {
+    width: 27vw;
+}
+
+.mapSideBarBackButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.2rem;
+    margin-bottom: 1.rem;
+}
+
+.mapSideBarDuration {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #443322;
     margin: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.mapSideBarCard {
+    display: flex;
+    justify-content: space-between;
+    background-color: #DBF3FF;
+    margin-bottom: 1.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    align-items: center;
+    border-radius: 15px;
+    position: relative;
+}
+
+.mapSideBarCardTitle {
+    padding-left: 1rem;
+}
+
+.mapSideBarCard h2 {
+    color: #443322;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.mapSideBarStart {
+    display: flex;
+    justify-content: center;
+    background-color: #DBF3FF;
+    margin-bottom: 1.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    align-items: center;
+    border-radius: 15px;
+    position: relative;
+    height: 3rem;
+}
+.mapSideBarStart::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1.5rem;
+    width: 5px;
+    height: 1.5rem;
+    background-color: #332211;
+    z-index: -1;
+}
+
+.mapSideBarStart h2 {
+    color: #443322;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.mapSideBarCardTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.mapSideBarCard::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1.5rem;
+    width: 5px;
+    height: 1.5rem;
+    background-color: #332211;
+    z-index: -1;
+}
+
+.mapSideBarCard:last-child::after {
+    display: none;
 }

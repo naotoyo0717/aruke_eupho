@@ -26,16 +26,23 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
     };
 
     return (
-        <div>
-            <h2>所要時間：{duration}</h2>
-            <div className={styles.mapSideBarStart}>
-                <h3>{origin}</h3>
+        <div className={styles.mapSideBar}>
+            <div className={styles.mapSideBarBackButton}>
+                <MapSideBarBackButton/>
             </div>
-            <div className={styles.mapSideBarItem}>
+            <div className={styles.mapSideBarDuration}>
+                <h2>所要時間：{duration}</h2>
+            </div>
+            <div className={styles.mapSideBarContent}>
+                <div className={styles.mapSideBarStart}>
+                    <h2>出発地点：{origin}</h2>
+                </div>
                 {orderedWayPoints.map((item) => (
-                    <div key={item.id}>
-                        <p>{item.id}</p>
-                        <h3>{item.title}</h3>
+                    <div key={item.id} className={styles.mapSideBarCard}>
+                        <h2>{item.id}</h2>
+                        <div className={styles.mapSideBarCardTitle}>
+                            <h2>{item.title}</h2>
+                        </div>
                         <Checkbox
                             checked={!!checkedItems[item.id]} // 状態が未定義の場合は false
                             onChange={() => handleChange(item.id)}
@@ -49,7 +56,6 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
                     </div>
                 ))}
             </div>
-            <MapSideBarBackButton/>
         </div>
     );
 }

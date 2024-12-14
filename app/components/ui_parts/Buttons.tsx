@@ -4,7 +4,8 @@ import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { SpotType } from '@/app/types';
 import { useRouter } from 'next/navigation';
 
@@ -432,7 +433,7 @@ export function MapSideBarBackButton() {
             href="/top"
             variant='contained'
             sx={{
-                width: '9rem',
+                width: '10rem',
                 height: '3rem',
                 borderRadius: '10px',
                 backgroundColor: '#3BC1FF',
@@ -443,6 +444,7 @@ export function MapSideBarBackButton() {
                     backgroundColor: '#35A8E0',
                 },
             }}>
+                <ArrowBackIcon/>
             選択に戻る
         </Button>
     );
