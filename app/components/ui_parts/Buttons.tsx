@@ -4,10 +4,11 @@ import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
+import { /*Checkbox,*/ FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { SpotType } from '@/app/types';
 import { useRouter } from 'next/navigation';
+//import { useVisitedCounter } from '@/app/context/VisitedCounterContext';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +37,8 @@ export function SignupButton() {
     );
 }
 
+
+
 export function LoginButton() {
     const [isOpen, setIsOpen] = useState(false);
     const loginModal = useLoginModal()
@@ -63,6 +66,8 @@ export function LoginButton() {
     );
 }
 
+
+
 export function LogoutButton() {
     return (
         <Button
@@ -86,6 +91,8 @@ export function LogoutButton() {
         </Button>
     );
 }
+
+
 
 interface SelectedSpotButtonProps {
     spotId: number;
@@ -144,6 +151,7 @@ export function SelectedSpotButton({ spotId, isSelected, setIsSelected,}: Select
 }
 
 
+
 export function ResetSelectionButton() {
 
     const handleClick = async () => {
@@ -193,6 +201,9 @@ export function ResetSelectionButton() {
     );
 }
 
+
+
+
 type OpenMapButtonProps = {
     startingPoint: number;
 };
@@ -223,6 +234,8 @@ export function OpenMapButton({
         </Button>
     );
 }
+
+
 
 
 interface FilterSpotButtonProps {
@@ -300,6 +313,8 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
     }
 
 
+
+
 type SelectStartingButtonProps = {
     startingPoint: number;
     setStartingPoint: React.Dispatch<React.SetStateAction<number>>;
@@ -368,6 +383,8 @@ export function SelectStartingButton({
     );
   }
 
+
+
 type TransportOptionButtonProps = {
     transportOption: number;
     setTransportOption: React.Dispatch<React.SetStateAction<number>>;
@@ -427,6 +444,8 @@ export function TransportOptionButton({
     );
 }
 
+
+
 export function MapSideBarBackButton() {
     return (
         <Button
@@ -449,3 +468,59 @@ export function MapSideBarBackButton() {
         </Button>
     );
 }
+
+
+// interface MapSideBarCheckBoxProps {
+//     spotId: number;
+//     visited: boolean;
+//     onChange: (visited: boolean) => void;
+// }
+
+// export function MapSideBarCheckBox({ spotId, visited, onChange }: MapSideBarCheckBoxProps) {
+
+//     const { incrementCounter, decrementCounter } = useVisitedCounter();
+
+//     const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+//         const isChecked = event.target.checked;
+//         onChange(isChecked);
+
+//         try {
+//             const response = await fetch('/api/updateVisited', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//                 body: JSON.stringify({
+//                     spotId: spotId,
+//                     visited: isChecked,
+//                 }),
+//             });
+
+//             if (!response.ok) {
+//                 throw new Error('Failed to update visited status');
+//             }
+
+//             if (isChecked) {
+//                 incrementCounter();
+//             } else {
+//                 decrementCounter();
+//             }
+//         } catch (error) {
+//             console.error('Failed to update visited status:', error);
+//             onChange(!isChecked);
+//         }
+//     };
+
+//     return (
+//         <Checkbox
+//             checked={visited} // 状態が未定義の場合は false
+//             onChange={handleChange}
+//             sx={{
+//                 '& .MuiSvgIcon-root': { fontSize: 40 },
+//                 '&.Mui-checked': {
+//                     color: '#FF951C',
+//                 },
+//             }}
+//         />
+//     )
+// }

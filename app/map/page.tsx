@@ -5,7 +5,7 @@ import Map from '@/app/components/ui_parts/Map';
 import { SpotLocationType, WayPoint } from '../types';
 import { useSearchParams } from 'next/navigation';
 import Loading from '../loading';
-import MapSideBar from '../components/ui_parts/MapSideBar';
+import MapSideBar from '../components/map_sidebar/MapSideBar';
 import styles from "@/app/statics/styles/mapPage.module.css";
 
 const Page = () => {
