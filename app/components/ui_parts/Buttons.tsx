@@ -206,34 +206,50 @@ export function ResetSelectionButton() {
 
 type OpenMapButtonProps = {
     startingPoint: number;
+    selectedSpots: { [key: number]: boolean };
+    handleOpenMapClick: () => void;
 };
 
 export function OpenMapButton({
     startingPoint,
+    selectedSpots,
+    handleOpenMapClick,
 }: OpenMapButtonProps) {
-    const router = useRouter()
+    const router = useRouter();
+
+    // `selectedSpots` の要素数をカウント
+    const selectedSpotsCount = Object.keys(selectedSpots).length;
+
     return (
         <Button
             variant="contained"
             onClick={() => {
+                handleOpenMapClick();
+                if (selectedSpotsCount === 0) {
+                    // alert("スポットを選択してください！");
+                    console.log("selecteSpotsの要素数は0です")
+                    return;
+                }
                 router.push(`/map?startingPoint=${startingPoint}`);
             }}
             sx={{
-                width: '9rem',
-                height: '3rem',
-                borderRadius: '10px',
-                backgroundColor: '#3BC1FF',
-                color: '#FFFFFF',
-                fontWeight: 'bold',
-                fontSize: '1.2rem', 
-                '&:hover': {
-                    backgroundColor: '#35A8E0',
+                width: "9rem",
+                height: "3rem",
+                borderRadius: "10px",
+                backgroundColor: "#3BC1FF",
+                color: "#FFFFFF",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                "&:hover": {
+                    backgroundColor: "#35A8E0",
                 },
-            }}>
+            }}
+        >
             MAPへ
         </Button>
     );
 }
+
 
 
 

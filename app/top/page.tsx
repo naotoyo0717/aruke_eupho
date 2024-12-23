@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
 import Loading from "../loading";
 import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
-import { FilterSpotButton, OpenMapButton, ResetSelectionButton, SelectStartingButton, /*TransportOptionButton*/ } from "../components/ui_parts/Buttons";
+import { FilterSpotButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/ui_parts/Buttons";
 import styles from "@/app/statics/styles/topButtons.module.css";
 import { SpotType } from "../types";
 
@@ -15,7 +15,8 @@ export default function Top() {
     const [visitedCounter, setVisitedCounter] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [startingPoint, setStartingPoint] = useState<number>(1);
-    
+    const [errorMessage, setErrorMessage] = useState<string>(""); // エラーメッセージの状態管理
+
     useEffect(() => {
         const fetchSpots = async () => {
             try {
@@ -53,13 +54,10 @@ export default function Top() {
                 const data: { spotId: number }[] = await response.json();
                 console.log(data);
 
-                const formattedData = data.reduce((acc, item) => { //データをオブジェクトに変換 reduce: 配列を一つ一つ処理して、結果をまとめる関数。
+                const formattedData = data.reduce((acc, item) => {
                     acc[item.spotId] = true;
                     return acc;
-                }, {} as { [key: number]: boolean }); //ただの型定義。
-
-                // item が { spotId: 1 } の場合 → acc[1] = true。
-                
+                }, {} as { [key: number]: boolean });
 
                 setSelectedSpots(formattedData);
             } catch (error) {
@@ -96,6 +94,14 @@ export default function Top() {
         });
     };
 
+    const handleOpenMapClick = () => {
+        if (Object.keys(selectedSpots).length === 0) {
+            setErrorMessage("スポットは一つ以上選択してください。");
+            return;
+        }
+        setErrorMessage(""); // エラーメッセージをクリア
+    };
+
     return (
         <>
             <div className={styles.topButtons}>
@@ -110,16 +116,18 @@ export default function Top() {
                 <VisitedCounter visitedCounter={visitedCounter} />
             </div>
             <div className={styles.topButtonsContent}>
-                    <h2>巡礼したい場所をルートに追加してください。</h2>
-                    <OpenMapButton 
-                        startingPoint={startingPoint}
-                    />
+                <h2>巡礼したい場所をルートに追加してください。</h2>
+                <OpenMapButton
+                    startingPoint={startingPoint}
+                    selectedSpots={selectedSpots}
+                    handleOpenMapClick={handleOpenMapClick}
+                />
+            </div>
+            {errorMessage && ( // エラーメッセージの条件付き表示
+                <div className={styles.errorMessage}>
+                    <p>{errorMessage}</p>
                 </div>
-            {/* <div className={styles.startingSpotButton}>
-                <SelectStartingButton/>
-            </div> */}
-
-            {/* Loading部分の条件付きレンダリング */}
+            )}
             {isLoading ? (
                 <Loading />
             ) : (
@@ -143,10 +151,11 @@ export default function Top() {
                     );
                 })
             )}
-
             <div className={styles.topBottom}>
                 <OpenMapButton
                     startingPoint={startingPoint}
+                    selectedSpots={selectedSpots}
+                    handleOpenMapClick={handleOpenMapClick}
                 />
             </div>
         </>
