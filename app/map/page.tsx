@@ -5,7 +5,6 @@ import Map from '@/app/components/ui_parts/Map';
 import { SpotLocationType, WayPoint } from '../types';
 import { useSearchParams } from 'next/navigation';
 import Loading from '../loading';
-import MapSideBar from '../components/map_sidebar/MapSideBar';
 import styles from "@/app/statics/styles/mapPage.module.css";
 
 const Page = () => {
@@ -96,19 +95,21 @@ const Page = () => {
       </div>
     ) : (
       <div className={styles.mapPage}>
-        <MapSideBar
-          origin={origin.name}
-          duration={duration}
-          selectedWayPoints={selectedWayPoints}
-          order={orderRef}
-        />
         <Map
           apiKey={apiKey}
           origin={origin}
           waypoints={waypoints}
           setDuration={setDuration}
           order={orderRef}
+          duration={duration}
+          selectedWayPoints={selectedWayPoints}
         />
+        {/* <MapSideBar
+          origin={origin.name}
+          duration={duration}
+          selectedWayPoints={selectedWayPoints}
+          order={orderRef}
+        /> */}
       </div>
     )
   );

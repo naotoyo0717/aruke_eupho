@@ -5,6 +5,8 @@ import {
   DirectionsRenderer,
   OverlayView,
 } from '@react-google-maps/api';
+import MapSideBar from '../map_sidebar/MapSideBar';
+import { SpotLocationType } from '@/app/types';
 //import Loading from '@/app/loading';
 
 interface MapProps {
@@ -13,9 +15,11 @@ interface MapProps {
   waypoints: { name: string; lat: number; lng: number }[];
   setDuration: React.Dispatch<React.SetStateAction<string>>;
   order: React.MutableRefObject<number[]>;
+  duration: string;
+  selectedWayPoints: SpotLocationType[];
 }
 
-const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order }) => {
+const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order, duration, selectedWayPoints }) => {
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
   const [googleLoaded, setGoogleLoaded] = useState(false);
   const [error, setError] = useState<string>('');
@@ -64,27 +68,37 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
       }, [origin, waypoints, googleLoaded, setDuration, order]);
 
   return (
-    <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)} /*loadingElement={<Loading />}*/>
-      {error && <div style={{ padding: '10px', color: 'red' }}>{error}</div>}
+    <>
+      <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)} /*loadingElement={<Loading />}*/>
+        {error && <div style={{ padding: '10px', color: 'red' }}>{error}</div>}
 
-      <GoogleMap
-        mapContainerStyle={{ height: '100vh', width: '100%' }}
-        center={origin}
-        zoom={15}
-      >
-        {directions && <DirectionsRenderer directions={directions} />}
-
-        <OverlayView position={origin} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-          <div style={labelStyle}>{origin.name}</div>
-        </OverlayView>
-
-        {waypoints.map((waypoint, index) => (
-          <OverlayView key={index} position={waypoint} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-            <div style={labelStyle}>{waypoint.name}</div>
+        <GoogleMap
+          mapContainerStyle={{ height: '100vh', width: '100%' }}
+          center={origin}
+          zoom={15}
+          options={{
+            fullscreenControl: false, // 全画面表示ボタンを非表示にする
+          }}
+        >
+          {directions && <DirectionsRenderer directions={directions} />}
+          <OverlayView position={origin} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+            <div style={labelStyle}>{origin.name}</div>
           </OverlayView>
-        ))}
-      </GoogleMap>
-    </LoadScript>
+          {waypoints.map((waypoint, index) => (
+            <OverlayView key={index} position={waypoint} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+              <div style={labelStyle}>{waypoint.name}</div>
+            </OverlayView>
+          ))}
+
+        <MapSideBar
+          origin={origin.name}
+          duration={duration}
+          selectedWayPoints={selectedWayPoints}
+          order={order}
+        />
+        </GoogleMap>
+      </LoadScript>
+    </>
   );
 };
 

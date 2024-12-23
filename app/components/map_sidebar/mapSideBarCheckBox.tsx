@@ -12,7 +12,6 @@ export default function MapSideBarCheckBox({ spotId, isSideBarVisited, onVisited
     const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = event.target.checked;
 
-        // 一時的に状態を変更
         onVisitedChange(isChecked);
 
         try {
@@ -32,7 +31,6 @@ export default function MapSideBarCheckBox({ spotId, isSideBarVisited, onVisited
             }
         } catch (error) {
             console.error('Error updating visited status:', error);
-            // API エラー時に状態を元に戻す
             onVisitedChange(!isChecked);
         }
     };

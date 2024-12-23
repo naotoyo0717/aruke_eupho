@@ -1,5 +1,34 @@
 .mapSideBar {
+    position: absolute;
+    right: -30rem;
     width: 30rem;
+    height: 100vh;         /* スクロールさせたい要素の高さ */
+    overflow-y: auto;      /* 縦方向のスクロールを有効にする */
+    overflow-x: hidden;    /* 横方向のスクロールを無効にする（必要に応じて変更）ここはなくても多分動く */
+    padding: 10px;         
+    border: 1px solid #ccc;
+    background-image: url('/top_bg.gif');
+    transition: right 0.3s ease;
+}
+
+.mapSideBar.open {
+    right: 0; /* アニメーション後にサイドバーが右から出てくる位置 */
+}
+
+.mapSideBarButtons {
+    display: flex;
+    justify-content: space-around;
+    gap: 5rem;
+    margin-right: 10rem;
+    margin-bottom: 1.5rem;
+}
+
+.barButton {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 1000;
+    background-color: #FFF;
 }
 
 .mapSideBarBackButton {
@@ -63,7 +92,7 @@
     width: 5px;
     height: 1.5rem;
     background-color: #332211;
-    z-index: -1;
+    z-index: 0;
 }
 
 .mapSideBarStart h2 {
@@ -90,7 +119,8 @@
     width: 5px;
     height: 1.5rem;
     background-color: #332211;
-    z-index: -1;
+    z-index: -0;
+    transform: translateX(-50%);
 }
 
 .mapSideBarCard:last-child::after {

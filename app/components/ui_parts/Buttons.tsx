@@ -195,7 +195,7 @@ export function ResetSelectionButton() {
                     },
                 }}
             >
-                全削除
+                選択解除
             </Button>
         </div>
     );
@@ -243,7 +243,7 @@ interface FilterSpotButtonProps {
 };
 
 export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
-    const [filter, setFilter] = useState<string>('');
+    const [filter, setFilter] = useState<string>('0');
   
     const handleChange = async (event: SelectChangeEvent<string>) => {
       const selectedFilter = event.target.value;
@@ -463,64 +463,9 @@ export function MapSideBarBackButton() {
                     backgroundColor: '#35A8E0',
                 },
             }}>
-                <ArrowBackIcon/>
+            <ArrowBackIcon/>
             選択に戻る
         </Button>
     );
 }
 
-
-// interface MapSideBarCheckBoxProps {
-//     spotId: number;
-//     visited: boolean;
-//     onChange: (visited: boolean) => void;
-// }
-
-// export function MapSideBarCheckBox({ spotId, visited, onChange }: MapSideBarCheckBoxProps) {
-
-//     const { incrementCounter, decrementCounter } = useVisitedCounter();
-
-//     const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-//         const isChecked = event.target.checked;
-//         onChange(isChecked);
-
-//         try {
-//             const response = await fetch('/api/updateVisited', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify({
-//                     spotId: spotId,
-//                     visited: isChecked,
-//                 }),
-//             });
-
-//             if (!response.ok) {
-//                 throw new Error('Failed to update visited status');
-//             }
-
-//             if (isChecked) {
-//                 incrementCounter();
-//             } else {
-//                 decrementCounter();
-//             }
-//         } catch (error) {
-//             console.error('Failed to update visited status:', error);
-//             onChange(!isChecked);
-//         }
-//     };
-
-//     return (
-//         <Checkbox
-//             checked={visited} // 状態が未定義の場合は false
-//             onChange={handleChange}
-//             sx={{
-//                 '& .MuiSvgIcon-root': { fontSize: 40 },
-//                 '&.Mui-checked': {
-//                     color: '#FF951C',
-//                 },
-//             }}
-//         />
-//     )
-// }

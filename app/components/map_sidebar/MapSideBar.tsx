@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import styles from "@/app/statics/styles/mapSideBar.module.css";
 import { SpotLocationType } from "@/app/types";
 import { MapSideBarBackButton } from "../ui_parts/Buttons";
-import MapSideBarCheckBox from "./mapSideBarCheckBox";
+import MapSideBarCard from "./mapSideBarCard";
+import { Button } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 interface MapSideBarProps {
     origin: string;
@@ -13,6 +16,9 @@ interface MapSideBarProps {
 
 export default function MapSideBar({ origin, duration, selectedWayPoints, order }: MapSideBarProps) {
     const [sideBarVisited, setSideBarVisited] = useState<{ spotId: number }[]>([]);
+    const [show, setShow] = useState(true);
+    const openDrew = () => setShow(true);
+    const closeDrew = () => setShow(false);
 
     const orderedWayPoints = order.current.map((index: number) => selectedWayPoints[index]);
 
@@ -46,33 +52,49 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
     }, []);
 
     return (
-        <div className={styles.mapSideBar}>
-            <div className={styles.mapSideBarBackButton}>
-                <MapSideBarBackButton />
-            </div>
-            <div className={styles.mapSideBarDuration}>
-                <h2>所要時間：{duration}</h2>
-            </div>
-            <div className={styles.mapSideBarContent}>
-                <div className={styles.mapSideBarStart}>
-                    <h2>出発地点：{origin}</h2>
-                </div>
-                {orderedWayPoints.map((item) => {
-                    const isSideBarVisited = sideBarVisited.some((v) => v.spotId === item.id);
-                    return (
-                        <div key={item.id} className={styles.mapSideBarCard}>
-                            <h2>No.{item.id}</h2>
-                            <div className={styles.mapSideBarCardTitle}>
-                                <h2>{item.title}</h2>
+        <div>
+            {!show && (
+                <Button className={styles.barButton} onClick={openDrew}>
+                    <KeyboardDoubleArrowLeftIcon
+                        sx={{ fontSize: 60, color: '#4AA5FF'}}
+                    />
+                </Button>
+            )}
+            {/* サイドバーの表示 */}
+            <div className={`${styles.mapSideBar} ${show ? styles.open : ""}`}>
+                {show && (
+                    <>
+                        <div className={styles.mapSideBarButtons}>
+                            <Button onClick={closeDrew}>
+                                <CloseIcon
+                                    sx={{ fontSize: 60, color: '#443322' }}
+                                />
+                            </Button>
+                            <div className={styles.mapSideBarBackButton}>
+                                <MapSideBarBackButton />
                             </div>
-                            <MapSideBarCheckBox
-                                spotId={item.id}
-                                isSideBarVisited={isSideBarVisited}
-                                onVisitedChange={(visited) => handleSideBarVisitedChange(item.id, visited)}
-                            />
                         </div>
-                    );
-                })}
+                        <div className={styles.mapSideBarDuration}>
+                            <h2>所要時間：{duration}</h2>
+                        </div>
+                        <div className={styles.mapSideBarContent}>
+                            <div className={styles.mapSideBarStart}>
+                                <h2>出発地点：{origin}</h2>
+                            </div>
+                            {orderedWayPoints.map((item) => {
+                                const isSideBarVisited = sideBarVisited.some((v) => v.spotId === item.id);
+                                return (
+                                    <MapSideBarCard
+                                        key={item.id}
+                                        item={item}
+                                        isSideBarVisited={isSideBarVisited}
+                                        onVisitedChange={(id, visited) => handleSideBarVisitedChange(id, visited)}
+                                    />
+                                );
+                            })}
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
