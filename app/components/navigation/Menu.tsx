@@ -1,7 +1,7 @@
 'use Client'
 
 import { useCallback, useState } from "react"
-import { signOut } from "next-auth/react"
+//import { signOut } from "next-auth/react"
 import { User } from "@prisma/client"
 
 import useLoginModel from '@/app/hooks/useLoginModal'
@@ -58,13 +58,13 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                                             setIsOpen(false)
                                         }}
                                     />
-                                    <MenuItem
+                                    {/* <MenuItem
                                         label="ログアウト"
                                         onClick={() => {
                                             signOut()
                                             setIsOpen(false)
                                         }}
-                                    />
+                                    /> */}
                                 </>
                             ): (
                                 <>

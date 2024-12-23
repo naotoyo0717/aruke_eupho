@@ -60,7 +60,6 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
                     />
                 </Button>
             )}
-            {/* サイドバーの表示 */}
             <div className={`${styles.mapSideBar} ${show ? styles.open : ""}`}>
                 {show && (
                     <>
