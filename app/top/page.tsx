@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
@@ -15,7 +15,8 @@ export default function Top() {
     const [visitedCounter, setVisitedCounter] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [startingPoint, setStartingPoint] = useState<number>(1);
-    const [errorMessage, setErrorMessage] = useState<string>(""); // エラーメッセージの状態管理
+    const [selectedSpotsCounter, setSelectedSpotsCounter] = useState<number>(0);
+    const [isFirstRender, setIsFirstRender] = useState<boolean>(true); // 初回表示フラグ
 
     useEffect(() => {
         const fetchSpots = async () => {
@@ -60,6 +61,7 @@ export default function Top() {
                 }, {} as { [key: number]: boolean });
 
                 setSelectedSpots(formattedData);
+                setSelectedSpotsCounter(Object.keys(formattedData).length);
             } catch (error) {
                 console.log('Error searching selected:', error);
             }
@@ -69,9 +71,11 @@ export default function Top() {
             try {
                 await Promise.all([fetchSpots(), fetchVisited(), fetchSelected()]);
                 setIsLoading(false);
+                //setIsFirstRender(false); // 初回表示が終わった後にフラグを更新
             } catch (error) {
                 console.error('Error during data fetching:', error);
                 setIsLoading(false);
+                setIsFirstRender(false); // エラー時もフラグを更新
             }
         };
 
@@ -94,14 +98,6 @@ export default function Top() {
         });
     };
 
-    const handleOpenMapClick = () => {
-        if (Object.keys(selectedSpots).length === 0) {
-            setErrorMessage("スポットは一つ以上選択してください。");
-            return;
-        }
-        setErrorMessage(""); // エラーメッセージをクリア
-    };
-
     return (
         <>
             <div className={styles.topButtons}>
@@ -120,12 +116,13 @@ export default function Top() {
                 <OpenMapButton
                     startingPoint={startingPoint}
                     selectedSpots={selectedSpots}
-                    handleOpenMapClick={handleOpenMapClick}
+                    selectedSpotsCounter={selectedSpotsCounter}
+                    setIsFirstRender={setIsFirstRender}
                 />
             </div>
-            {errorMessage && ( // エラーメッセージの条件付き表示
+            {isFirstRender === false && selectedSpotsCounter === 0 && ( // エラーメッセージの条件付き表示
                 <div className={styles.errorMessage}>
-                    <p>{errorMessage}</p>
+                    <p>スポットは一つ以上選択してください。</p>
                 </div>
             )}
             {isLoading ? (
@@ -147,6 +144,9 @@ export default function Top() {
                             item={item}
                             visited={isVisited}
                             onVisitedChange={handleVisitedChange}
+                            selectedSpots={selectedSpots}
+                            selectedSpotsCounter={selectedSpotsCounter}
+                            setSelectedSpotsCounter={setSelectedSpotsCounter}
                         />
                     );
                 })
@@ -155,7 +155,8 @@ export default function Top() {
                 <OpenMapButton
                     startingPoint={startingPoint}
                     selectedSpots={selectedSpots}
-                    handleOpenMapClick={handleOpenMapClick}
+                    selectedSpotsCounter={selectedSpotsCounter}
+                    setIsFirstRender={setIsFirstRender}
                 />
             </div>
         </>

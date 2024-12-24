@@ -4,11 +4,9 @@ import { useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
-import { /*Checkbox,*/ FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { SpotType } from '@/app/types';
-import { useRouter } from 'next/navigation';
-//import { useVisitedCounter } from '@/app/context/VisitedCounterContext';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -98,15 +96,29 @@ interface SelectedSpotButtonProps {
     spotId: number;
     isSelected: boolean;
     setIsSelected: (value: boolean) => void;
+    selectedSpotsCounter: number;
+    setSelectedSpotsCounter: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export function SelectedSpotButton({ spotId, isSelected, setIsSelected,}: SelectedSpotButtonProps) {
+export function SelectedSpotButton({ 
+    spotId, 
+    isSelected, 
+    setIsSelected, 
+    selectedSpotsCounter, 
+    setSelectedSpotsCounter,
+}: SelectedSpotButtonProps) {
 
     const toggleSelected = () => {
-        setIsSelected(!isSelected);
-    }
-    const handleClick = async () => { // 修正済み
+        if (!isSelected) {
+            setSelectedSpotsCounter(selectedSpotsCounter + 1);
+        } else {
+            setSelectedSpotsCounter(selectedSpotsCounter - 1);
+        }
 
+        setIsSelected(!isSelected);
+    };
+
+    const handleClick = async () => {
         try {
             const response = await fetch('/api/updateSelected', {
                 method: 'POST',
@@ -118,13 +130,14 @@ export function SelectedSpotButton({ spotId, isSelected, setIsSelected,}: Select
                     selected: isSelected,
                 }),
             });
-            
+
             if (!response.ok) {
                 throw new Error('selectedの更新に失敗しました。');
             }
         } catch (error) {
             console.error('selectedの更新に失敗しました。', error);
         }
+
         toggleSelected();
     };
 
@@ -149,6 +162,7 @@ export function SelectedSpotButton({ spotId, isSelected, setIsSelected,}: Select
         </Button>
     );
 }
+
 
 
 
@@ -203,35 +217,31 @@ export function ResetSelectionButton() {
 
 
 
-
 type OpenMapButtonProps = {
     startingPoint: number;
     selectedSpots: { [key: number]: boolean };
-    handleOpenMapClick: () => void;
+    selectedSpotsCounter: number;
+    setIsFirstRender: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function OpenMapButton({
     startingPoint,
-    selectedSpots,
-    handleOpenMapClick,
+    selectedSpotsCounter,
+    setIsFirstRender,
 }: OpenMapButtonProps) {
-    const router = useRouter();
+    const handleClick = () => {
+        if (selectedSpotsCounter === 0) {
+            setIsFirstRender(false);
+            return;
+        }
 
-    // `selectedSpots` の要素数をカウント
-    const selectedSpotsCount = Object.keys(selectedSpots).length;
+        window.location.href = `/map?startingPoint=${startingPoint}`;
+    }
 
     return (
         <Button
             variant="contained"
-            onClick={() => {
-                handleOpenMapClick();
-                if (selectedSpotsCount === 0) {
-                    // alert("スポットを選択してください！");
-                    console.log("selecteSpotsの要素数は0です")
-                    return;
-                }
-                router.push(`/map?startingPoint=${startingPoint}`);
-            }}
+            onClick={handleClick}
             sx={{
                 width: "9rem",
                 height: "3rem",
