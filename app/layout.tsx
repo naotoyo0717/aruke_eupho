@@ -13,8 +13,8 @@ import { VisitedCounterProvider } from '@/app/context/VisitedCounterContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Prisma Auth',
-  description: 'Prisma Auth',
+  title: '歩け！聖地巡礼♪',
+  description: '響け！ユーフォニアムの聖地巡礼観光案内アプリです。',
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

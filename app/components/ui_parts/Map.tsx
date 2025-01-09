@@ -7,7 +7,6 @@ import {
 } from '@react-google-maps/api';
 import MapSideBar from '../map_sidebar/MapSideBar';
 import { SpotLocationType } from '@/app/types';
-//import Loading from '@/app/loading';
 
 interface MapProps {
   apiKey: string;
@@ -23,9 +22,10 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
   const [googleLoaded, setGoogleLoaded] = useState(false);
   const [error, setError] = useState<string>('');
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
 
   useEffect(() => {
-    if (googleLoaded) {
+    if (googleLoaded && window.google && window.google.maps) {
       const directionsService = new google.maps.DirectionsService();
 
       const destination = waypoints.length > 0 ? waypoints[waypoints.length - 1] : origin;
@@ -55,48 +55,96 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
           const minutes = Math.floor((totalDuration % 3600) / 60);
           setDuration(`${hours}時間 ${minutes}分`);
 
-          // useRef を利用して order を保存
           order.current = result.routes[0].waypoint_order;
         } else {
           setError('経路の取得に失敗しました。再度お試しください。');
           console.error('Directions request failed due to ' + status);
         }
       });
-          
-          
-        }
-      }, [origin, waypoints, googleLoaded, setDuration, order]);
+    } else if (!googleLoaded) {
+      console.log('Google Maps APIがまだロードされていません。');
+    }
+  }, [origin, waypoints, googleLoaded, setDuration, order]);
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null;
+
+    if (navigator.geolocation) {
+      intervalId = setInterval(() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setUserLocation({ lat: latitude, lng: longitude });
+            console.log('ユーザーの現在地:', { lat: latitude, lng: longitude });
+          },
+          (error) => {
+            console.error('位置情報の取得に失敗しました:', error.message);
+          },
+          {
+            enableHighAccuracy: true,
+            maximumAge: 0,
+            timeout: 10000,
+          }
+        );
+      }, 1000); // 1秒ごとに位置情報を取得
+    } else {
+      console.error('このブラウザはGeolocation APIをサポートしていません。');
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, []);
 
   return (
     <>
-      <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)} /*loadingElement={<Loading />}*/>
+      <LoadScript googleMapsApiKey={apiKey} onLoad={() => setGoogleLoaded(true)}>
         {error && <div style={{ padding: '10px', color: 'red' }}>{error}</div>}
 
-        <GoogleMap
-          mapContainerStyle={{ height: '100vh', width: '100%' }}
-          center={origin}
-          zoom={15}
-          options={{
-            fullscreenControl: false, // 全画面表示ボタンを非表示にする
-          }}
-        >
-          {directions && <DirectionsRenderer directions={directions} />}
-          <OverlayView position={origin} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-            <div style={labelStyle}>{origin.name}</div>
-          </OverlayView>
-          {waypoints.map((waypoint, index) => (
-            <OverlayView key={index} position={waypoint} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-              <div style={labelStyle}>{waypoint.name}</div>
-            </OverlayView>
-          ))}
+        {googleLoaded && (
+          <GoogleMap
+            mapContainerStyle={{ height: '100vh', width: '100%' }}
+            center={origin}
+            zoom={15}
+            options={{
+              fullscreenControl: false,
+            }}
+          >
+            {directions ? <DirectionsRenderer directions={directions} /> : null}
 
-        <MapSideBar
-          origin={origin.name}
-          duration={duration}
-          selectedWayPoints={selectedWayPoints}
-          order={order}
-        />
-        </GoogleMap>
+            <OverlayView position={origin} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+              <div style={labelStyle}>{origin.name}</div>
+            </OverlayView>
+
+            {waypoints.map((waypoint, index) => (
+              <OverlayView
+                key={index}
+                position={{ lat: waypoint.lat, lng: waypoint.lng }}
+                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+              >
+                <div style={labelStyle}>{waypoint.name}</div>
+              </OverlayView>
+            ))}
+
+            {userLocation && (
+              <OverlayView position={userLocation} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+                <>
+                  <div style={userLabelStyle}></div>
+                  <div style={circleStyle}></div>
+                </>
+              </OverlayView>
+            )}
+
+            <MapSideBar
+              origin={origin.name}
+              duration={duration}
+              selectedWayPoints={selectedWayPoints}
+              order={order}
+            />
+          </GoogleMap>
+        )}
       </LoadScript>
     </>
   );
@@ -111,4 +159,21 @@ const labelStyle: React.CSSProperties = {
   pointerEvents: 'none',
   color: '#443322',
 };
- 
+
+const userLabelStyle: React.CSSProperties = {
+  fontSize: '1rem',
+  fontWeight: 'bold',
+  whiteSpace: 'nowrap',
+  pointerEvents: 'none',
+  color: '#0000FF',
+};
+
+const circleStyle: React.CSSProperties = {
+  width: '30px',
+  height: '30px',
+  borderRadius: '50%',
+  position: 'absolute',
+  backgroundColor: 'rgba(52, 177, 235, 0.9)',
+  border: '2px solid white',
+  transform: 'translate(-50%, -50%)',
+};

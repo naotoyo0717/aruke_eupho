@@ -495,3 +495,34 @@ export function MapSideBarBackButton() {
     );
 }
 
+type IsUserLocationButtonProps = {
+    isUserLocation: boolean;
+    setIsUserLocation: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export function IsUserLocationButton({ isUserLocation, setIsUserLocation }: IsUserLocationButtonProps) {
+    const handleClick = () => {
+        setIsUserLocation(!isUserLocation);
+    };
+
+    return (
+        <Button
+            onClick={handleClick}
+            variant="contained"
+            sx={{
+                width: '12rem',
+                height: '2rem',
+                borderRadius: '6px',
+                backgroundColor: '#FF951C',
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+                fontSize: '1rem',
+                '&:hover': {
+                    backgroundColor: '#E08718',
+                },
+            }}
+        >
+            現在地の表示：{isUserLocation ? 'ON' : 'OFF'}
+        </Button>
+    );
+}

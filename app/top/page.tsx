@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
 import Loading from "../loading";
 import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
-import { FilterSpotButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/ui_parts/Buttons";
+import { FilterSpotButton, IsUserLocationButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/ui_parts/Buttons";
 import styles from "@/app/statics/styles/topButtons.module.css";
 import { SpotType } from "../types";
 
@@ -12,6 +12,7 @@ export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
     const [visited, setVisited] = useState<{ spotId: number }[]>([]);
     const [selectedSpots, setSelectedSpots] = useState<{ [key: number]: boolean }>({});
+    const [isUserLocation, setIsUserLocation] = useState<boolean>(false);
     const [visitedCounter, setVisitedCounter] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [startingPoint, setStartingPoint] = useState<number>(1);
@@ -103,6 +104,7 @@ export default function Top() {
             <div className={styles.topButtons}>
                 <div className={styles.filterButtons}>
                     <ResetSelectionButton />
+                    <IsUserLocationButton isUserLocation={isUserLocation} setIsUserLocation={setIsUserLocation}/>
                     <FilterSpotButton setSpots={setSpots} />
                     <SelectStartingButton
                         startingPoint={startingPoint}

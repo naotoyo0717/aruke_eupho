@@ -1,3 +1,9 @@
 .mapPage {
     display: flex;
 }
+
+.error {
+    display: flex;
+    justify-content: center;
+    color: red;
+}
