@@ -222,12 +222,14 @@ type OpenMapButtonProps = {
     selectedSpots: { [key: number]: boolean };
     selectedSpotsCounter: number;
     setIsFirstRender: React.Dispatch<React.SetStateAction<boolean>>;
+    isUserLocation: boolean;
 };
 
 export function OpenMapButton({
     startingPoint,
     selectedSpotsCounter,
     setIsFirstRender,
+    isUserLocation
 }: OpenMapButtonProps) {
     const handleClick = () => {
         if (selectedSpotsCounter === 0) {
@@ -235,7 +237,7 @@ export function OpenMapButton({
             return;
         }
 
-        window.location.href = `/map?startingPoint=${startingPoint}`;
+        window.location.href = `/map?startingPoint=${startingPoint}&isUserLocation=${isUserLocation}`;
     }
 
     return (
@@ -513,12 +515,12 @@ export function IsUserLocationButton({ isUserLocation, setIsUserLocation }: IsUs
                 width: '12rem',
                 height: '2rem',
                 borderRadius: '6px',
-                backgroundColor: '#FF951C',
+                backgroundColor: isUserLocation ? '#FF951C' : '#3BC1FF',
                 color: '#FFFFFF',
                 fontWeight: 'bold',
                 fontSize: '1rem',
                 '&:hover': {
-                    backgroundColor: '#E08718',
+                    backgroundColor: isUserLocation ? '#E08718' : '#2FA8E6',
                 },
             }}
         >

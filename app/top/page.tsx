@@ -104,7 +104,9 @@ export default function Top() {
             <div className={styles.topButtons}>
                 <div className={styles.filterButtons}>
                     <ResetSelectionButton />
-                    <IsUserLocationButton isUserLocation={isUserLocation} setIsUserLocation={setIsUserLocation}/>
+                    <div className={styles.isUserLocationButton}>
+                        <IsUserLocationButton isUserLocation={isUserLocation} setIsUserLocation={setIsUserLocation}/>
+                    </div>
                     <FilterSpotButton setSpots={setSpots} />
                     <SelectStartingButton
                         startingPoint={startingPoint}
@@ -120,6 +122,7 @@ export default function Top() {
                     selectedSpots={selectedSpots}
                     selectedSpotsCounter={selectedSpotsCounter}
                     setIsFirstRender={setIsFirstRender}
+                    isUserLocation={isUserLocation}
                 />
             </div>
             {isFirstRender === false && selectedSpotsCounter === 0 && ( // エラーメッセージの条件付き表示
@@ -159,6 +162,7 @@ export default function Top() {
                     selectedSpots={selectedSpots}
                     selectedSpotsCounter={selectedSpotsCounter}
                     setIsFirstRender={setIsFirstRender}
+                    isUserLocation={isUserLocation}
                 />
             </div>
         </>

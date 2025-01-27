@@ -16,9 +16,10 @@ interface MapProps {
   order: React.MutableRefObject<number[]>;
   duration: string;
   selectedWayPoints: SpotLocationType[];
+  isUserLocation: boolean;
 }
 
-const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order, duration, selectedWayPoints }) => {
+const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order, duration, selectedWayPoints, isUserLocation }) => {
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
   const [googleLoaded, setGoogleLoaded] = useState(false);
   const [error, setError] = useState<string>('');
@@ -67,33 +68,31 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
   }, [origin, waypoints, googleLoaded, setDuration, order]);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout | null = null;
+    let watchId: number | null = null;
 
     if (navigator.geolocation) {
-      intervalId = setInterval(() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            setUserLocation({ lat: latitude, lng: longitude });
-            console.log('ユーザーの現在地:', { lat: latitude, lng: longitude });
-          },
-          (error) => {
-            console.error('位置情報の取得に失敗しました:', error.message);
-          },
-          {
-            enableHighAccuracy: true,
-            maximumAge: 0,
-            timeout: 10000,
-          }
-        );
-      }, 1000); // 1秒ごとに位置情報を取得
+      watchId = navigator.geolocation.watchPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+          console.log('ユーザーの現在地:', { lat: latitude, lng: longitude });
+        },
+        (error) => {
+          console.error('位置情報の取得に失敗しました:', error.message);
+        },
+        {
+          enableHighAccuracy: true,
+          maximumAge: 0,
+          timeout: 10000,
+        }
+      );
     } else {
       console.error('このブラウザはGeolocation APIをサポートしていません。');
     }
 
     return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
+      if (watchId !== null) {
+        navigator.geolocation.clearWatch(watchId);
       }
     };
   }, []);
@@ -128,7 +127,7 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
               </OverlayView>
             ))}
 
-            {userLocation && (
+            {isUserLocation && userLocation && (
               <OverlayView position={userLocation} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
                 <>
                   <div style={userLabelStyle}></div>

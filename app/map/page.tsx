@@ -10,6 +10,8 @@ import styles from "@/app/statics/styles/mapPage.module.css";
 const Page = () => {
   const searchParams = useSearchParams();
   const startingPoint = searchParams.get('startingPoint');
+  const isUserLocation = searchParams.get('isUserLocation');
+  const isUserLocationBool = isUserLocation === 'true'; // 型変換
   const [selectedWayPoints, setSelectedWayPoints] = useState<SpotLocationType[]>([]);
   const [origin, setOrigin] = useState<WayPoint>();
   const [duration, setDuration] = useState<string>('');
@@ -18,7 +20,7 @@ const Page = () => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY || '';
 
   const startingPointInt = Number(startingPoint);
-
+  console.log("ユーザーの位置を表示するか？:", {isUserLocation});
 
   function getOrigin(startingPointInt: number) {
     switch (startingPointInt) {
@@ -106,6 +108,7 @@ const Page = () => {
           order={orderRef}
           duration={duration}
           selectedWayPoints={selectedWayPoints}
+          isUserLocation={isUserLocationBool}
         />
       </div>
     )

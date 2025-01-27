@@ -10,10 +10,15 @@
 
 .filterButtons {
     display: flex;
-    /* justify-content: space-between; */
     align-content: center;
     place-items: center;
     height: 2.5rem;
+    gap: 0.01rem;
+}
+
+.isUserLocationButton {
+    margin-left: 1rem;
+    margin-right: 0.5rem;
 }
 
 .topButtonsContent {
@@ -22,7 +27,6 @@
     gap: 1rem;
     margin-bottom: 2rem;
     margin-top: 1rem;
-    /* margin-right: 16rem; */
 }
 
 .startingSpotButton {
