@@ -1,7 +1,7 @@
 import PlaceIcon from '@mui/icons-material/Place';
 import { SelectedSpotButton } from '../ui_parts/Buttons';
 import CheckBox from './CheckBox';
-import CommentButton from './CommentButton';
+import ReviewButton from '@/app/components/spot_card/ReviewButton'; // 修正後のCommentButton
 import styles from '@/app/statics/styles/spotCard.module.css';
 import { SpotType } from '@/app/types';
 import Image from 'next/image';
@@ -17,7 +17,6 @@ interface SpotCardProps {
     setSelectedSpotsCounter: React.Dispatch<React.SetStateAction<number>>;
 }
 
-
 export default function SpotCard({
     isSelected,
     setIsSelected,
@@ -32,21 +31,20 @@ export default function SpotCard({
         onVisitedChange(item.id, newVisited);
     };
 
-
-function getNearStation(stationNumber: number): string {
-    switch (stationNumber) {
-        case 1:
-            return "京阪宇治";
-        case 2:
-            return "JR宇治";
-        case 3:
-            return "京阪黄檗";
-        case 4:
-            return "京阪六地蔵"
-        default:
-            return "なし";
+    function getNearStation(stationNumber: number): string {
+        switch (stationNumber) {
+            case 1:
+                return "京阪宇治";
+            case 2:
+                return "JR宇治";
+            case 3:
+                return "京阪黄檗";
+            case 4:
+                return "京阪六地蔵";
+            default:
+                return "なし";
+        }
     }
-}
 
     return (
         <div className={styles.cardWrapper}>
@@ -65,7 +63,7 @@ function getNearStation(stationNumber: number): string {
                                 <h2>No.{item.id} {item.title}</h2>
                                 <div className={styles.contentHeaderButton}>
                                     <div>
-                                        <CommentButton />
+                                        <ReviewButton itemId={item.id} />
                                     </div>
                                     <div className={styles.checkButton}>
                                         <CheckBox
