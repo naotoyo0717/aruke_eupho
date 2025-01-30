@@ -31,11 +31,12 @@ export type WayPoint = {
     lng: number;
 };
 
-export type ReviewSpot = {
+export type Review = {
     id: number;
+    userId: string;
+    userName: string;
+    userImage?: string;
     title: string;
-    explanation: string;
-    address: string;
-    nearStation: number;
-    pictureUrl: string;
+    content: string;
+    createdAt: Date;
 };

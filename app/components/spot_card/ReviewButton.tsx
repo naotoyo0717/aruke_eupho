@@ -1,4 +1,3 @@
-// CommentButton.tsx
 'use client'
 
 import Link from 'next/link'; // Linkコンポーネントをインポート
@@ -18,6 +17,10 @@ export default function ReviewButton({ itemId }: ReviewButtonProps) {
                         opacity: 0.8,
                         width: '3rem',
                         height: '2.5rem',
+                        '&:hover': {
+                            color: '#3BC1FF',
+                            opacity: 5,
+                        },
                     }} />
             </button>
         </Link>
