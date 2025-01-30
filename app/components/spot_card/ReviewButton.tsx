@@ -10,7 +10,7 @@ interface ReviewButtonProps {
 
 export default function ReviewButton({ itemId }: ReviewButtonProps) {
     return (
-        <Link href={`/top/review/${itemId}`} passHref>
+        <Link href={`/top/showReview/${itemId}`} passHref>
             <button>
                 <ChatBubbleOutlineIcon
                     sx={{

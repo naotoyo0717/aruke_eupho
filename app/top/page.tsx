@@ -7,6 +7,7 @@ import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
 import { FilterSpotButton, IsUserLocationButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/ui_parts/Buttons";
 import styles from "@/app/statics/styles/topButtons.module.css";
 import { SpotType } from "../types";
+import { fetchSelected, fetchSpots, fetchVisited } from "../actions/topActions";
 
 export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
@@ -20,59 +21,25 @@ export default function Top() {
     const [isFirstRender, setIsFirstRender] = useState<boolean>(true); // 初回表示フラグ
 
     useEffect(() => {
-        const fetchSpots = async () => {
-            try {
-                const response = await fetch('/api/getSpots', { method: 'GET' });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch spots');
-                }
-                const data: SpotType[] = await response.json();
-                setSpots(data);
-            } catch (error) {
-                console.error('Error fetching spots:', error);
-            }
-        };
-
-        const fetchVisited = async () => {
-            try {
-                const response = await fetch('/api/searchVisited', { method: 'GET' });
-                if (!response.ok) {
-                    throw new Error('Failed to search visited');
-                }
-                const data: { spotId: number }[] = await response.json();
-                setVisited(data);
-                setVisitedCounter(data.length);
-            } catch (error) {
-                console.error('Error searching visited:', error);
-            }
-        };
-
-        const fetchSelected = async () => {
-            try {
-                const response = await fetch('/api/searchSelected', { method: 'GET' });
-                if (!response.ok) {
-                    throw new Error('Failed to search selected');
-                }
-                const data: { spotId: number }[] = await response.json();
-                console.log(data);
-
-                const formattedData = data.reduce((acc, item) => {
-                    acc[item.spotId] = true;
-                    return acc;
-                }, {} as { [key: number]: boolean });
-
-                setSelectedSpots(formattedData);
-                setSelectedSpotsCounter(Object.keys(formattedData).length);
-            } catch (error) {
-                console.log('Error searching selected:', error);
-            }
-        };
-
         const fetchData = async () => {
             try {
-                await Promise.all([fetchSpots(), fetchVisited(), fetchSelected()]);
+                const fetchedSpots = await fetchSpots();
+                if (fetchedSpots) {
+                    setSpots(fetchedSpots);
+                }
+                const fetchedVisited = await fetchVisited();
+                if (fetchedVisited) {
+                    setVisited(fetchedVisited);
+                    setVisitedCounter(fetchedVisited.length);
+                }
+                const fetchedSelected = await fetchSelected();
+                if (fetchedSelected) {
+                    setSelectedSpots(fetchedSelected);
+                    setSelectedSpotsCounter(Object.keys(fetchedSelected).length);
+                }
+                await Promise.all([fetchVisited(), fetchSelected()]);
                 setIsLoading(false);
-                //setIsFirstRender(false); // 初回表示が終わった後にフラグを更新
+                setIsFirstRender(false); // 初回表示が終わった後にフラグを更新
             } catch (error) {
                 console.error('Error during data fetching:', error);
                 setIsLoading(false);

@@ -5,6 +5,7 @@ import  prisma from "@/app/lib/prisma"
 
 // ログインユーザー取得
 const getCurrentUser = async () => {
+    'use server';
     try {
         //　セッション情報取得
         const session = await getServerSession(authOptions)

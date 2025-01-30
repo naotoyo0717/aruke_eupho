@@ -30,3 +30,12 @@ export type WayPoint = {
     lat: number;
     lng: number;
 };
+
+export type ReviewSpot = {
+    id: number;
+    title: string;
+    explanation: string;
+    address: string;
+    nearStation: number;
+    pictureUrl: string;
+};

@@ -3,13 +3,13 @@
 
 import { useParams } from 'next/navigation'; // useParamsフックを使用してparamsを取得
 
-export default function ReviewPage() {
+export default function CreateReviewPage() {
     const { itemId } = useParams(); // itemIdを取得
 
     return (
         <div>
             <h1>レビュー: {itemId}</h1>
-            <p>ここにレビューコンテンツを表示します。</p>
+            <p>ここでレビューを書き込みます。</p>
         </div>
     );
 }

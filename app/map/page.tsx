@@ -6,6 +6,7 @@ import { SpotLocationType, WayPoint } from '../types';
 import { useSearchParams } from 'next/navigation';
 import Loading from '../loading';
 import styles from "@/app/statics/styles/mapPage.module.css";
+import { fetchSelectedLocation } from '../actions/mapActions';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -39,23 +40,20 @@ const Page = () => {
         return null;
     }
   }
-  
 
   useEffect(() => {
-    const fetchSelectedLocation = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('/api/getSelectedLocation', { method: 'GET' });
-        if (!response.ok) {
-          throw new Error('Failed to fetch SelectedLocation');
+        const fetchedSelectedLocation = await fetchSelectedLocation();
+        if (fetchedSelectedLocation) {
+          setSelectedWayPoints(fetchedSelectedLocation);
         }
-        const data: SpotLocationType[] = await response.json();
-        console.log('Fetched data:', data);
-        setSelectedWayPoints(data);
       } catch (error) {
-        console.error('Error fetching SelectedLocation:', error);
+        console.error('Error fetching selected locations:', error);
       }
     };
-    fetchSelectedLocation();
+
+    fetchData();
   }, []);
 
   useEffect(() => {
