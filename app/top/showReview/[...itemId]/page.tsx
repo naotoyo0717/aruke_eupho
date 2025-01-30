@@ -1,6 +1,7 @@
 'use client'
 
 import ReviewHeader from '@/app/components/review/reviewHeader';
+import { PushCreatePageButton } from '@/app/components/ui_parts/Buttons';
 import { useParams } from 'next/navigation';
 
 export default function ShowReviewPage() {
@@ -16,8 +17,11 @@ export default function ShowReviewPage() {
 
     return (
         <div>
+            <h1>この場所の口コミ掲示板</h1>
+            <PushCreatePageButton
+                spotId={spotId}
+            />
             <ReviewHeader spotId={spotId} />
-            <h1>レビュー: {spotId}</h1>
             <p>ここにレビューコンテンツを表示します。</p>
         </div>
     );

@@ -28,6 +28,8 @@ model User {
   updateAt       DateTime    @updatedAt
   accounts       Account[]
   userSpots      UserSpot[]  // ユーザーが訪問したスポット情報
+
+  ReviewSpot ReviewSpot[]
 }
 
 model Account {
@@ -59,6 +61,8 @@ model Spot {
   latitude    Float?      @default(0.0)
   longitude   Float?      @default(0.0)
   userSpots   UserSpot[]  // このスポットを訪問したユーザー情報
+
+  ReviewSpot ReviewSpot[]
 }
 
 model UserSpot {
@@ -75,4 +79,21 @@ model UserSpot {
   @@unique([userId, spotId]) // 同じユーザーが同じスポットを複数回登録できないようにする
   @@index([userId])
   @@index([spotId])
+}
+
+
+model ReviewSpot {
+    id          Int      @id @default(autoincrement())
+    title       String
+    content     String
+    //rating      Float?   // ★評価（1.0〜5.0など、任意で追加）
+    userId      String
+    spotId      Int
+    createdAt   DateTime @default(now())
+    //updatedAt   DateTime @updatedAt  // 編集日時を追加
+
+    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    spot        Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
+
+    //@@unique([userId, spotId]) // 同じユーザーが同じスポットに1回しかレビューできない場合
 }

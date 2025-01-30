@@ -7,6 +7,7 @@ import { signOut } from "next-auth/react";
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { SpotType } from '@/app/types';
+import { useRouter } from 'next/navigation';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -527,4 +528,119 @@ export function IsUserLocationButton({ isUserLocation, setIsUserLocation }: IsUs
             現在地の表示：{isUserLocation ? 'ON' : 'OFF'}
         </Button>
     );
+}
+
+
+type ReviewCreateBackButtonProps = {
+    spotId: number;
+};
+
+export function ReviewCreateBackButton({ spotId }: ReviewCreateBackButtonProps) {
+    const router = useRouter();
+    const handleClick = () => {
+        router.push(`/top/showReview/${spotId}`);
+    };
+    return (
+        <Button
+            onClick = {handleClick}
+        >
+            <ArrowBackIcon/>
+            戻る
+        </Button>
+    )
+}
+
+
+type ReviewCreateSendButtonProps = {
+    spotId: number;
+    title: string;
+    setTitle: React.Dispatch<React.SetStateAction<string>>; 
+    content: string;
+    setContent: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export function ReviewCreateSendButton({ title, setTitle, content, setContent, spotId }: ReviewCreateSendButtonProps) {
+    const handleClick = async () => {
+        console.log("送信");
+        console.log(`スポットID:${spotId}`);
+        console.log(`タイトル:${title}`);
+        console.log(`コンテント:${content}`);
+
+        try {
+            const response = await fetch('/api/createReview', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/Json',
+                },
+                body: JSON.stringify({
+                    title: title,
+                    content: content,
+                    spotId: spotId,
+                }),
+            });
+            console.log("成功");
+            setTitle("");
+            setContent("");
+            if(!response.ok) {
+                throw new Error('createReviewが失敗しました。');
+            }
+        } catch (error) {
+            console.error('createReviewに失敗しました。',error);
+        }
+    }
+
+    return (
+        <Button
+            variant="contained"
+            onClick={handleClick}
+            sx={{
+                width: "9rem",
+                height: "3rem",
+                borderRadius: "10px",
+                backgroundColor: "#3BC1FF",
+                color: "#FFFFFF",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                "&:hover": {
+                    backgroundColor: "#35A8E0",
+                },
+            }}
+        >
+            送信
+        </Button>
+    )
+}
+
+
+type PushCreatePageButtonProps = {
+    spotId: number;
+}
+
+export function PushCreatePageButton({ spotId }: PushCreatePageButtonProps) {
+    const router = useRouter();
+    const handleClick = () => {
+        router.push(`/top/createReview/${spotId}`);
+    };
+
+    return (
+        <Button
+        variant="contained"
+        onClick={handleClick}
+        sx={{
+            width: "9rem",
+            height: "3rem",
+            borderRadius: "10px",
+            backgroundColor: "#3BC1FF",
+            color: "#FFFFFF",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+            "&:hover": {
+                backgroundColor: "#35A8E0",
+            },
+        }}
+    >
+        投稿する
+    </Button>
+    )
+
 }
