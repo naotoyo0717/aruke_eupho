@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '@/app/statics/styles/spotCard.module.css';
+import styles from '@/app/statics/styles/reviewHeader.module.css';
 import { SpotType } from '@/app/types';
 import PlaceIcon from '@mui/icons-material/Place';
 import Image from 'next/image';
@@ -34,7 +34,6 @@ export default function ReviewHeader({ spotId }: ReviewHeaderProps) {
             setIsLoading(false);
             return;
         }
-        
         const fetchSpot = async () => {
             try {
                 console.log('Fetching spot with ID:', spotId);

@@ -551,6 +551,33 @@ export function ReviewCreateBackButton({ spotId }: ReviewCreateBackButtonProps) 
 }
 
 
+export function ReviewBackButton() {
+    const router = useRouter();
+    const handleClick = () => {
+        router.push(`/top`);
+    };
+    return (
+        <Button
+            onClick = {handleClick}
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "1.7rem", // 文字を大きく
+                fontWeight: "bold",
+                color: "#443322", // 文字色を青系に変更（お好みで）
+                "& .MuiSvgIcon-root": {
+                    fontSize: "2.7rem", // アイコンのサイズを大きく
+                    fontWeight: "bold"
+                }
+            }}
+        >
+            <ArrowBackIcon/>
+            戻る
+        </Button>
+    )
+}
+
+
 type ReviewCreateSendButtonProps = {
     spotId: number;
     title: string;
@@ -644,3 +671,5 @@ export function PushCreatePageButton({ spotId }: PushCreatePageButtonProps) {
     )
 
 }
+
+

@@ -1,0 +1,90 @@
+.showReviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.3rem;
+    margin-bottom: 1.3rem;
+    margin-left: 2rem;
+    margin-right: 4rem;
+}
+
+.showReviewHeader h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #443322;
+    margin-left: 2rem;
+}
+
+.separator {
+    border-bottom: 1.5px solid rgba(68, 51, 34, 0.3);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.reviews {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.userIcon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.userName {
+    color: #443322;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+}
+
+.speech {
+    text-align: center;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid #E6F7FF;
+    z-index: 2;
+}
+
+.reviewContent {
+    background-color: #E6F7FF;
+    color: #443322;
+    width: 80vw;
+    margin-left: 3rem;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.reviewContent h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    text-decoration-style: dotted;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+
+.reviewContent p {
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
