@@ -93,6 +93,7 @@ export default function ReviewHeader({ spotId }: ReviewHeaderProps) {
                     </div>
                 </div>
             </div>
+            <div className={styles.separator}></div>
         </div>
     );
 }

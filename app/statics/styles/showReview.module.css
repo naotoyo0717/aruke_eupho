@@ -15,11 +15,6 @@
     margin-left: 2rem;
 }
 
-.separator {
-    border-bottom: 1.5px solid rgba(68, 51, 34, 0.3);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-}
-
 .reviews {
     display: flex;
     justify-content: center;
@@ -88,3 +83,9 @@
     margin-bottom: 0.3rem;
 }
 
+.notReview {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #443322;
+    margin-top: 3rem;
+}

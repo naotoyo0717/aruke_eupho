@@ -9,26 +9,28 @@ import { Review } from '@/app/types';
 import styles from '@/app/statics/styles/showReview.module.css';
 
 export default function ShowReviewPage() {
-    const { itemId } = useParams(); // itemIdを取得
+    const { itemId } = useParams();
     const [reviews, setReviews] = useState<Review[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // itemId を number に変換（undefined の場合に備えて || 0 は使用しない）
     const spotId = itemId ? Number(itemId) : null;
 
-    // spotId が無効な場合のフォールバック
     if (!spotId) {
         return <p>スポットIDが無効です。</p>;
     }
 
     useEffect(() => {
-        const fetchData = async ( spotId: number ) => {
+        const fetchData = async (spotId: number) => {
             try {
+                setIsLoading(true);
                 const fetchedReviews = await fetchReviews(spotId);
                 if (fetchedReviews) {
                     setReviews(fetchedReviews);
                 }
             } catch (error) {
                 console.error('Error during data fetching:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchData(spotId);
@@ -43,38 +45,38 @@ export default function ShowReviewPage() {
             </div>
             <div>
                 <ReviewHeader spotId={spotId} />
-                <div className={styles.separator}></div>
-                <div
-                    className={styles.reviews}
-                >
+                <div className={styles.reviews}>
                     <div>
-                    {reviews.length > 0 ? (
-                        reviews.map((review) => (
-                            <div key={review.id}>
-                                <div className={styles.userInfo}>
-                                    <img
-                                        className={styles.userIcon} 
-                                        src={review.userImage}
-                                        alt = "ユーザーアイコン"
-                                    />
-                                    <div className={styles.speech}>
-                                        <div className={styles.userName}>{review.userName}</div>
-                                        <div className={styles.triangle}></div>
+                        {isLoading ? (
+                            <p>{/*あえて何も書いていない*/}</p>
+                        ) : reviews.length > 0 ? (
+                            reviews.map((review) => (
+                                <div key={review.id}>
+                                    <div className={styles.userInfo}>
+                                        <img
+                                            className={styles.userIcon} 
+                                            src={review.userImage}
+                                            alt="ユーザーアイコン"
+                                        />
+                                        <div className={styles.speech}>
+                                            <div className={styles.userName}>{review.userName}</div>
+                                            <div className={styles.triangle}></div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.reviewContent}>
+                                        <h3>{review.title}</h3>
+                                        <p>{review.content}</p>
                                     </div>
                                 </div>
-                                <div className={styles.reviewContent}>
-                                    <h3>{review.title}</h3>
-                                    <p>{review.content}</p>
-                                </div>
+                            ))
+                        ) : (
+                            <div className={styles.notReview}>
+                                <p>レビューはまだありません。</p>
                             </div>
-                        ))
-                    ) : (
-                        <p>レビューがまだありません。</p>
-                    )}
+                        )}
                     </div>
                 </div>
             </div>
         </div>
     );
-    
 }
