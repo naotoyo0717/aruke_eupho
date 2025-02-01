@@ -64,7 +64,10 @@ export default function ShowReviewPage() {
                                         </div>
                                     </div>
                                     <div className={styles.reviewContent}>
-                                        <h3>{review.title}</h3>
+                                        <div className={styles.titleContent}>
+                                            <h3>{review.title}</h3>
+                                            <p>{new Intl.DateTimeFormat('ja-JP', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(review.createdAt))}</p>
+                                        </div>
                                         <p>{review.content}</p>
                                     </div>
                                 </div>

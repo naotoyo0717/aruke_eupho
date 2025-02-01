@@ -543,6 +543,17 @@ export function ReviewCreateBackButton({ spotId }: ReviewCreateBackButtonProps) 
     return (
         <Button
             onClick = {handleClick}
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "1.7rem", // 文字を大きく
+                fontWeight: "bold",
+                color: "#443322", // 文字色を青系に変更（お好みで）
+                "& .MuiSvgIcon-root": {
+                    fontSize: "2.7rem", // アイコンのサイズを大きく
+                    fontWeight: "bold"
+                }
+            }}
         >
             <ArrowBackIcon/>
             戻る
@@ -584,35 +595,42 @@ type ReviewCreateSendButtonProps = {
     setTitle: React.Dispatch<React.SetStateAction<string>>; 
     content: string;
     setContent: React.Dispatch<React.SetStateAction<string>>;
+    setIsBlank: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function ReviewCreateSendButton({ title, setTitle, content, setContent, spotId }: ReviewCreateSendButtonProps) {
+export function ReviewCreateSendButton({ title, setTitle, content, setContent, spotId, setIsBlank }: ReviewCreateSendButtonProps) {
+    const router = useRouter();
     const handleClick = async () => {
         console.log("送信");
         console.log(`スポットID:${spotId}`);
         console.log(`タイトル:${title}`);
         console.log(`コンテント:${content}`);
 
-        try {
-            const response = await fetch('/api/createReview', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/Json',
-                },
-                body: JSON.stringify({
-                    title: title,
-                    content: content,
-                    spotId: spotId,
-                }),
-            });
-            console.log("成功");
-            setTitle("");
-            setContent("");
-            if(!response.ok) {
-                throw new Error('createReviewが失敗しました。');
+        if (title == "" || content == "") {
+            setIsBlank(true);
+        } else {
+            try {
+                const response = await fetch('/api/createReview', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/Json',
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        content: content,
+                        spotId: spotId,
+                    }),
+                });
+                console.log("成功");
+                router.push(`/top/showReview/${spotId}`)
+                setTitle("");
+                setContent("");
+                if(!response.ok) {
+                    throw new Error('createReviewが失敗しました。');
+                }
+            } catch (error) {
+                console.error('createReviewに失敗しました。',error);
             }
-        } catch (error) {
-            console.error('createReviewに失敗しました。',error);
         }
     }
 

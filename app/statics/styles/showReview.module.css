@@ -76,11 +76,17 @@
     margin-left: 1rem;
 }
 
-
 .reviewContent p {
     font-size: 1.2rem;
     margin-left: 0.5rem;
     margin-bottom: 0.3rem;
+}
+
+.titleContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 2rem;
 }
 
 .notReview {
