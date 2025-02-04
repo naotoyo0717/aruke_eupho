@@ -8,6 +8,8 @@ import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,} from '@mu
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { SpotType } from '@/app/types';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { fetchCreateReview } from '@/app/actions/reviewActions';
 
 export function SignupButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -573,11 +575,11 @@ export function ReviewBackButton() {
             sx={{
                 display: "flex",
                 alignItems: "center",
-                fontSize: "1.7rem", // 文字を大きく
+                fontSize: "1.7rem",
                 fontWeight: "bold",
-                color: "#443322", // 文字色を青系に変更（お好みで）
+                color: "#443322",
                 "& .MuiSvgIcon-root": {
-                    fontSize: "2.7rem", // アイコンのサイズを大きく
+                    fontSize: "2.7rem",
                     fontWeight: "bold"
                 }
             }}
@@ -610,26 +612,19 @@ export function ReviewCreateSendButton({ title, setTitle, content, setContent, s
             setIsBlank(true);
         } else {
             try {
-                const response = await fetch('/api/createReview', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/Json',
-                    },
-                    body: JSON.stringify({
-                        title: title,
-                        content: content,
-                        spotId: spotId,
-                    }),
-                });
-                console.log("成功");
-                router.push(`/top/showReview/${spotId}`)
-                setTitle("");
-                setContent("");
-                if(!response.ok) {
+                const fetchedCreateReview = await fetchCreateReview(title, content, spotId);
+                if (fetchedCreateReview) {
+                    console.log("成功");
+                    toast.success("投稿しました！！")
+                    router.push(`/top/showReview/${spotId}`)
+                    setTitle("");
+                    setContent("");
+                } else {
                     throw new Error('createReviewが失敗しました。');
                 }
             } catch (error) {
                 console.error('createReviewに失敗しました。',error);
+                toast.error("エラーが発生しました。")
             }
         }
     }
@@ -651,7 +646,7 @@ export function ReviewCreateSendButton({ title, setTitle, content, setContent, s
                 },
             }}
         >
-            送信
+            はい
         </Button>
     )
 }
@@ -669,25 +664,51 @@ export function PushCreatePageButton({ spotId }: PushCreatePageButtonProps) {
 
     return (
         <Button
-        variant="contained"
-        onClick={handleClick}
-        sx={{
-            width: "9rem",
-            height: "3rem",
-            borderRadius: "10px",
-            backgroundColor: "#3BC1FF",
-            color: "#FFFFFF",
-            fontWeight: "bold",
-            fontSize: "1.2rem",
-            "&:hover": {
-                backgroundColor: "#35A8E0",
-            },
-        }}
-    >
-        投稿する
-    </Button>
+            variant="contained"
+            onClick={handleClick}
+            sx={{
+                width: "9rem",
+                height: "3rem",
+                borderRadius: "10px",
+                backgroundColor: "#3BC1FF",
+                color: "#FFFFFF",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                "&:hover": {
+                    backgroundColor: "#35A8E0",
+                },
+            }}
+        >
+            投稿する
+        </Button>
     )
 
 }
 
+
+type ModalCloseButtonProps = {
+    handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export function ModalCloseButton( {handleClose}: ModalCloseButtonProps) {
+    return (
+        <Button
+            onClick={handleClose}
+            sx = {{
+                width: "9rem",
+                height: "3rem",
+                borderRadius: "10px",
+                backgroundColor: "#3BC1FF",
+                color: "#FFFFFF",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                "&:hover": {
+                    backgroundColor: "#35A8E0",
+                },
+            }}
+        >
+            いいえ
+        </Button>
+    )
+}
 

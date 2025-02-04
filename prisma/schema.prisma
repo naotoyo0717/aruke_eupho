@@ -52,9 +52,9 @@ model Account {
 
 model Spot {
   id          Int         @id @default(autoincrement())
-  title       String
-  pictureUrl  String
-  explanation String
+  title       String      
+  pictureUrl  String  
+  explanation String      
   address     String
   nearStation Int?
   standard    Boolean     @default(false)
@@ -84,8 +84,8 @@ model UserSpot {
 
 model ReviewSpot {
     id          Int      @id @default(autoincrement())
-    title       String
-    content     String
+    title       String   @db.VarChar(30)
+    content     String    @db.VarChar(600)
     //rating      Float?   // ★評価（1.0〜5.0など、任意で追加）
     userId      String
     spotId      Int

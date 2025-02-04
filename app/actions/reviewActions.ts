@@ -14,3 +14,28 @@ export const fetchReviews = async (spotId: number) => {
         console.log('Error fetching reviews:', error);
     }
 }
+
+
+export const fetchCreateReview = async (title: string, content: string, spotId: number) => {
+    try {
+        const response = await fetch('/api/createReview', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/Json',
+            },
+            body: JSON.stringify({
+                title: title,
+                content: content,
+                spotId: spotId,
+            }),
+        });
+        if(!response.ok) {
+            throw new Error('createReviewが失敗しました。');
+        }
+        console.log("成功");
+        return true;
+    } catch (error) {
+        console.error('createReviewに失敗しました。',error);
+        return false;
+    }
+}

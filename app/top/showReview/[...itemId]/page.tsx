@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Review } from '@/app/types';
 import styles from '@/app/statics/styles/showReview.module.css';
+import ReviewCard from '@/app/components/review/showReview/reviewCard';
 
 export default function ShowReviewPage() {
     const { itemId } = useParams();
@@ -51,26 +52,9 @@ export default function ShowReviewPage() {
                             <p>{/*あえて何も書いていない*/}</p>
                         ) : reviews.length > 0 ? (
                             reviews.map((review) => (
-                                <div key={review.id}>
-                                    <div className={styles.userInfo}>
-                                        <img
-                                            className={styles.userIcon} 
-                                            src={review.userImage}
-                                            alt="ユーザーアイコン"
-                                        />
-                                        <div className={styles.speech}>
-                                            <div className={styles.userName}>{review.userName}</div>
-                                            <div className={styles.triangle}></div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.reviewContent}>
-                                        <div className={styles.titleContent}>
-                                            <h3>{review.title}</h3>
-                                            <p>{new Intl.DateTimeFormat('ja-JP', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(review.createdAt))}</p>
-                                        </div>
-                                        <p>{review.content}</p>
-                                    </div>
-                                </div>
+                                <ReviewCard
+                                    review = {review}
+                                />
                             ))
                         ) : (
                             <div className={styles.notReview}>
