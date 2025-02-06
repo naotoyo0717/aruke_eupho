@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "ReviewSpot" ALTER COLUMN "content" SET DATA TYPE VARCHAR(600);

@@ -167,6 +167,74 @@ export function SelectedSpotButton({
 }
 
 
+// interface SelectThumnailButtonProps {
+//     spotId: number;
+//     isSelected: boolean;
+//     setIsSelected: (value: boolean) => void;
+//     selectedSpotsCounter: number;
+//     setSelectedSpotsCounter: React.Dispatch<React.SetStateAction<number>>;
+// }
+
+export function SelectThumnailButton() {
+
+    const toggleSelected = () => {
+        // if (!isSelected) {
+        //     setSelectedSpotsCounter(selectedSpotsCounter + 1);
+        // } else {
+        //     setSelectedSpotsCounter(selectedSpotsCounter - 1);
+        // }
+
+        //setIsSelected(!isSelected);
+    };
+
+    const handleClick = async () => {
+        // try {
+        //     const response = await fetch('/api/updateSelected', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             spotId: spotId,
+        //             selected: isSelected,
+        //         }),
+        //     });
+
+        //     if (!response.ok) {
+        //         throw new Error('selectedの更新に失敗しました。');
+        //     }
+        // } catch (error) {
+        //     console.error('selectedの更新に失敗しました。', error);
+        // }
+
+        toggleSelected();
+    };
+
+    return (
+        <Button
+            variant="contained"
+            onClick={handleClick}
+            sx={{
+                width: '10rem',
+                height: '3rem',
+                borderRadius: '10px',
+                // backgroundColor: isSelected ? '#FF951C' : '#3BC1FF',
+                backgroundColor: '#3BC1FF',
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+                fontSize: '1rem',
+                '&:hover': {
+                    // backgroundColor: isSelected ? '#E08718' : '#2FA8E6',
+                    backgroundColor: '#2FA8E6',
+                },
+            }}
+        >
+            サムネイルに使用
+        </Button>
+    );
+}
+
+
 
 
 export function ResetSelectionButton() {
@@ -712,3 +780,131 @@ export function ModalCloseButton( {handleClose}: ModalCloseButtonProps) {
     )
 }
 
+type ConfirmMapButtonProps = {
+    startingPoint: number;
+    selectedSpots: { [key: number]: boolean };
+    selectedSpotsCounter: number;
+    setIsFirstRender: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export function ConfirmMapButton({
+    startingPoint,
+    selectedSpotsCounter,
+    setIsFirstRender,
+}: ConfirmMapButtonProps) {
+    const isUserLocation = false;
+    const handleClick = () => {
+        if (selectedSpotsCounter === 0) {
+            setIsFirstRender(false);
+            return;
+        }
+
+        window.location.href = `/recommendRoute/confirmMap?startingPoint=${startingPoint}&isUserLocation=${isUserLocation}`;
+    }
+
+    return (
+        <Button
+            variant="contained"
+            onClick={handleClick}
+            sx={{
+                width: "9rem",
+                height: "3rem",
+                borderRadius: "10px",
+                backgroundColor: "#3BC1FF",
+                color: "#FFFFFF",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                "&:hover": {
+                    backgroundColor: "#35A8E0",
+                },
+            }}
+        >
+            MAP画面で確認
+        </Button>
+    );
+}
+
+
+export function DecideRouteButton() {
+    return (
+        <Button
+            href="/recommendRoute/postRecommend"
+            variant='contained'
+            sx={{
+                width: '10rem',
+                height: '3rem',
+                borderRadius: '10px',
+                backgroundColor: '#3BC1FF',
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+                fontSize: '1.2rem', 
+                '&:hover': {
+                    backgroundColor: '#35A8E0',
+                },
+            }}>
+            ルートを確定
+        </Button>
+    );
+}
+
+
+type RecommendRouteSendButtonProps = {
+    title: string;
+    setTitle: React.Dispatch<React.SetStateAction<string>>; 
+    explanation: string;
+    setExplanation: React.Dispatch<React.SetStateAction<string>>;
+    nearStation: number;
+    setNearStation: React.Dispatch<React.SetStateAction<number>>;
+    setIsBlank: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export function RecommendRouteSendButton({ title, setTitle, explanation, setExplanation, nearStation, setNearStation, setIsBlank }: RecommendRouteSendButtonProps) {
+    const router = useRouter();
+    const handleClick = async () => {
+        console.log("送信");
+        console.log(`タイトル:${title}`);
+        console.log(`コンテント:${explanation}`);
+
+        if (title == "" || explanation == "") {
+            setIsBlank(true);
+        } else {
+            try {
+                //const fetchedCreateReview = await fetchCreateReview(title, explanation, nearStation);
+                // if (fetchedCreateReview) {
+                //     console.log("成功");
+                //     toast.success("投稿しました！！")
+                //     //router.push(`/top/showReview/${spotId}`)
+                     setTitle("");
+                     setExplanation("");
+                     setNearStation(0);
+                // } else {
+                //     throw new Error('createReviewが失敗しました。');
+                // }
+            } catch (error) {
+                console.error('createReviewに失敗しました。',error);
+                toast.error("エラーが発生しました。")
+            }
+        }
+    }
+
+    return (
+        <Button
+            variant="contained"
+            onClick={handleClick}
+            sx={{
+                width: "9rem",
+                height: "3rem",
+                borderRadius: "10px",
+                backgroundColor: "#3BC1FF",
+                color: "#FFFFFF",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                "&:hover": {
+                    backgroundColor: "#35A8E0",
+                },
+            }}
+        >
+            はい
+        </Button>
+    )
+}

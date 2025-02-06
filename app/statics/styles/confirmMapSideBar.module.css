@@ -1,0 +1,128 @@
+.mapSideBar {
+    position: absolute;
+    right: -30rem;
+    width: 40rem;
+    height: 100vh;         /* スクロールさせたい要素の高さ */
+    overflow-y: auto;      /* 縦方向のスクロールを有効にする */
+    overflow-x: hidden;    /* 横方向のスクロールを無効にする（必要に応じて変更）ここはなくても多分動く */
+    padding: 10px;         
+    border: 1px solid #ccc;
+    background-image: url('/top_bg.gif');
+    transition: right 0.3s ease;
+}
+
+.mapSideBar.open {
+    right: 0; /* アニメーション後にサイドバーが右から出てくる位置 */
+}
+
+.mapSideBarButtons {
+    display: flex;
+    justify-content: space-around;
+    gap: 5rem;
+    margin-right: 10rem;
+    margin-bottom: 1.5rem;
+}
+
+.barButton {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 1000;
+    background-color: #FFF;
+}
+
+.mapSideBarBackButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.2rem;
+    margin-bottom: 1.rem;
+}
+
+.mapSideBarDuration {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #443322;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.mapSideBarCard {
+    display: flex;
+    justify-content: space-between;
+    background-color: #DBF3FF;
+    margin-bottom: 1.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    align-items: center;
+    border-radius: 15px;
+    position: relative;
+}
+
+.mapSideBarCardTitle {
+    padding-left: 1rem;
+}
+
+.mapSideBarCard h2 {
+    color: #443322;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.mapSideBarStart {
+    display: flex;
+    justify-content: center;
+    background-color: #DBF3FF;
+    margin-bottom: 1.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    align-items: center;
+    border-radius: 15px;
+    position: relative;
+    height: 3rem;
+}
+.mapSideBarStart::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1.5rem;
+    width: 5px;
+    height: 1.5rem;
+    background-color: #332211;
+    z-index: 0;
+}
+
+.mapSideBarStart h2 {
+    color: #443322;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.mapSideBarCardTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.mapSideBarCard::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1.5rem;
+    width: 5px;
+    height: 1.5rem;
+    background-color: #332211;
+    z-index: -0;
+    transform: translateX(-50%);
+}
+
+.mapSideBarCard:last-child::after {
+    display: none;
+}
