@@ -48,3 +48,10 @@ export type Contact = {
     title: string;
     content: string;
 }
+
+export type AllMapType = {
+    id: number;
+    title: string;
+    latitude: number;
+    longitude: number;
+}
