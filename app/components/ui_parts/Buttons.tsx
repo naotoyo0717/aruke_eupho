@@ -1,6 +1,6 @@
 'use client'
 import Button from '@mui/material/Button';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSignupModal from '@/app/hooks/useSignupModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from "next-auth/react";
@@ -566,8 +566,23 @@ export function ReviewCreateBackButton({ spotId }: ReviewCreateBackButtonProps) 
 
 export function ReviewBackButton() {
     const router = useRouter();
+
+    const [previousPage, setPreviousPage] = useState<string | null>(null);
+
+    useEffect(() => {
+        // 遷移元のページを sessionStorage に保存
+        const referrer = sessionStorage.getItem("previousPage");
+        if (referrer) {
+        setPreviousPage(referrer);
+        }
+    }, []);
+
     const handleClick = () => {
-        router.push(`/top`);
+        if (previousPage === "/allMap") {
+            window.location.href = "/allMap";
+          } else {
+            router.push("/top");
+          }
     };
     return (
         <Button

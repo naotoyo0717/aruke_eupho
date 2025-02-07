@@ -16,12 +16,10 @@ export default function ShowReviewPage() {
 
     const spotId = itemId ? Number(itemId) : null;
 
-    if (!spotId) {
-        return <p>スポットIDが無効です。</p>;
-    }
-
     useEffect(() => {
-        const fetchData = async (spotId: number) => {
+        if (!spotId) return; // spotId が null の場合は何もしない
+
+        const fetchData = async () => {
             try {
                 setIsLoading(true);
                 const fetchedReviews = await fetchReviews(spotId);
@@ -34,8 +32,12 @@ export default function ShowReviewPage() {
                 setIsLoading(false);
             }
         };
-        fetchData(spotId);
+        fetchData();
     }, [spotId]);
+
+    if (!spotId) {
+        return <p>スポットIDが無効です。</p>;
+    }
 
     return (
         <div className={styles.reviewPage}>
@@ -52,9 +54,7 @@ export default function ShowReviewPage() {
                             <p>{/*あえて何も書いていない*/}</p>
                         ) : reviews.length > 0 ? (
                             reviews.map((review) => (
-                                <ReviewCard
-                                    review = {review}
-                                />
+                                <ReviewCard key={review.id} review={review} />
                             ))
                         ) : (
                             <div className={styles.notReview}>

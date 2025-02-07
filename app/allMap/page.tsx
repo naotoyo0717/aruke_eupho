@@ -16,6 +16,7 @@ export default function Page() {
         const fetchedAllMap = await fetchAllMap();
         if (fetchedAllMap) {
           setAllMapSpot(fetchedAllMap);
+          sessionStorage.setItem("previousPage", "/allMap");
           setIsLoading(false)
         }
       } catch (error) {

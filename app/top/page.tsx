@@ -38,6 +38,7 @@ export default function Top() {
                     setSelectedSpotsCounter(Object.keys(fetchedSelected).length);
                 }
                 await Promise.all([fetchVisited(), fetchSelected()]);
+                sessionStorage.setItem("previousPage", "/top");
                 setIsLoading(false);
                 setIsFirstRender(false); // 初回表示が終わった後にフラグを更新
             } catch (error) {
