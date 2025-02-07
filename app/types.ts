@@ -40,3 +40,11 @@ export type Review = {
     content: string;
     createdAt: Date;
 };
+
+export type Contact = {
+    id: number;
+    userId: string;
+    email: string;
+    title: string;
+    content: string;
+}

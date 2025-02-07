@@ -1,6 +1,6 @@
 'use client';
 
-import { AddLocation, BeachAccess, Home, Logout, Map, SvgIconComponent, } from '@mui/icons-material';
+import { AddLocation, BeachAccess, Home, Logout, Map, SvgIconComponent, ContactMail} from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
@@ -16,8 +16,8 @@ type MenuItem = {
 const menu: MenuItem[] = [
     { title: 'ホーム', href: '/top', icon: Home },
     { title: 'マップ', href: '/map', icon: AddLocation },
-    { title: 'ルート投稿', href: '/reccomed_route', icon: Map },
     { title: '天気', href: '/weather', icon: BeachAccess },
+    { title: 'お問い合わせ', href: '/contact', icon: ContactMail },
     { title: 'ログアウト', href: '/signin', icon: Logout },
 ];
 

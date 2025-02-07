@@ -1,0 +1,48 @@
+.contactHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 1.3rem;
+    margin-left: 2rem;
+    margin-right: 4rem;
+}
+
+.contactHeader h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #443322;
+    margin-right: 2.5rem;
+}
+
+.isBlankWarning {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    color: red;
+    margin-top: 1rem;
+}
+
+.emailField {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.titleField {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.contentField {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.contactModal {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}

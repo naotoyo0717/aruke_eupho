@@ -28,8 +28,8 @@ model User {
   updateAt       DateTime    @updatedAt
   accounts       Account[]
   userSpots      UserSpot[]  // ユーザーが訪問したスポット情報
-
   ReviewSpot ReviewSpot[]
+  Contact Contact[]
 }
 
 model Account {
@@ -96,4 +96,15 @@ model ReviewSpot {
     spot        Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
 
     //@@unique([userId, spotId]) // 同じユーザーが同じスポットに1回しかレビューできない場合
+}
+
+model Contact {
+  id            Int           @id @default(autoincrement())
+  userId        String
+  email         String
+  title         String
+  content       String
+  createdAt     DateTime      @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
