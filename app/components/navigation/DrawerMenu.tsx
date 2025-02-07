@@ -15,8 +15,8 @@ type MenuItem = {
 
 const menu: MenuItem[] = [
     { title: 'ホーム', href: '/top', icon: Home },
-    { title: 'マップ', href: '/map', icon: AddLocation },
-    { title: '天気', href: '/weather', icon: BeachAccess },
+    { title: 'マップ', href: '/allMap', icon: AddLocation },
+    // { title: '天気', href: '/weather', icon: BeachAccess },
     { title: 'お問い合わせ', href: '/contact', icon: ContactMail },
     { title: 'ログアウト', href: '/signin', icon: Logout },
 ];
