@@ -1,11 +1,21 @@
-import getCurrentUser from "@/app/actions/getCurrentUser"
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import { redirect } from "next/navigation";
 
+const Home = async () => {
+  const currentUser = await getCurrentUser();
 
-//メインイメージ
-const Home = async() => {
-  const currentUser = await getCurrentUser()
-  console.log({currentUser})
-  return <div className="text-center">{currentUser ? <div>認証中</div> : <div>未認証</div>}</div>
-}
+  if (currentUser) {
+    console.log({ currentUser });
+    redirect("/top");
+  } else if (!currentUser) {
+    redirect("/signin");
+  } else {
+    return (
+      <div className="text-center">
+        {currentUser ? <div>認証中</div> : <div>未認証</div>}
+      </div>
+    );
+  }
+};
 
-export default Home
+export default Home;

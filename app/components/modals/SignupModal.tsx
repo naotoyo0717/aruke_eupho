@@ -65,7 +65,8 @@ const SignupModal = () => {
             })
     
             signupModal.onClose()
-            router.refresh()
+            //router.refresh()
+            router.push("/top");
           }
         } catch (error) {
           toast.error('エラーが発生しました。' + error)
