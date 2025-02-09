@@ -24,7 +24,7 @@ export default function ContactModal ({
 }: ContactModalProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleOpen = () => {
         if (email ==="" || title === "" || content === "") {
             setIsBlank(true);
             return; // フォームが未記入の場合、モーダルを開かない

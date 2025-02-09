@@ -1,6 +1,6 @@
 'use client';
 
-import { AddLocation, BeachAccess, Home, Logout, Map, SvgIconComponent, ContactMail} from '@mui/icons-material';
+import { AddLocation, Home, Logout, SvgIconComponent, ContactMail} from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';

@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, } from "@mui/material";
 import { useState } from "react";
 import { ModalCloseButton, ReviewCreateSendButton } from "../../ui_parts/Buttons";
 import styles from "@/app/statics/styles/confirmModal.module.css";
@@ -22,7 +22,7 @@ export default function ConfirmModal({
 }: ConfirmModalProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleOpen = () => {
         if (title === "" || content === "") {
             setIsBlank(true);
             return; // フォームが未記入の場合、モーダルを開かない
