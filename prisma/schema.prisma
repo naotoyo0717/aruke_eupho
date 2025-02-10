@@ -5,10 +5,11 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 //supabase以降済み。後で消す。
-//databaseURL変更。
+//databaseURL変更。ああああああああ
 
 //npx prisma migrate dev --name init
 //npx prisma migrate 
+
 
 
 generator client {
@@ -21,93 +22,84 @@ datasource db {
 }
 
 model User {
-  id             String      @id @default(uuid())
+  id             String       @id @default(uuid())
   name           String?
-  email          String?     @unique
+  email          String?      @unique
   emailVerified  DateTime?
   image          String?
   hashedPassword String?
-  createdAt      DateTime    @default(now())
-  updateAt       DateTime    @updatedAt
+  createdAt      DateTime     @default(now())
+  updateAt       DateTime     @updatedAt
   accounts       Account[]
-  userSpots      UserSpot[]  // ユーザーが訪問したスポット情報
-  ReviewSpot ReviewSpot[]
-  Contact Contact[]
+  Contact        Contact[]
+  ReviewSpot     ReviewSpot[]
+  userSpots      UserSpot[]
 }
 
 model Account {
-  id                  String    @id @default(uuid())
-  userId              String
-  type                String
-  provider            String
-  providerAccountId   String
-  refresh_token       String?
-  access_token        String?
-  expires_at          Int?
-  token_type          String?
-  scope               String?
-  id_token            String?
-  session_state       String?
-  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
 model Spot {
-  id          Int         @id @default(autoincrement())
-  title       String      
-  pictureUrl  String  
-  explanation String      
+  id          Int          @id @default(autoincrement())
+  title       String
+  pictureUrl  String
+  explanation String
   address     String
   nearStation Int?
-  standard    Boolean     @default(false)
-  latitude    Float?      @default(0.0)
-  longitude   Float?      @default(0.0)
-  userSpots   UserSpot[]  // このスポットを訪問したユーザー情報
-
-  ReviewSpot ReviewSpot[]
+  standard    Boolean      @default(false)
+  latitude    Float?       @default(0.0)
+  longitude   Float?       @default(0.0)
+  ReviewSpot  ReviewSpot[]
+  userSpots   UserSpot[]
 }
 
 model UserSpot {
   id        Int      @id @default(autoincrement())
   userId    String
   spotId    Int
-  visited   Boolean  //@default(false)　多分呼び出し側とdefault(false)が衝突しててエラーが出てた。
-  selected  Boolean  //@default(false)
+  visited   Boolean
   createdAt DateTime @default(now())
-
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  selected  Boolean
   spot      Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, spotId]) // 同じユーザーが同じスポットを複数回登録できないようにする
+  @@unique([userId, spotId])
   @@index([userId])
   @@index([spotId])
 }
 
-
 model ReviewSpot {
-    id          Int      @id @default(autoincrement())
-    title       String   @db.VarChar(30)
-    content     String    @db.VarChar(600)
-    //rating      Float?   // ★評価（1.0〜5.0など、任意で追加）
-    userId      String
-    spotId      Int
-    createdAt   DateTime @default(now())
-    //updatedAt   DateTime @updatedAt  // 編集日時を追加
-
-    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-    spot        Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
-
-    //@@unique([userId, spotId]) // 同じユーザーが同じスポットに1回しかレビューできない場合
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(30)
+  content   String   @db.VarChar(600)
+  userId    String
+  spotId    Int
+  createdAt DateTime @default(now())
+  spot      Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Contact {
-  id            Int           @id @default(autoincrement())
-  userId        String
-  email         String
-  title         String
-  content       String
-  createdAt     DateTime      @default(now())
-
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        Int      @id @default(autoincrement())
+  email     String
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
