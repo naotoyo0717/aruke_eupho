@@ -5,6 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 //supabase以降済み。後で消す。
+//databaseURL変更。
 
 //npx prisma migrate dev --name init
 //npx prisma migrate 
