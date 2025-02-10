@@ -4,6 +4,8 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+//supabase以降済み。後で消す。
+
 //npx prisma migrate dev --name init
 //npx prisma migrate 
 
