@@ -74,9 +74,7 @@ export function LogoutButton() {
         <Button
             variant="contained"
             onClick={() => {
-                signOut();
-                localStorage.removeItem("reloaded");
-                console.log("ローカルストレージを削除しました。");
+                signOut()
             }}
             sx={{
                 width: '13rem',
@@ -103,6 +101,7 @@ interface SelectedSpotButtonProps {
     setIsSelected: (value: boolean) => void;
     selectedSpotsCounter: number;
     setSelectedSpotsCounter: React.Dispatch<React.SetStateAction<number>>;
+    setIsFirstRender: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function SelectedSpotButton({ 
@@ -111,11 +110,13 @@ export function SelectedSpotButton({
     setIsSelected, 
     selectedSpotsCounter, 
     setSelectedSpotsCounter,
+    setIsFirstRender,
 }: SelectedSpotButtonProps) {
 
     const toggleSelected = () => {
         if (!isSelected) {
             setSelectedSpotsCounter(selectedSpotsCounter + 1);
+            setIsFirstRender(false);
         } else {
             setSelectedSpotsCounter(selectedSpotsCounter - 1);
         }
@@ -238,11 +239,11 @@ export function OpenMapButton({
 }: OpenMapButtonProps) {
     const handleClick = () => {
         if (selectedSpotsCounter === 0) {
-            setIsFirstRender(false);
+            setIsFirstRender(true);
             return;
+        } else {
+            window.location.href = `/map?startingPoint=${startingPoint}&isUserLocation=${isUserLocation}`;
         }
-
-        window.location.href = `/map?startingPoint=${startingPoint}&isUserLocation=${isUserLocation}`;
     }
 
     return (

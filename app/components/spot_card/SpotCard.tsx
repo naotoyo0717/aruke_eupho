@@ -15,6 +15,7 @@ interface SpotCardProps {
     selectedSpots: { [key: number]: boolean };
     selectedSpotsCounter: number;
     setSelectedSpotsCounter: React.Dispatch<React.SetStateAction<number>>;
+    setIsFirstRender: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function SpotCard({
@@ -25,6 +26,7 @@ export default function SpotCard({
     onVisitedChange,
     selectedSpotsCounter,
     setSelectedSpotsCounter,
+    setIsFirstRender,
 }: SpotCardProps) {
     const handleVisitedChange = (newVisited: boolean) => {
         console.log(`Spot ${item.id} visited status:`, newVisited);
@@ -91,6 +93,7 @@ export default function SpotCard({
                                             setIsSelected={setIsSelected}
                                             selectedSpotsCounter={selectedSpotsCounter}
                                             setSelectedSpotsCounter={setSelectedSpotsCounter}
+                                            setIsFirstRender={setIsFirstRender}
                                         />
                                     </div>
                                 </div>

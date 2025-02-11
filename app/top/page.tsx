@@ -18,7 +18,7 @@ export default function Top() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [startingPoint, setStartingPoint] = useState<number>(1);
     const [selectedSpotsCounter, setSelectedSpotsCounter] = useState<number>(0);
-    const [isFirstRender, setIsFirstRender] = useState<boolean>(true); // 初回表示フラグ
+    const [isFirstRender, setIsFirstRender] = useState<boolean>(false); // 初回表示フラグ
 
     useEffect(() => {
         const fetchData = async () => {
@@ -93,7 +93,7 @@ export default function Top() {
                     isUserLocation={isUserLocation}
                 />
             </div>
-            {isFirstRender === false && selectedSpotsCounter === 0 && ( // エラーメッセージの条件付き表示
+            {isFirstRender === false || selectedSpotsCounter === 0 && ( // エラーメッセージの条件付き表示
                 <div className={styles.errorMessage}>
                     <p>スポットは一つ以上選択してください。</p>
                 </div>
@@ -120,6 +120,7 @@ export default function Top() {
                             selectedSpots={selectedSpots}
                             selectedSpotsCounter={selectedSpotsCounter}
                             setSelectedSpotsCounter={setSelectedSpotsCounter}
+                            setIsFirstRender={setIsFirstRender}
                         />
                     );
                 })
