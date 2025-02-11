@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { FcGoogle } from 'react-icons/fc'
+// import { FcGoogle } from 'react-icons/fc'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -12,7 +12,7 @@ import useSignupModal from '@/app/hooks/useSignupModal'
 import useLoginModal from '@/app/hooks/useLoginModal'
 import Modal from '@/app/components/modals/Modal'
 import Input from '@/app/components/input/Input'
-import Button from '@/app/components/button/Button'
+// import Button from '@/app/components/button/Button'
 import * as z from 'zod'
 
 // 入力データの検証ルールを定義
@@ -101,7 +101,7 @@ const schema = z.object({
       <div className="mt-3 flex flex-col gap-4">
         <hr />
         {/* Googleログイン */}
-        <Button outline label="Googleでログイン" icon={FcGoogle} onClick={() => signIn('google')} />
+        {/* <Button outline label="Googleでログイン" icon={FcGoogle} onClick={() => signIn('google')} /> */}
   
         {/* サインアップリンク */}
         <div className="mt-4 text-center">

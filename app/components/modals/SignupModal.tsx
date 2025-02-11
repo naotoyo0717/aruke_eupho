@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
-import { FcGoogle } from 'react-icons/fc'
+// import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-hot-toast'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -12,7 +12,7 @@ import useLoginModal from '@/app/hooks/useLoginModal'
 import useSignupModal from '@/app/hooks/useSignupModal'
 import Modal from '@/app/components/modals/Modal'
 import Input from '@/app/components/input/Input'
-import Button from '@/app/components/button/Button'
+// import Button from '@/app/components/button/Button'
 import axios from 'axios'
 import * as z from 'zod'
 
@@ -113,7 +113,7 @@ const SignupModal = () => {
         <div className="mt-3 flex flex-col gap-4">
         <hr />
         {/* Googleログイン */}
-        <Button outline label="Googleでログイン" icon={FcGoogle} onClick={() => signIn('google')} />
+        {/* <Button outline label="Googleでログイン" icon={FcGoogle} onClick={() => signIn('google')} /> */}
 
         {/* ログインリンク */}
         <div className="mt-4 text-center">
