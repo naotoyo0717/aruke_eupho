@@ -97,9 +97,9 @@ model ReviewSpot {
 
 model Contact {
   id        Int      @id @default(autoincrement())
-  email     String
-  title     String
-  content   String
+  email     String   @db.VarChar(255)
+  title     String   @db.VarChar(50)
+  content   String   @db.VarChar(1000)
   createdAt DateTime @default(now())
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)

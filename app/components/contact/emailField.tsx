@@ -11,7 +11,7 @@ export default function EmailField ({email, handleEmail}: EmailFieldProps) {
             id="outlined-textarea"
             value = {email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                if (e.target.value.length <= 30) {
+                if (e.target.value.length <= 255) {
                     handleEmail(e);
                 }
             }}
