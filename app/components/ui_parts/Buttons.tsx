@@ -74,7 +74,9 @@ export function LogoutButton() {
         <Button
             variant="contained"
             onClick={() => {
-                signOut()
+                signOut();
+                localStorage.removeItem("reloaded");
+                console.log("ローカルストレージを削除しました。");
             }}
             sx={{
                 width: '13rem',
