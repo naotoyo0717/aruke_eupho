@@ -70,12 +70,19 @@ export function LoginButton() {
 
 
 export function LogoutButton() {
+
+    const handleLogout = async () => {
+        // ローカルストレージを削除
+        localStorage.clear(); // すべて削除
+        // 特定のキーのみ削除する場合: localStorage.removeItem("reloaded");
+
+        await signOut(); // ログアウト処理
+    };
+
     return (
         <Button
             variant="contained"
-            onClick={() => {
-                signOut()
-            }}
+            onClick={handleLogout}
             sx={{
                 width: '13rem',
                 height: '4rem',
