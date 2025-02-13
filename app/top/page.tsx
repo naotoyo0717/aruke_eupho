@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import SpotCard from "@/app/components/spot_card/SpotCard";
 import Loading from "../loading";
 import { VisitedCounter } from "../components/ui_parts/VisitedCounter";
-import { FilterSpotButton, IsUserLocationButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/ui_parts/Buttons";
 import styles from "@/app/statics/styles/topButtons.module.css";
 import { SpotType } from "../types";
 import { fetchSelected, fetchSpots, fetchVisited } from "../actions/topActions";
+import { FilterSpotButton, IsUserLocationButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/top/topButtons";
 
 export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);

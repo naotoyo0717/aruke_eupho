@@ -1,10 +1,10 @@
 import PlaceIcon from '@mui/icons-material/Place';
-import { SelectedSpotButton } from '../ui_parts/Buttons';
 import CheckBox from './CheckBox';
 import ReviewButton from '@/app/components/spot_card/ReviewButton'; // 修正後のCommentButton
 import styles from '@/app/statics/styles/spotCard.module.css';
 import { SpotType } from '@/app/types';
 import Image from 'next/image';
+import { SelectedSpotButton } from './spotCardButtons';
 
 interface SpotCardProps {
     isSelected: boolean;

@@ -2,12 +2,12 @@
 
 import { useParams } from 'next/navigation';
 import ReviewHeader from '@/app/components/review/reviewHeader';
-import { ReviewCreateBackButton } from '@/app/components/ui_parts/Buttons';
 import { useState } from 'react';
 import styles from '@/app/statics/styles/createReview.module.css';
 import ContentField from '@/app/components/review/createReview/contentField';
 import TitleField from '@/app/components/review/createReview/titleField';
 import ConfirmModal from '@/app/components/review/createReview/confirmModal';
+import { ReviewCreateBackButton } from '@/app/components/review/createReview/createReviewButtons';
 
 export default function CreateReviewPage() {
     const { itemId } = useParams(); // itemIdを取得 

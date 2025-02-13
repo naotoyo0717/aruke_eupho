@@ -2,12 +2,12 @@
 
 import ReviewHeader from '@/app/components/review/reviewHeader';
 import { fetchReviews } from '@/app/actions/reviewActions';
-import { PushCreatePageButton, ReviewBackButton } from '@/app/components/ui_parts/Buttons';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Review } from '@/app/types';
 import styles from '@/app/statics/styles/showReview.module.css';
 import ReviewCard from '@/app/components/review/showReview/reviewCard';
+import { PushCreatePageButton, ReviewBackButton } from '@/app/components/review/showReview/showReviewButtons';
 
 export default function ShowReviewPage() {
     const { itemId } = useParams();

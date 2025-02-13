@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from "@/app/statics/styles/mapSideBar.module.css";
 import { SpotLocationType } from "@/app/types";
-import { MapSideBarBackButton } from "../ui_parts/Buttons";
 import MapSideBarCard from "./mapSideBarCard";
 import { Button } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import { MapSideBarBackButton } from "./MapSideBarButtons";
 
 interface MapSideBarProps {
     origin: string;
