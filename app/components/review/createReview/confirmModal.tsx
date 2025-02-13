@@ -1,7 +1,7 @@
 import { Box, Button, Modal, } from "@mui/material";
 import { useState } from "react";
-import { ModalCloseButton, ReviewCreateSendButton } from "../../ui_parts/Buttons";
 import styles from "@/app/statics/styles/confirmModal.module.css";
+import { ModalCloseButton, ReviewCreateSendButton } from "./createReviewButtons";
 
 type ConfirmModalProps = {
     spotId: number;

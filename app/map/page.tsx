@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import Map from '@/app/components/ui_parts/Map';
+import Map from '@/app/components/map/Map'
 import { SpotLocationType, WayPoint } from '../types';
 import { useSearchParams } from 'next/navigation';
 import Loading from '../loading';

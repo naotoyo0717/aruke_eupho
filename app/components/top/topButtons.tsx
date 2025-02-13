@@ -1,99 +1,8 @@
 'use client'
-import Button from '@mui/material/Button';
-import { useEffect, useState } from "react";
-import useSignupModal from '@/app/hooks/useSignupModal';
-import useLoginModal from '@/app/hooks/useLoginModal';
-import { signOut } from "next-auth/react";
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { SpotType } from '@/app/types';
-import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
-import { fetchCreateReview } from '@/app/actions/reviewActions';
 
-export function SignupButton() {
-    const [isOpen, setIsOpen] = useState(false);
-    const signupModal = useSignupModal();
-    return (
-        <Button
-            variant="contained"
-            onClick={() => {
-                signupModal.onOpen();
-                setIsOpen(!isOpen);
-            }}
-            sx={{
-                width: '13rem',
-                height: '4rem',
-                borderRadius: '10px',
-                backgroundColor: '#3BC1FF',
-                color: '#FFFFFF',
-                fontWeight: 'bold',
-                fontSize: '1.2rem', 
-                '&:hover': {
-                    backgroundColor: '#35A8E0',
-                },
-            }}>
-            サインアップ
-        </Button>
-    );
-}
-
-
-
-export function LoginButton() {
-    const [isOpen, setIsOpen] = useState(false);
-    const loginModal = useLoginModal()
-    return (
-        <Button
-            variant="contained"
-            onClick={() => {
-                loginModal.onOpen()
-                setIsOpen(!isOpen);
-            }}
-            sx={{
-                width: '13rem',
-                heiht: '4rem',
-                borderRadius: '10px',
-                backgroundColor: '#3BC1FF',
-                color: '#FFFFFF',
-                fontWeight: 'bold',
-                fontSize: '1.2rem', 
-                '&:hover': {
-                    backgroundColor: '#35A8E0',
-                },
-            }}>
-            ログイン
-        </Button>
-    );
-}
-
-
-
-export function LogoutButton() {
-    return (
-        <Button
-            variant="contained"
-            onClick={() => {
-                signOut()
-            }}
-            sx={{
-                width: '13rem',
-                height: '4rem',
-                borderRadius: '10px',
-                backgroundColor: '#3BC1FF',
-                color: '#FFFFFF',
-                fontWeight: 'bold',
-                fontSize: '1.2rem', 
-                '&:hover': {
-                    backgroundColor: '#35A8E0',
-                },
-            }}>
-            ログアウト
-        </Button>
-    );
-}
-
-
+import { SpotType } from "@/app/types";
+import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { useState } from "react";
 
 interface SelectedSpotButtonProps {
     spotId: number;
@@ -171,7 +80,6 @@ export function SelectedSpotButton({
 
 
 
-
 export function ResetSelectionButton() {
 
     const handleClick = async () => {
@@ -222,7 +130,6 @@ export function ResetSelectionButton() {
 }
 
 
-
 type OpenMapButtonProps = {
     startingPoint: number;
     selectedSpots: { [key: number]: boolean };
@@ -267,8 +174,6 @@ export function OpenMapButton({
         </Button>
     );
 }
-
-
 
 
 
@@ -347,76 +252,73 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
     }
 
 
-
-
 type SelectStartingButtonProps = {
-    startingPoint: number;
-    setStartingPoint: React.Dispatch<React.SetStateAction<number>>;
+startingPoint: number;
+setStartingPoint: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export function SelectStartingButton({
     startingPoint,
     setStartingPoint,
-  }: SelectStartingButtonProps) {
+}: SelectStartingButtonProps) {
     const handleChange = (event: SelectChangeEvent<string>) => {
-      const selectedStartingPoint = parseInt(event.target.value, 10);
-      setStartingPoint(selectedStartingPoint);
+        const selectedStartingPoint = parseInt(event.target.value, 10);
+        setStartingPoint(selectedStartingPoint);
     };
-  
+
     return (
-      <FormControl
-        sx={{ m: 1, minWidth: 140 }}
-        size="small"
-      >
+        <FormControl
+            sx={{ m: 1, minWidth: 140 }}
+            size="small"
+        >
         <InputLabel
-          id="selectStartingPoint"
-          sx={{
+            id="selectStartingPoint"
+            sx={{
             backgroundColor: "#faf6f0",
             px: 1,
             transform: "translate(14px, -6px) scale(0.75)",
-          }}
+            }}
         >
-          出発地点
+            出発地点
         </InputLabel>
         <Select
-          labelId="startingSpotLabel"
-          id="startingSpot"
-          value={String(startingPoint)} // 数値を文字列に変換して設定
-          label="Spot"
-          onChange={handleChange}
-          sx={{
+            labelId="startingSpotLabel"
+            id="startingSpot"
+            value={String(startingPoint)} // 数値を文字列に変換して設定
+            label="Spot"
+            onChange={handleChange}
+            sx={{
             "& .MuiSelect-select": {
-              padding: "8px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
+                padding: "8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
             },
-          }}
+            }}
         >
-          <MenuItem value="0" sx={{ textAlign: "center" }}>
+            <MenuItem value="0" sx={{ textAlign: "center" }}>
             現在地
-          </MenuItem>
-          <MenuItem value="1" sx={{ textAlign: "center" }}>
+            </MenuItem>
+            <MenuItem value="1" sx={{ textAlign: "center" }}>
             京阪宇治
-          </MenuItem>
-          <MenuItem value="2" sx={{ textAlign: "center" }}>
+            </MenuItem>
+            <MenuItem value="2" sx={{ textAlign: "center" }}>
             京阪黄檗
-          </MenuItem>
-          <MenuItem value="3" sx={{ textAlign: "center" }}>
+            </MenuItem>
+            <MenuItem value="3" sx={{ textAlign: "center" }}>
             京阪六地蔵
-          </MenuItem>
-          <MenuItem value="4" sx={{ textAlign: "center" }}>
+            </MenuItem>
+            <MenuItem value="4" sx={{ textAlign: "center" }}>
             JR宇治駅
-          </MenuItem>
-          <MenuItem value="5" sx={{ textAlign: "center" }}>
+            </MenuItem>
+            <MenuItem value="5" sx={{ textAlign: "center" }}>
             JR京都駅
-          </MenuItem>
+            </MenuItem>
         </Select>
-      </FormControl>
+        </FormControl>
     );
-  }
-
+}
 
 
 type TransportOptionButtonProps = {
@@ -480,29 +382,6 @@ export function TransportOptionButton({
 
 
 
-export function MapSideBarBackButton() {
-    return (
-        <Button
-            href="/top"
-            variant='contained'
-            sx={{
-                width: '10rem',
-                height: '3rem',
-                borderRadius: '10px',
-                backgroundColor: '#3BC1FF',
-                color: '#FFFFFF',
-                fontWeight: 'bold',
-                fontSize: '1.2rem', 
-                '&:hover': {
-                    backgroundColor: '#35A8E0',
-                },
-            }}>
-            <ArrowBackIcon/>
-            選択に戻る
-        </Button>
-    );
-}
-
 type IsUserLocationButtonProps = {
     isUserLocation: boolean;
     setIsUserLocation: React.Dispatch<React.SetStateAction<boolean>>;
@@ -534,199 +413,3 @@ export function IsUserLocationButton({ isUserLocation, setIsUserLocation }: IsUs
         </Button>
     );
 }
-
-
-type ReviewCreateBackButtonProps = {
-    spotId: number;
-};
-
-export function ReviewCreateBackButton({ spotId }: ReviewCreateBackButtonProps) {
-    const router = useRouter();
-    const handleClick = () => {
-        router.push(`/top/showReview/${spotId}`);
-    };
-    return (
-        <Button
-            onClick = {handleClick}
-            sx={{
-                display: "flex",
-                alignItems: "center",
-                fontSize: "1.7rem", // 文字を大きく
-                fontWeight: "bold",
-                color: "#443322", // 文字色を青系に変更（お好みで）
-                "& .MuiSvgIcon-root": {
-                    fontSize: "2.7rem", // アイコンのサイズを大きく
-                    fontWeight: "bold"
-                }
-            }}
-        >
-            <ArrowBackIcon/>
-            戻る
-        </Button>
-    )
-}
-
-
-export function ReviewBackButton() {
-    const router = useRouter();
-
-    const [previousPage, setPreviousPage] = useState<string | null>(null);
-
-    useEffect(() => {
-        // 遷移元のページを sessionStorage に保存
-        const referrer = sessionStorage.getItem("previousPage");
-        if (referrer) {
-        setPreviousPage(referrer);
-        }
-    }, []);
-
-    const handleClick = () => {
-        if (previousPage === "/allMap") {
-            window.location.href = "/allMap";
-          } else {
-            router.push("/top");
-          }
-    };
-    return (
-        <Button
-            onClick = {handleClick}
-            sx={{
-                display: "flex",
-                alignItems: "center",
-                fontSize: "1.7rem",
-                fontWeight: "bold",
-                color: "#443322",
-                "& .MuiSvgIcon-root": {
-                    fontSize: "2.7rem",
-                    fontWeight: "bold"
-                }
-            }}
-        >
-            <ArrowBackIcon/>
-            戻る
-        </Button>
-    )
-}
-
-
-type ReviewCreateSendButtonProps = {
-    spotId: number;
-    title: string;
-    setTitle: React.Dispatch<React.SetStateAction<string>>; 
-    content: string;
-    setContent: React.Dispatch<React.SetStateAction<string>>;
-    setIsBlank: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export function ReviewCreateSendButton({ title, setTitle, content, setContent, spotId, setIsBlank }: ReviewCreateSendButtonProps) {
-    const router = useRouter();
-    const handleClick = async () => {
-        console.log("送信");
-        console.log(`スポットID:${spotId}`);
-        console.log(`タイトル:${title}`);
-        console.log(`コンテント:${content}`);
-
-        if (title == "" || content == "") {
-            setIsBlank(true);
-        } else {
-            try {
-                const fetchedCreateReview = await fetchCreateReview(title, content, spotId);
-                if (fetchedCreateReview) {
-                    console.log("成功");
-                    toast.success("投稿しました！！")
-                    router.push(`/top/showReview/${spotId}`)
-                    setTitle("");
-                    setContent("");
-                } else {
-                    throw new Error('createReviewが失敗しました。');
-                }
-            } catch (error) {
-                console.error('createReviewに失敗しました。',error);
-                toast.error("エラーが発生しました。")
-            }
-        }
-    }
-
-    return (
-        <Button
-            variant="contained"
-            onClick={handleClick}
-            sx={{
-                width: "9rem",
-                height: "3rem",
-                borderRadius: "10px",
-                backgroundColor: "#3BC1FF",
-                color: "#FFFFFF",
-                fontWeight: "bold",
-                fontSize: "1.2rem",
-                "&:hover": {
-                    backgroundColor: "#35A8E0",
-                },
-            }}
-        >
-            はい
-        </Button>
-    )
-}
-
-
-type PushCreatePageButtonProps = {
-    spotId: number;
-}
-
-export function PushCreatePageButton({ spotId }: PushCreatePageButtonProps) {
-    const router = useRouter();
-    const handleClick = () => {
-        router.push(`/top/createReview/${spotId}`);
-    };
-
-    return (
-        <Button
-            variant="contained"
-            onClick={handleClick}
-            sx={{
-                width: "9rem",
-                height: "3rem",
-                borderRadius: "10px",
-                backgroundColor: "#3BC1FF",
-                color: "#FFFFFF",
-                fontWeight: "bold",
-                fontSize: "1.2rem",
-                "&:hover": {
-                    backgroundColor: "#35A8E0",
-                },
-            }}
-        >
-            投稿する
-        </Button>
-    )
-
-}
-
-
-type ModalCloseButtonProps = {
-    handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
-
-export function ModalCloseButton( {handleClose}: ModalCloseButtonProps) {
-    return (
-        <Button
-            onClick={handleClose}
-            sx = {{
-                width: "9rem",
-                height: "3rem",
-                borderRadius: "10px",
-                backgroundColor: "#3BC1FF",
-                color: "#FFFFFF",
-                fontWeight: "bold",
-                fontSize: "1.2rem",
-                "&:hover": {
-                    backgroundColor: "#35A8E0",
-                },
-            }}
-        >
-            いいえ
-        </Button>
-    )
-}
-

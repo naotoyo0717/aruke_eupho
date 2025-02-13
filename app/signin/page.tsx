@@ -1,6 +1,6 @@
 'use Client'
 
-import { LoginButton, LogoutButton, SignupButton } from "../components/ui_parts/Buttons";
+import { LoginButton, LogoutButton, SignupButton } from "../components/signin/signInButtons";
 import SigninFooter from "../components/ui_parts/SigninFooter";
 import { SigninTitle } from "../components/ui_parts/SigninTitle";
 import UserIcon from "../components/ui_parts/UserIcon";

@@ -5,8 +5,8 @@ import {
   DirectionsRenderer,
   OverlayView,
 } from '@react-google-maps/api';
-import MapSideBar from '../map_sidebar/MapSideBar';
 import { SpotLocationType } from '@/app/types';
+import MapSideBar from './map_sidebar/MapSideBar';
 
 interface MapProps {
   apiKey: string;
