@@ -63,12 +63,18 @@ export function LoginButton() {
 
 
 export function LogoutButton() {
+
+    const handleLogout = async () => {
+        // ローカルストレージを削除
+        localStorage.removeItem("reloaded");
+
+        await signOut();
+    };
+
     return (
         <Button
             variant="contained"
-            onClick={() => {
-                signOut()
-            }}
+            onClick={handleLogout}
             sx={{
                 width: '13rem',
                 height: '4rem',
