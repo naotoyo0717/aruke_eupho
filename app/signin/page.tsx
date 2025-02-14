@@ -19,7 +19,9 @@ export default async function SignIn() {
                 <div className={styles.body}>
                     <div className={styles.user}>
                         <UserStatus/>
-                        <UserIcon currentUser={currentUser}/>
+                        <div className={styles.userIcon}>
+                            <UserIcon currentUser={currentUser}/>
+                        </div>
                     </div>
                     <SigninTitle/>
                     {currentUser ? (

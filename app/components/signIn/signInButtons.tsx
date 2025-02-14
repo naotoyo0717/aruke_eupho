@@ -27,6 +27,11 @@ export function SignupButton() {
                 '&:hover': {
                     backgroundColor: '#35A8E0',
                 },
+                '@media (max-width: 600px)': {
+                    width: '10rem',
+                    height: '3rem',
+                    fontSize: '1rem',
+                },
             }}>
             サインアップ
         </Button>
@@ -55,6 +60,11 @@ export function LoginButton() {
                 fontSize: '1.2rem', 
                 '&:hover': {
                     backgroundColor: '#35A8E0',
+                },
+                '@media (max-width: 600px)': {
+                    width: '10rem',
+                    height: '3rem',
+                    fontSize: '1rem',
                 },
             }}>
             ログイン
@@ -87,6 +97,11 @@ export function LogoutButton() {
                 fontSize: '1.2rem', 
                 '&:hover': {
                     backgroundColor: '#35A8E0',
+                },
+                '@media (max-width: 600px)': {
+                    width: '10rem',
+                    height: '3rem',
+                    fontSize: '1rem',
                 },
             }}>
             ログアウト

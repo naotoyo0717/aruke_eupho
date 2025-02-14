@@ -7,6 +7,7 @@ type IconProps = {
     currentUser: User | null
 }
 
+
 const UserIcon: React.FC<IconProps> = ({ currentUser }) => {
     return (
         <Image

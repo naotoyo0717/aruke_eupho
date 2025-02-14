@@ -47,3 +47,25 @@
     display: flex;
     gap: 3rem;
 }
+
+
+@media (max-width: 600px) {
+    .body {
+        margin: 1rem 1rem 0;
+        height: 80vh;
+    }
+
+    .user {
+        top: 2.5rem;
+        right: 2.5rem;
+        gap: 1rem;
+    }
+
+    .signinButtons {
+        display: flex;
+        flex-direction: column;  /* 縦並びにする */
+        align-items: center;  /* ボタンを中央揃え */
+        gap: 1rem;  /* ボタン同士の間隔を空ける */
+    }
+    
+}

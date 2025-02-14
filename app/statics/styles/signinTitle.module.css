@@ -3,3 +3,10 @@
     color: #443322;
     font-weight: bold;
 }
+
+@media (max-width: 600px) {
+    .SigninTitle {
+        font-size: 2.5rem;
+        margin-bottom: 6rem;
+    }
+}

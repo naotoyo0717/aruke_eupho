@@ -2,3 +2,10 @@
     font-size: 1.5rem;
     color: #443322;
 }
+
+@media (max-width: 600px) {
+    .userStatus {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+}
