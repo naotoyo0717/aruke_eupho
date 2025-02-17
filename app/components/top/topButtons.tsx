@@ -45,6 +45,13 @@ export function ResetSelectionButton() {
                     '&:hover': {
                         backgroundColor: '#E08718',
                     },
+                    '@media (max-width: 600px)': {
+                        width: '3.5rem',
+                        height: '1.2rem',
+                        fontSize: '0.6rem',
+                        padding: '2px 2px',
+                        minWidth: 'unset',
+                    },
                 }}
             >
                 選択解除
@@ -69,7 +76,7 @@ export function IsUserLocationButton({ isUserLocation, setIsUserLocation }: IsUs
             onClick={handleClick}
             variant="contained"
             sx={{
-                width: '12rem',
+                width: '9rem',
                 height: '2rem',
                 borderRadius: '6px',
                 backgroundColor: isUserLocation ? '#FF951C' : '#3BC1FF',
@@ -79,9 +86,16 @@ export function IsUserLocationButton({ isUserLocation, setIsUserLocation }: IsUs
                 '&:hover': {
                     backgroundColor: isUserLocation ? '#E08718' : '#2FA8E6',
                 },
+                '@media (max-width: 600px)': {
+                    width: '4.5rem',
+                    height: '1.2rem',
+                    fontSize: '0.6rem',
+                    padding: '2px 2px',
+                    minWidth: 'unset',
+                },
             }}
         >
-            現在地の表示：{isUserLocation ? 'ON' : 'OFF'}
+            現在地：{isUserLocation ? 'ON' : 'OFF'}
         </Button>
     );
 }
@@ -126,6 +140,14 @@ export function OpenMapButton({
                 "&:hover": {
                     backgroundColor: "#35A8E0",
                 },
+                '@media (max-width: 600px)': {
+                    width: '4rem',
+                    height: '1.5rem',
+                    fontSize: '0.6rem',
+                    borderRadius: "5px",
+                    padding: '2px 2px',
+                    minWidth: 'unset',
+                },
             }}
         >
             MAPへ
@@ -134,8 +156,11 @@ export function OpenMapButton({
 }
 
 
-
-
+const menuItemStyle = {
+    '@media (max-width: 600px)': {
+        fontSize: '0.7rem',
+    },
+};
 
 interface FilterSpotButtonProps {
     setSpots: React.Dispatch<React.SetStateAction<SpotType[]>>;
@@ -171,15 +196,25 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
   
     return (
         <FormControl 
-            sx={{ m: 1, minWidth: 140 }} 
-            size="small" // サイズを小さく設定
+            sx={{
+                m: 1,
+                width: '9rem',
+                '@media (max-width: 600px)': {
+                    width: '5rem',
+                    fontSize: '0.6rem',
+                    borderRadius: "5px",
+                },
+            }}
         >
             <InputLabel 
                 id="filterSpotLabel" 
                 sx={{
-                backgroundColor: '#faf6f0',
-                px: 1, // ラベル内の左右の余白を調整
-                transform: 'translate(14px, -6px) scale(0.75)', // ラベル位置を微調整
+                    backgroundColor: '#faf6f0',
+                    px: 1, // ラベル内の左右の余白を調整
+                    transform: 'translate(14px, -6px) scale(0.75)', // ラベル位置を微調整
+                    '@media (max-width: 600px)': {
+                        fontSize: '0.7rem',
+                    },
                 }}
             >
             絞り込み
@@ -191,20 +226,26 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
             label="Spot"
             onChange={handleChange}
                 sx={{
-                '& .MuiSelect-select': {
-                    padding: '8px', // 内側の余白を調整
-                },
-            }}
+                    '& .MuiSelect-select': {
+                        padding: '8px', // 内側の余白を調整
+                        '@media (max-width: 600px)': {
+                            padding: '0.5px',
+                            // paddingBottom: '5px',
+                            height: '0.1rem',
+                            fontSize: '0.6rem',
+                        },
+                    },
+                }}
         >
-            <MenuItem value="0">全て</MenuItem>
-            <MenuItem value="1">定番</MenuItem>
-            <MenuItem value="2">未チェック</MenuItem>
-            <MenuItem value="3">チェック済み</MenuItem>
-            <MenuItem value="4">京阪宇治近辺</MenuItem>
-            <MenuItem value="5">JR宇治近辺</MenuItem>
-            <MenuItem value="6">京阪黄檗近辺</MenuItem>
-            <MenuItem value="7">京阪六地蔵</MenuItem>
-            <MenuItem value="8">その他</MenuItem>
+            <MenuItem value="0" sx={menuItemStyle}>全て</MenuItem>
+            <MenuItem value="1" sx={menuItemStyle}>定番</MenuItem>
+            <MenuItem value="2" sx={menuItemStyle}>未チェック</MenuItem>
+            <MenuItem value="3" sx={menuItemStyle}>チェック済み</MenuItem>
+            <MenuItem value="4" sx={menuItemStyle}>京阪宇治</MenuItem>
+            <MenuItem value="5" sx={menuItemStyle}>JR宇治</MenuItem>
+            <MenuItem value="6" sx={menuItemStyle}>京阪黄檗</MenuItem>
+            <MenuItem value="7" sx={menuItemStyle}>京阪六地蔵</MenuItem>
+            <MenuItem value="8" sx={menuItemStyle}>その他</MenuItem>
         </Select>
         </FormControl>
 
@@ -230,8 +271,15 @@ export function SelectStartingButton({
   
     return (
       <FormControl
-        sx={{ m: 1, minWidth: 140 }}
-        size="small"
+        sx={{
+            m: 1,
+            width: '9rem',
+            '@media (max-width: 600px)': {
+                    width: '5rem',
+                    fontSize: '0.6rem',
+                    borderRadius: "5px",
+                },
+        }}
       >
         <InputLabel
           id="selectStartingPoint"
@@ -239,6 +287,9 @@ export function SelectStartingButton({
             backgroundColor: "#faf6f0",
             px: 1,
             transform: "translate(14px, -6px) scale(0.75)",
+            '@media (max-width: 600px)': {
+                fontSize: '0.7rem',
+            },
           }}
         >
           出発地点
@@ -251,32 +302,21 @@ export function SelectStartingButton({
           onChange={handleChange}
           sx={{
             "& .MuiSelect-select": {
-              padding: "8px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
+                padding: "8px",
+                '@media (max-width: 600px)': {
+                    padding: '1px',
+                    height: '0.1rem',
+                    fontSize: '0.6rem',
+                },
             },
           }}
         >
-          <MenuItem value="0" sx={{ textAlign: "center" }}>
-            現在地
-          </MenuItem>
-          <MenuItem value="1" sx={{ textAlign: "center" }}>
-            京阪宇治
-          </MenuItem>
-          <MenuItem value="2" sx={{ textAlign: "center" }}>
-            京阪黄檗
-          </MenuItem>
-          <MenuItem value="3" sx={{ textAlign: "center" }}>
-            京阪六地蔵
-          </MenuItem>
-          <MenuItem value="4" sx={{ textAlign: "center" }}>
-            JR宇治駅
-          </MenuItem>
-          <MenuItem value="5" sx={{ textAlign: "center" }}>
-            JR京都駅
-          </MenuItem>
+            <MenuItem value="0" sx={menuItemStyle}>現在地</MenuItem>
+            <MenuItem value="1" sx={menuItemStyle}>京阪宇治</MenuItem>
+            <MenuItem value="2" sx={menuItemStyle}>京阪黄檗</MenuItem>
+            <MenuItem value="3" sx={menuItemStyle}>京阪六地蔵</MenuItem>
+            <MenuItem value="4" sx={menuItemStyle}>JR宇治駅</MenuItem>
+            <MenuItem value="5" sx={menuItemStyle}>JR京都駅</MenuItem>
         </Select>
       </FormControl>
     );

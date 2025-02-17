@@ -81,7 +81,9 @@ export default function Top() {
                         setStartingPoint={setStartingPoint}
                     />
                 </div>
-                <VisitedCounter visitedCounter={visitedCounter} />
+                <div className={styles.visitedCounter}>
+                    <VisitedCounter visitedCounter={visitedCounter} />
+                </div>
             </div>
             <div className={styles.topButtonsContent}>
                 <h2>巡礼したい場所をルートに追加してください。</h2>

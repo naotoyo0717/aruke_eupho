@@ -64,7 +64,7 @@ export default function SpotCard({
                             <div className={styles.contentHeader}>
                                 <h2>No.{item.id} {item.title}</h2>
                                 <div className={styles.contentHeaderButton}>
-                                    <div>
+                                    <div className={styles.reviewButton}>
                                         <ReviewButton itemId={item.id} />
                                     </div>
                                     <div className={styles.checkButton}>
@@ -82,9 +82,16 @@ export default function SpotCard({
                             <div className={styles.cardHooter}>
                                 <div className={styles.spotAddress}>
                                     <div className={styles.spotAddressText}>
-                                        <PlaceIcon />
+                                        <p>
+                                            <PlaceIcon 
+                                                sx={{
+                                                    width: '1.5vw',  // アイコンの幅を4remに設定
+                                                    height: 'auto', // アイコンの高さを4remに設定
+                                                }}
+                                            />
+                                        </p>
                                         <p>{item.address}</p>
-                                        <p>&nbsp;&nbsp;【最寄り: {getNearStation(item.nearStation)}】</p>
+                                        <p>&nbsp;&nbsp;【{getNearStation(item.nearStation)}】</p>
                                     </div>
                                     <div className={styles.spotSelectButton}>
                                         <SelectedSpotButton

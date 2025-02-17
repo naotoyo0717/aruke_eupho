@@ -5,6 +5,7 @@ import { User } from "@prisma/client"
 import useProfileModel from '@/app/hooks/useProfileModal'
 import MenuItem from '@/app/components/navigation/MenuItem'
 import Image from 'next/image'
+import styles from '@/app/statics/styles/navigationIcon.module.css'
 
 type MenuProps = {
     currentUser: User | null
@@ -28,21 +29,23 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                 window.location.reload() // 100ms 後にリロード
             }, 100)
         }
-    }, [pathname]) // pathnameを依存配列に追加
+    }, [pathname])
+
     return (
-        <div className="relative">
-            <div className="relative h-12 w-12 cursor-pointer" onClick={toggleOpen}>
+        <div className={styles.menuContainer}>
+            <div className={styles.avatarContainer} onClick={toggleOpen}>
                 <Image
+                    width={150}
+                    height={150}
                     src={currentUser?.image || '/default.png'}
-                    className="rounded-full object-cover"
-                    alt="avator"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    fill
+                    className={styles.avatarImage}
+                    alt="avatar"
+                    // fill
                 />
             </div>
 
             {isOpen && (
-                <div className="absolute right-0 z-10 w-40 overflow-hidden rounded-lg bg-white text-sm shadow-lg shadow-grey-100">
+                <div className={styles.dropdownMenu}>
                     <div className="cursor-pointer">
                         <MenuItem
                             label="プロフィール"

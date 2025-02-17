@@ -15,11 +15,14 @@ export default function ReviewButton({ itemId }: ReviewButtonProps) {
                     sx={{
                         color: '#443322',
                         opacity: 0.8,
-                        width: '3rem',
-                        height: '2.5rem',
+                        width: '2.7vw',
+                        height: 'auto',
                         '&:hover': {
                             color: '#3BC1FF',
                             opacity: 5,
+                        },
+                        '@media (max-width: 600px)': {
+                            width: '4vw'
                         },
                     }} />
             </button>

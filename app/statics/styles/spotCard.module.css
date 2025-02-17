@@ -1,88 +1,98 @@
 .cardWrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1%;
 }
 
 .selected{
     background-color: #FF951C;
-    padding: 0.5rem;
+    padding: 0.6%;
     border-radius: 15px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .unselected{
     background-color: #DBF3FF;
-    padding: 0.5rem;
+    padding: 0.6%;
     border-radius: 15px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .cardContent{
     background-color: #DBF3FF;
-    width: 73rem;
+    width: 78vw;
+    /* height: 21vh; */
+    /* max-height: 27vh; */
     display: flex;
     justify-content: space-between;
-    padding-bottom: 0;
+    /* padding-bottom: 0; */
     border-radius: 10px;
     color: #443322;
+    /* padding-top: 0.5vh; */
 }
 
 .cardHeader{
     display: flex;
     align-content: space-between;
+    align-items: center;
+    /* max-height: 20vh; */
 }
 
 .cardImage{
-    /* max-width: 50rem; */
-    margin: 0.5rem;
-    margin-left: 0.8rem;
-    /* height: 10rem; */
+    margin: 1%;
+    /* margin-left: 0.8rem; */
     border-radius: 5px;
+    width: 45%;
+    max-height: 22vh;
 }
 
 .contentHeader{
-    width: 62rem;
+    width: 59vw;
+    max-width: 62vw;
     display: flex;
     justify-content: space-between;
-    padding-right: 0.5rem;
+    /* max-height: 20vh; */
+    align-items: center;
+    padding-bottom: 2%;
 }
 
 .contentHeader h2{
-    font-size: 1.5rem;
+    font-size: 1.7vw;
     font-weight: bold;
     padding-left: 5%;
-    width: 30rem;
-    padding-top: 1rem;
+    /* width: 32vw; */
+    padding-top: 0.2rem;
 }
 
 .contentHeaderButton{
-    padding-right: 3rem;
+    /* padding-right: 3rem; */
     display: flex;
     justify-content: end;
     align-items: center;
 }
 
 .checkButton{
-    margin-bottom: 4px;
+    margin-bottom: 6%;
 }
 
 .spotExplanation{
-    padding-top: 1rem;
     margin-left: 5%;
-    font-size: 1.3rem;
+    font-size: 1.4vw;
+    padding-bottom: 2%;
 }
 
 .spotAddress{
-    width: 56rem;
+    width: 57vw;
     display: flex;
     justify-content: space-between;
     margin-left: 5%;
+    /* padding-bottom: 2%; */
+    align-items: center;
 }
 
 .spotAddressText{
     display: flex;
-    margin-top: 1.2rem;
+    font-size: 1.2vw;
 }
 
 .spotAddressText p{
@@ -90,12 +100,98 @@
 }
 
 .spotSelectButton{
-    padding-right: 1rem;
+    padding-right: 1%;
     padding-bottom: 0.5rem;
 }
 
 .cardHooter{
     display: flex;
     justify-content: space-between;
-    padding-top: 0.5rem;
+    /* padding-top: 1.2%; */
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .selected{
+        border-radius: 7.5px;
+        padding: 0.6%;
+    }
+    .unselected{
+        border-radius: 7.5px;
+    }
+    .cardImage{
+        width: 23%;
+        height: 90%;
+        /* height: 8vh; */
+    }
+    .cardContent{
+        width: 93vw;
+        height: 21vw;
+        padding-left: 1%;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .contentHeader{
+        width: 69vw;
+        max-width: 75vw;
+        margin-top: 34%;
+        align-items: center;
+    }
+    .cardHeader h2 {
+        margin-top: 5%;
+    }
+    .contentHeaderButton{
+        gap: 1px;
+    }
+    .contentHeader h2{
+        font-size: 2.7vw;
+    }
+    .reviewButton{
+        margin-top: 21%;
+    }
+    .checkButton{
+        margin-top: 30%;
+    }
+    .spotExplanation{
+        font-size: 2.3vw;
+        /* padding-top: 2%; */
+    }
+    .spotAddress{
+        width: 69vw;
+    }
+    .spotAddressText{
+        font-size: 1.7vw;
+    }
+    .spotAddressText p{
+        margin-bottom: 7%;
+        align-items: center;
+    }
+    .cardHooter{
+        display: flex;
+        align-items: center;
+        padding-bottom: 36%;
+    }
+    .spotSelectButton{
+        margin-bottom: 4%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 834px) {
+    .cardImage{
+        width: 22%;
+        height: 90%;
+        /* height: 8vh; */
+    }
+    .checkButton{
+        margin-top: 8%;
+    }
+}
+
+@media (min-width: 835px) and (max-width: 1080px) {
+    .spotAddress{
+        width: 87%;
+    }
+    .contentHeaderButton{
+        margin-right: 10%;
+    }
 }

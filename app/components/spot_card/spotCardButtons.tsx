@@ -59,15 +59,31 @@ export function SelectedSpotButton({
             variant="contained"
             onClick={handleClick}
             sx={{
+                fontSize: '1rem',
                 width: '10rem',
                 height: '3rem',
-                borderRadius: '10px',
+                borderRadius: '7px',
                 backgroundColor: isSelected ? '#FF951C' : '#3BC1FF',
                 color: '#FFFFFF',
                 fontWeight: 'bold',
-                fontSize: '1rem',
                 '&:hover': {
                     backgroundColor: isSelected ? '#E08718' : '#2FA8E6',
+                },
+                '@media (max-width: 600px)': {
+                    width: '4rem',
+                    height: 'auto',
+                    fontSize: '0.4rem',
+                    minWidth: 'unset',
+                    padding: '2px 2px 2px 2px',
+                    borderRadius: '2px',
+                },
+                '@media (min-width: 601px) and (max-width: 834px)': {
+                    width: '6rem',
+                    height: 'auto',
+                    fontSize: '0.7rem',
+                    minWidth: 'unset',
+                    padding: '2px 2px 2px 2px',
+                    borderRadius: '4px',
                 },
             }}
         >

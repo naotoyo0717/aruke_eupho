@@ -34,8 +34,13 @@ export default async function SignIn() {
                             <LoginButton/>
                         </div>
                     )}
+                    {/* <div className={styles.footer}>
+                        <SigninFooter/>
+                    </div>  */}
                 </div>
-                <SigninFooter/>
+                <div className={styles.hooter}>
+                    <SigninFooter/>
+                </div>
             </div>
         </>
     )

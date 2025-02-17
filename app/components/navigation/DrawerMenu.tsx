@@ -29,7 +29,15 @@ export default function DrawerMenu() {
     return(
         <div>
             <Button onClick={openDrew}>
-                <MenuIcon sx={{ fontSize: 55, color: "white" }}/>
+                <MenuIcon
+                    sx={{
+                        fontSize: 55,
+                        color: "white",
+                        '@media (max-width: 600px)': {
+                            fontSize: 40,
+                        },
+                    }}
+                />
             </Button>
             <Drawer anchor='left' open={show}>
                 <Box sx={{ height: '100vh', width: '17rem', backgroundColor: '#DBF3FF'}}>
@@ -52,7 +60,12 @@ export default function DrawerMenu() {
                         return (
                             <ListItem key={obj.title}>
                                 <ListItemButton href={obj.href}>
-                                    <ListItemIcon sx={{ fontSize: 35, color: '#443322' }}>
+                                    <ListItemIcon
+                                        sx={{
+                                            fontSize: 35,
+                                            color: '#443322',
+                                        }}
+                                    >
                                         <Icon
                                             fontSize="inherit" />
                                     </ListItemIcon>
