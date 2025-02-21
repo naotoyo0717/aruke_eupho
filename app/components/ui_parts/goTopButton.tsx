@@ -29,8 +29,14 @@ export const Comp: FC = () => {
           className={styles.goTopButton}
         >
           <KeyboardArrowUpIcon
-              className={styles.UpwardIcon}
-          />
+            sx = {{
+              fontSize: "3vw",
+              marginBottom: "-2vh",
+              '@media (max-width: 600px)': {
+                fontSize: "6vw",
+                marginBottom: "-1vh",  
+              },
+            }}/>
           <p>Top</p>
         </button>
       ) : null}

@@ -23,10 +23,10 @@
     transform: scale(1.1);
 }
 
-.UpwardIcon {
+/* .UpwardIcon {
     font-size: 3vw;
     margin-bottom: -2vh;
-}
+} */
 
 .goTopButton p {
     font-size: 1.5vw;
@@ -47,10 +47,10 @@
         transform: scale(1.2);
     }
 
-    .UpwardIcon {
+    /* .UpwardIcon {
         font-size: 6vw;
         margin-bottom: -1vh;
-    }
+    } */
     
     .goTopButton p {
         font-size: 3vw;
