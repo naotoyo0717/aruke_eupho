@@ -1,0 +1,31 @@
+.label {
+    font-size: 1vw;
+    font-weight: bold;
+    white-space: nowrap;
+    pointer-events: none;
+    color: #443322;
+}
+
+.userLabel {
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+    pointer-events: none;
+    color: #0000FF;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: rgba(52, 177, 235, 0.9);
+    border: 2px solid white;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 600px) {
+    .label {
+        font-size: 100%;
+    }
+}

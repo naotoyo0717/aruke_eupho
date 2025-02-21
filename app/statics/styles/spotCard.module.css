@@ -112,12 +112,17 @@
 }
 
 @media (max-width: 600px) {
+    .cardWrapper {
+        margin-bottom: 2%;
+    }
     .selected{
         border-radius: 7.5px;
         padding: 0.6%;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     }
     .unselected{
         border-radius: 7.5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     }
     .cardImage{
         width: 23%;

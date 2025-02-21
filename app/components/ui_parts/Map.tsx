@@ -7,6 +7,7 @@ import {
 } from '@react-google-maps/api';
 import MapSideBar from '../map_sidebar/MapSideBar';
 import { SpotLocationType } from '@/app/types';
+import styles from '@/app/statics/styles/map.module.css';
 
 interface MapProps {
   apiKey: string;
@@ -114,7 +115,7 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
             {directions ? <DirectionsRenderer directions={directions} /> : null}
 
             <OverlayView position={origin} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-              <div style={labelStyle}>{origin.name}</div>
+              <div className={styles.label}>{origin.name}</div>
             </OverlayView>
 
             {waypoints.map((waypoint, index) => (
@@ -123,15 +124,15 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
                 position={{ lat: waypoint.lat, lng: waypoint.lng }}
                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               >
-                <div style={labelStyle}>{waypoint.name}</div>
+                <div className={styles.label}>{waypoint.name}</div>
               </OverlayView>
             ))}
 
             {isUserLocation && userLocation && (
               <OverlayView position={userLocation} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
                 <>
-                  <div style={userLabelStyle}></div>
-                  <div style={circleStyle}></div>
+                  <div className={styles.userLabel}></div>
+                  <div className={styles.circle}></div>
                 </>
               </OverlayView>
             )}
@@ -150,29 +151,3 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
 };
 
 export default Map;
-
-const labelStyle: React.CSSProperties = {
-  fontSize: '1.2rem',
-  fontWeight: 'bold',
-  whiteSpace: 'nowrap',
-  pointerEvents: 'none',
-  color: '#443322',
-};
-
-const userLabelStyle: React.CSSProperties = {
-  fontSize: '1rem',
-  fontWeight: 'bold',
-  whiteSpace: 'nowrap',
-  pointerEvents: 'none',
-  color: '#0000FF',
-};
-
-const circleStyle: React.CSSProperties = {
-  width: '30px',
-  height: '30px',
-  borderRadius: '50%',
-  position: 'absolute',
-  backgroundColor: 'rgba(52, 177, 235, 0.9)',
-  border: '2px solid white',
-  transform: 'translate(-50%, -50%)',
-};

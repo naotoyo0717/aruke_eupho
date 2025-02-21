@@ -22,16 +22,30 @@ export function ReviewCreateBackButton({ spotId }: ReviewCreateBackButtonProps) 
             sx={{
                 display: "flex",
                 alignItems: "center",
-                fontSize: "1.7rem", // 文字を大きく
+                fontSize: "1.7rem",
                 fontWeight: "bold",
-                color: "#443322", // 文字色を青系に変更（お好みで）
+                color: "#443322",
                 "& .MuiSvgIcon-root": {
-                    fontSize: "2.7rem", // アイコンのサイズを大きく
-                    fontWeight: "bold"
-                }
+                    fontSize: "2.7rem",
+                    fontWeight: "bold",
+                },
+                '@media (max-width: 600px)': {
+                    width: '10vw',
+                    height: 'auto',
+                    fontSize: '2.5vw',
+                    minWidth: 'unset',
+                    padding: '2px 2px 2px 2px',
+                    borderRadius: '2px',
+                },
             }}
         >
-            <ArrowBackIcon/>
+            <ArrowBackIcon
+                sx={{
+                    width: '2vw',
+                    '@media (max-width: 600px)': {
+                        width: '3.5vw',
+                    },
+                }}/>
             戻る
         </Button>
     )
@@ -94,6 +108,14 @@ export function ReviewCreateSendButton({ title, setTitle, content, setContent, s
                 "&:hover": {
                     backgroundColor: "#35A8E0",
                 },
+                '@media (max-width: 600px)': {
+                    width: '5rem',
+                    height: '1.8rem',
+                    fontSize: '1rem',
+                    borderRadius: "5px",
+                    padding: '2px 2px',
+                    minWidth: 'unset',
+                },
             }}
         >
             はい
@@ -111,6 +133,7 @@ type ModalCloseButtonProps = {
 export function ModalCloseButton( {handleClose}: ModalCloseButtonProps) {
     return (
         <Button
+            variant="contained"
             onClick={handleClose}
             sx = {{
                 width: "9rem",
@@ -122,6 +145,14 @@ export function ModalCloseButton( {handleClose}: ModalCloseButtonProps) {
                 fontSize: "1.2rem",
                 "&:hover": {
                     backgroundColor: "#35A8E0",
+                },
+                '@media (max-width: 600px)': {
+                    width: '5rem',
+                    height: '1.8rem',
+                    fontSize: '1rem',
+                    borderRadius: "5px",
+                    padding: '2px 2px',
+                    minWidth: 'unset',
                 },
             }}
         >

@@ -43,8 +43,10 @@ export default function SpotCard({
                 return "京阪黄檗";
             case 4:
                 return "京阪六地蔵";
+            case 5:
+                return "JR京都";
             default:
-                return "なし";
+                return "その他";
         }
     }
 

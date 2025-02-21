@@ -21,6 +21,9 @@ export default function ContentField ({content, handleContent}: ContentFieldProp
             sx={{
                 width: '75vw',
                 backgroundColor: 'white',
+                '@media (max-width: 600px)': {
+                    width: '90vw',
+                },
             }}
         />
     );

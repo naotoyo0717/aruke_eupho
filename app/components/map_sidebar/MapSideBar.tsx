@@ -56,7 +56,13 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
             {!show && (
                 <Button className={styles.barButton} onClick={openDrew}>
                     <KeyboardDoubleArrowLeftIcon
-                        sx={{ fontSize: 60, color: '#4AA5FF'}}
+                        sx={{
+                            fontSize: 60,
+                            color: '#4AA5FF',
+                            '@media (max-width: 600px)': {
+                                fontSize: '8vw',
+                            },
+                        }}
                     />
                 </Button>
             )}
@@ -66,12 +72,19 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
                         <div className={styles.mapSideBarButtons}>
                             <Button onClick={closeDrew}>
                                 <CloseIcon
-                                    sx={{ fontSize: 60, color: '#443322' }}
+                                    sx={{
+                                        fontSize: '3vw',
+                                        color: '#443322',
+                                        '@media (max-width: 600px)': {
+                                            fontSize: '4vw',
+                                        },
+                                    }}
                                 />
                             </Button>
                             <div className={styles.mapSideBarBackButton}>
                                 <MapSideBarBackButton />
                             </div>
+                            <div>{/*あえて何も書いていない*/}</div>
                         </div>
                         <div className={styles.mapSideBarDuration}>
                             <h2>所要時間：{duration}</h2>

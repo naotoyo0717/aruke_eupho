@@ -40,9 +40,12 @@ export default function MapSideBarCheckBox({ spotId, isSideBarVisited, onVisited
             checked={isSideBarVisited}
             onChange={handleChange}
             sx={{
-                '& .MuiSvgIcon-root': { fontSize: 40 },
+                '& .MuiSvgIcon-root': { fontSize: '2vw' },
                 '&.Mui-checked': {
                     color: '#FF951C',
+                },
+                '@media (max-width: 600px)': {
+                    '& .MuiSvgIcon-root': { fontSize: '4vw' },
                 },
             }}
         />

@@ -1,0 +1,60 @@
+.goTopButton {
+    position: fixed; /* 画面に固定 */
+    bottom: 2vw; /* 画面下から20pxの位置 */
+    right: 2vw; /* 画面右から20pxの位置 */
+    width: 5vw; /* ボタンの幅 */
+    height: 5vw; /* ボタンの高さ */
+    display: flex;
+    flex-direction: column; /* 縦並び */
+    align-items: center; /* 中央揃え */
+    justify-content: center; /* コンテンツを中央に */
+    color: #FFFFFF;
+    background-color: #26b8fc;
+    border-radius: 50%; /* 完全な円形 */
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 影をつけて浮き上がらせる */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding-bottom: 1.3vh;
+}
+
+.goTopButton:hover {
+    background-color: #1a98d5;
+    transform: scale(1.1);
+}
+
+.UpwardIcon {
+    font-size: 3vw;
+    margin-bottom: -2vh;
+}
+
+.goTopButton p {
+    font-size: 1.5vw;
+    margin: 0;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .goTopButton {
+        bottom: 4vw;
+        right: 4vw;
+        width: 12vw;
+        height: 12vw;
+        padding-bottom: 1.3vh;
+    }
+
+    .goTopButton:hover {
+        transform: scale(1.2);
+    }
+
+    .UpwardIcon {
+        font-size: 6vw;
+        margin-bottom: -1vh;
+    }
+    
+    .goTopButton p {
+        font-size: 3vw;
+        margin: 0;
+        font-weight: bold;
+    }
+}

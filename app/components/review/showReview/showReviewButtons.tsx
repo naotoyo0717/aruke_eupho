@@ -35,10 +35,25 @@ export function ReviewBackButton() {
                 "& .MuiSvgIcon-root": {
                     fontSize: "2.7rem",
                     fontWeight: "bold"
-                }
+                },
+                '@media (max-width: 600px)': {
+                    width: '10vw',
+                    height: 'auto',
+                    fontSize: '2.5vw',
+                    minWidth: 'unset',
+                    padding: '2px 2px 2px 2px',
+                    borderRadius: '2px',
+                },
             }}
         >
-            <ArrowBackIcon/>
+            <ArrowBackIcon
+                sx={{
+                    width: '2vw',
+                    '@media (max-width: 600px)': {
+                        width: '3.5vw',
+                    },
+                }}    
+            />
             戻る
         </Button>
     )
@@ -70,6 +85,14 @@ export function PushCreatePageButton({ spotId }: PushCreatePageButtonProps) {
                 fontSize: "1.2rem",
                 "&:hover": {
                     backgroundColor: "#35A8E0",
+                },
+                '@media (max-width: 600px)': {
+                    width: '3.2rem',
+                    height: 'auto',
+                    fontSize: '0.6rem',
+                    minWidth: 'unset',
+                    padding: '2px 2px 2px 2px',
+                    borderRadius: '2px',
                 },
             }}
         >

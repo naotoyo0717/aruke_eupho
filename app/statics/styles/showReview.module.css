@@ -9,7 +9,7 @@
 }
 
 .showReviewHeader h2 {
-    font-size: 2.5rem;
+    font-size: 3vw;
     font-weight: bold;
     color: #443322;
     margin-left: 2rem;
@@ -94,4 +94,51 @@
     font-weight: bold;
     color: #443322;
     margin-top: 3rem;
+}
+
+@media (max-width: 600px) {
+    .showReviewHeader {
+        margin-left: 4vw;
+        margin-right: 4vw;
+        margin-top: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    .showReviewHeader h2 {
+        font-size: 4vw;
+        margin-left: 0;
+    }
+    .reviewContent {
+        padding: 2vw;
+        padding-top: 1.5vh;
+    }
+    .reviewContent h3 {
+        font-size: 2.7vw;
+    }
+    .reviewContent p {
+        font-size: 2.4vw;
+    }
+    .userInfo {
+        margin-top: 0;
+    }
+    .userIcon {
+        width: 7.5vw;
+        height: 7.5vw;
+    }
+    .userName {
+        font-size: 3vw;
+    }
+    .triangle {
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 15px solid #E6F7FF;
+        z-index: 2;
+        margin-left: 2vw;
+    }
+    
+}
+
+@media (min-width: 601px) and (max-width: 834px) {
+    .showReviewHeader {
+        margin-right: 2vw;
+    }
 }

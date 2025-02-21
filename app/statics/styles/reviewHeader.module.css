@@ -1,78 +1,158 @@
 .cardWrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1%;
+}
+
+.selected{
+    background-color: #FF951C;
+    padding: 0.6%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.unselected{
+    background-color: #DBF3FF;
+    padding: 0.6%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .cardContent{
     background-color: #DBF3FF;
-    width: 60rem;
+    width: 67vw;
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem;
     border-radius: 10px;
     color: #443322;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
-    overflow-wrap: break-word;
 }
 
 .cardHeader{
     display: flex;
     align-content: space-between;
+    align-items: center;
 }
 
 .cardImage{
-    /* max-width: 50rem; */
-    margin: 0.5rem;
-    margin-left: 0.8rem;
-    /* height: 10rem; */
+    margin: 1%;
     border-radius: 5px;
+    width: 45%;
+    max-height: 22vh;
 }
 
 .contentHeader{
-    width: 62rem;
+    width: 59vw;
+    max-width: 62vw;
     display: flex;
     justify-content: space-between;
-    padding-right: 0.5rem;
+    align-items: center;
+    padding-bottom: 2%;
 }
 
 .contentHeader h2{
-    font-size: 1.5rem;
+    font-size: 1.7vw;
     font-weight: bold;
     padding-left: 5%;
-    width: 30rem;
-    padding-top: 1rem;
+    padding-top: 0.2rem;
 }
 
 .spotExplanation{
-    padding-top: 1rem;
     margin-left: 5%;
-    font-size: 1.3rem;
-}
-
-.cardHooter{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0.5rem;
+    font-size: 1.4vw;
+    padding-bottom: 2%;
 }
 
 .spotAddress{
-    width: 56rem;
+    width: 57vw;
     display: flex;
     justify-content: space-between;
     margin-left: 5%;
+    align-items: center;
 }
 
 .spotAddressText{
     display: flex;
-    margin-top: 1.2rem;
+    font-size: 1.2vw;
 }
 
 .spotAddressText p{
     margin-left: auto;
 }
 
+.cardHooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .separator {
     border-bottom: 1.5px solid rgba(68, 51, 34, 0.3);
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+} 
+
+@media (max-width: 600px) {
+    .cardWrapper{
+        margin-bottom: 3%;
+    }
+    .cardImage{
+        width: 23%;
+        height: 90%;
+    }
+    .cardContent{
+        width: 93vw;
+        height: 21vw;
+        padding-left: 1%;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .contentHeader{
+        width: 69vw;
+        max-width: 75vw;
+        margin-top: 28%;
+        align-items: center;
+    }
+    .cardHeader h2 {
+        margin-top: 5%;
+    }
+    .contentHeader h2{
+        font-size: 2.7vw;
+    }
+    .spotExplanation{
+        margin-top: 2%;
+        font-size: 2.3vw;
+    }
+    .spotAddress{
+        width: 69vw;
+    }
+    .spotAddressText{
+        font-size: 1.7vw;
+    }
+    .spotAddressText p{
+        align-items: center;
+    }
+    .cardHooter{
+        display: flex;
+        align-items: center;
+        padding-bottom: 33%;
+        margin-top: 2%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 834px) {
+    .cardImage{
+        width: 22%;
+        height: 90%;
+    }
+    .checkButton{
+        margin-top: 8%;
+    }
+}
+
+@media (min-width: 835px) and (max-width: 1080px) {
+    .spotAddress{
+        width: 87%;
+    }
+    .contentHeaderButton{
+        margin-right: 10%;
+    }
 }

@@ -66,4 +66,7 @@
     .title {
         font-size: 1.2rem;
     }
+    .userIcon {
+        margin-top: 0.2vh;
+    }
 }

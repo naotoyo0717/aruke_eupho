@@ -1,7 +1,7 @@
 .mapSideBar {
     position: absolute;
-    right: -30rem;
-    width: 30rem;
+    right: -35vw;
+    width: 35vw;
     height: 100vh;         /* スクロールさせたい要素の高さ */
     overflow-y: auto;      /* 縦方向のスクロールを有効にする */
     overflow-x: hidden;    /* 横方向のスクロールを無効にする（必要に応じて変更）ここはなくても多分動く */
@@ -17,10 +17,8 @@
 
 .mapSideBarButtons {
     display: flex;
-    justify-content: space-around;
-    gap: 5rem;
-    margin-right: 10rem;
-    margin-bottom: 1.5rem;
+    justify-content: space-between;
+    margin-bottom: 2vh;
 }
 
 .barButton {
@@ -32,17 +30,15 @@
 }
 
 .mapSideBarBackButton {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.2rem;
-    margin-bottom: 1.rem;
+    margin-top: 1vh;
+    margin-right: 4.5vw;
 }
 
 .mapSideBarDuration {
     font-size: 1.5rem;
     font-weight: bold;
     color: #443322;
-    margin: 1rem;
+    margin: 1vh;
     display: flex;
     justify-content: center;
 }
@@ -93,6 +89,7 @@
     height: 1.5rem;
     background-color: #332211;
     z-index: 0;
+    transform: translateX(-50%);
 }
 
 .mapSideBarStart h2 {
@@ -125,4 +122,44 @@
 
 .mapSideBarCard:last-child::after {
     display: none;
+}
+
+@media (max-width: 600px) {
+    .mapSideBar {
+        width: 60vw;
+        height: 100vh;         /* スクロールさせたい要素の高さ */
+        right: -60vw;
+        padding: 0;
+    }
+    .barButton {
+       padding-right: 8vw;
+       right: 0px;
+       transform: translateX(30%);
+    }
+    
+    .mapSideBarBackButton {
+        margin-top: 1vh;
+        margin-right: 9vw;
+    }
+    .mapSideBarButtons {
+        margin-right: 3vw;
+        margin-bottom: 1vh;
+    }
+    .mapSideBarDuration {
+        font-size: 4vw;
+    }
+    .mapSideBarStart {
+        height: 4vh;
+        margin-bottom: 2vh;
+    }
+    .mapSideBarStart h2 {
+        font-size: 3vw;
+    }
+    .mapSideBarCard {
+        margin-bottom: 2vh;
+        z-index: 1;
+    }
+    .mapSideBarCard h2 {
+        font-size: 3vw;
+    }
 }

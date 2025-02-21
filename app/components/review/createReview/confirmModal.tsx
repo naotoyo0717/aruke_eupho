@@ -55,6 +55,14 @@ export default function ConfirmModal({
                         "&:hover": {
                             backgroundColor: "#35A8E0",
                         },
+                        '@media (max-width: 600px)': {
+                            width: '20vw',
+                            height: '2rem',
+                            fontSize: '3.5vw',
+                            padding: '2px 2px',
+                            minWidth: 'unset',
+                            borderRadius: "5px",
+                        },
                     }}
                 >
                     投稿
@@ -79,6 +87,9 @@ export default function ConfirmModal({
                         minWidth: 300,
                         width: '80vw',
                         maxHeight: '90vh',
+                        '@media (max-width: 600px)': {
+                            width: '90vw',
+                        },
                     }}
                 >
                     <div className={styles.modalHeader}>
@@ -93,17 +104,17 @@ export default function ConfirmModal({
                             <h2>本文</h2>
                             {content}
                         </div>
-                    </div>
-                    <div className={styles.modalButtons}>
-                        <ModalCloseButton handleClose={handleClose} />
-                        <ReviewCreateSendButton
-                            spotId={spotId}
-                            title={title}
-                            setTitle={setTitle}
-                            content={content}
-                            setContent={setContent}
-                            setIsBlank={setIsBlank}
-                        />
+                        <div className={styles.modalButtons}>
+                            <ModalCloseButton handleClose={handleClose} />
+                            <ReviewCreateSendButton
+                                spotId={spotId}
+                                title={title}
+                                setTitle={setTitle}
+                                content={content}
+                                setContent={setContent}
+                                setIsBlank={setIsBlank}
+                            />
+                        </div>
                     </div>
                 </Box>
             </Modal>

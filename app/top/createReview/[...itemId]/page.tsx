@@ -33,7 +33,7 @@ export default function CreateReviewPage() {
         <div>
             <div className={styles.createReviewHeader}>
                 <ReviewCreateBackButton spotId={spotId} />
-                <h1>この場所はどうでしたか？</h1>
+                <h2>この場所はどうでしたか？</h2>
                 <p>{/*あえて何も書いてない*/}</p>
             </div>
             <ReviewHeader spotId={spotId} />

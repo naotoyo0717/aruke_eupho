@@ -83,7 +83,12 @@ export default function ReviewHeader({ spotId }: ReviewHeaderProps) {
                             <div className={styles.cardHooter}>
                                 <div className={styles.spotAddress}>
                                     <div className={styles.spotAddressText}>
-                                        <PlaceIcon />
+                                        <PlaceIcon
+                                            sx={{
+                                                width: '1.5vw',
+                                                height: 'auto',
+                                            }}    
+                                        />
                                         <p>{spot[0].address}</p>
                                         <p>&nbsp;&nbsp;【最寄り: {getNearStation(spot[0].nearStation)}】</p>
                                     </div>

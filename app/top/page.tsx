@@ -8,6 +8,7 @@ import styles from "@/app/statics/styles/topButtons.module.css";
 import { SpotType } from "../types";
 import { fetchSelected, fetchSpots, fetchVisited } from "../actions/topActions";
 import { FilterSpotButton, IsUserLocationButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/top/topButtons";
+import { Comp } from "../components/ui_parts/goTopButton";
 
 export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
@@ -136,6 +137,7 @@ export default function Top() {
                     isUserLocation={isUserLocation}
                 />
             </div>
+            <Comp />
         </>
     );
 }

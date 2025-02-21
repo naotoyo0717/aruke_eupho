@@ -210,8 +210,8 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
                 id="filterSpotLabel" 
                 sx={{
                     backgroundColor: '#faf6f0',
-                    px: 1, // ラベル内の左右の余白を調整
-                    transform: 'translate(14px, -6px) scale(0.75)', // ラベル位置を微調整
+                    px: 1,
+                    transform: 'translate(14px, -6px) scale(0.75)',
                     '@media (max-width: 600px)': {
                         fontSize: '0.7rem',
                     },
@@ -227,10 +227,9 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
             onChange={handleChange}
                 sx={{
                     '& .MuiSelect-select': {
-                        padding: '8px', // 内側の余白を調整
+                        padding: '8px',
                         '@media (max-width: 600px)': {
                             padding: '0.5px',
-                            // paddingBottom: '5px',
                             height: '0.1rem',
                             fontSize: '0.6rem',
                         },
@@ -245,7 +244,8 @@ export function FilterSpotButton({setSpots}: FilterSpotButtonProps) {
             <MenuItem value="5" sx={menuItemStyle}>JR宇治</MenuItem>
             <MenuItem value="6" sx={menuItemStyle}>京阪黄檗</MenuItem>
             <MenuItem value="7" sx={menuItemStyle}>京阪六地蔵</MenuItem>
-            <MenuItem value="8" sx={menuItemStyle}>その他</MenuItem>
+            <MenuItem value="8" sx={menuItemStyle}>JR京都</MenuItem>
+            <MenuItem value="9" sx={menuItemStyle}>その他</MenuItem>
         </Select>
         </FormControl>
 
