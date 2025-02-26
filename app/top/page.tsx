@@ -74,7 +74,10 @@ export default function Top() {
                 <div className={styles.filterButtons}>
                     <ResetSelectionButton />
                     <div className={styles.isUserLocationButton}>
-                        <IsUserLocationButton isUserLocation={isUserLocation} setIsUserLocation={setIsUserLocation}/>
+                        <IsUserLocationButton
+                            isUserLocation={isUserLocation}
+                            setIsUserLocation={setIsUserLocation}
+                        />
                     </div>
                     <FilterSpotButton setSpots={setSpots} />
                     <SelectStartingButton

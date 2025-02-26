@@ -63,7 +63,7 @@
     .topButtons {
         justify-content: center;
         margin-left: 3rem;
-        gap: 0.4rem;
+        gap: 1px;
         align-items: center;
         margin-top: 0.5rem;
         margin-bottom: 0.7rem;
@@ -71,7 +71,7 @@
     .filterButtons {
         flex-direction: row;
         justify-content: center;
-        gap: 5px;
+        gap: 2px;
     }
     .filterButtons > * { /*直接の子要素だけに適用*/
         margin: 0;

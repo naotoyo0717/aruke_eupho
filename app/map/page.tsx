@@ -83,14 +83,6 @@ const Page = () => {
     lng: point.longitude,
   }));
 
-  if (!origin) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
-
   return (
     !origin ? (
       <div>

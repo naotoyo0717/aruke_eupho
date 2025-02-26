@@ -55,3 +55,8 @@ export type AllMapType = {
     latitude: number;
     longitude: number;
 }
+
+export type Coordinates = {
+    lat: number;
+    lng: number;
+};
