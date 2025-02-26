@@ -127,7 +127,7 @@
 @media (max-width: 600px) {
     .mapSideBar {
         width: 60vw;
-        height: 100vh;         /* スクロールさせたい要素の高さ */
+        height: 100vh;
         right: -60vw;
         padding: 0;
     }
