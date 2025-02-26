@@ -79,11 +79,15 @@ export default function Top() {
                             setIsUserLocation={setIsUserLocation}
                         />
                     </div>
-                    <FilterSpotButton setSpots={setSpots} />
-                    <SelectStartingButton
-                        startingPoint={startingPoint}
-                        setStartingPoint={setStartingPoint}
-                    />
+                    <div className={styles.filterSpotButton}>
+                        <FilterSpotButton setSpots={setSpots} />
+                    </div>
+                    <div className={styles.selectStartingButton}>
+                        <SelectStartingButton
+                            startingPoint={startingPoint}
+                            setStartingPoint={setStartingPoint}
+                        />
+                    </div>
                 </div>
                 <div className={styles.visitedCounter}>
                     <VisitedCounter visitedCounter={visitedCounter} />

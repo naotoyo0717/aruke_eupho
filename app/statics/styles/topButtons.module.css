@@ -81,6 +81,13 @@
     .isUserLocationButton {
         margin-right: 0;
     }
+    .filterSpotButton {
+        margin-left: -5px;
+        padding-left: 0;
+    }
+    .selectStartingButton {
+        margin-left: -13px;
+    }
     .topButtonsContent {
         align-items: center;
         margin-top: 0;
