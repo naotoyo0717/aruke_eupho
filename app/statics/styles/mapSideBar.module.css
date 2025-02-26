@@ -21,13 +21,13 @@
     margin-bottom: 2vh;
 }
 
-.barButton {
+/* .barButton {
     position: absolute;
     top: 0;
     right: 10px;
     z-index: 1000;
     background-color: #FFF;
-}
+} */
 
 .mapSideBarBackButton {
     margin-top: 1vh;
@@ -131,11 +131,11 @@
         right: -60vw;
         padding: 0;
     }
-    .barButton {
+    /* .barButton {
        padding-right: 8vw;
        right: 0px;
        transform: translateX(30%);
-    }
+    } */
     
     .mapSideBarBackButton {
         margin-top: 1vh;

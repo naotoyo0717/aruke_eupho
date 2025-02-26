@@ -54,7 +54,22 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
     return (
         <div>
             {!show && (
-                <Button className={styles.barButton} onClick={openDrew}>
+                <Button 
+                //className={styles.barButton}
+                    onClick={openDrew}
+                    sx={{
+                        position: 'absolute',
+                        top: 0,
+                        right: '10px',
+                        zIndex: 1000, // キャメルケースに修正
+                        backgroundColor: '#FFF', // キャメルケースに修正
+                        '@media (max-width: 600px)': {
+                            paddingRight: '8vw', // キャメルケースに修正
+                            right: '0px', // 数値は文字列で統一
+                            transform: 'translateX(30%)', // 文字列として記述
+                        },
+                    }}                    
+                >
                     <KeyboardDoubleArrowLeftIcon
                         sx={{
                             fontSize: 60,
