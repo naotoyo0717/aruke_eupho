@@ -85,6 +85,9 @@
         margin-left: -5px;
         padding-left: 0;
     }
+    .visitedCounter {
+        margin-left: -5px;
+    }
     .selectStartingButton {
         margin-left: -13px;
     }
@@ -95,7 +98,18 @@
         justify-content: center;
         gap: 0;
     }
+    .topButtonsContent {
+        margin-bottom: 2vh;
+    }
     .topButtonsContent h2 {
         font-size: 3.4vw;
     }
+    .errorMessage {
+        font-size: 3.4vw;
+        padding-bottom: 1vh;
+    }
+    .topBottom {
+        margin-top: 2.5vh;
+    }
+    
 }
