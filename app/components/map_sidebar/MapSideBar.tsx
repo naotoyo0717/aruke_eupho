@@ -60,7 +60,7 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
                             fontSize: 60,
                             color: '#4AA5FF',
                             '@media (max-width: 600px)': {
-                                fontSize: '8vw',
+                                fontSize: '7vw',
                             },
                         }}
                     />
