@@ -62,7 +62,8 @@
 @media (max-width: 600px) {
     .topButtons {
         justify-content: center;
-        margin-left: 3rem;
+        margin-left: 4rem;
+        margin-right: 4rem;
         gap: 1px;
         align-items: center;
         margin-top: 0.5rem;
@@ -71,7 +72,7 @@
     .filterButtons {
         flex-direction: row;
         justify-content: center;
-        gap: 2px;
+        gap: 1px;
     }
     .filterButtons > * { /*直接の子要素だけに適用*/
         margin: 0;
