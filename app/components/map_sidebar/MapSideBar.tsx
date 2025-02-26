@@ -55,18 +55,17 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
         <div>
             {!show && (
                 <Button 
-                //className={styles.barButton}
                     onClick={openDrew}
                     sx={{
                         position: 'absolute',
                         top: 0,
                         right: '10px',
-                        zIndex: 1000, // キャメルケースに修正
-                        backgroundColor: '#FFF', // キャメルケースに修正
+                        zIndex: 1000,
+                        backgroundColor: '#FFF',
                         '@media (max-width: 600px)': {
-                            paddingRight: '8vw', // キャメルケースに修正
-                            right: '0px', // 数値は文字列で統一
-                            transform: 'translateX(30%)', // 文字列として記述
+                            paddingRight: '8vw',
+                            right: '0px',
+                            transform: 'translateX(30%)',
                         },
                     }}                    
                 >
@@ -85,13 +84,20 @@ export default function MapSideBar({ origin, duration, selectedWayPoints, order 
                 {show && (
                     <>
                         <div className={styles.mapSideBarButtons}>
-                            <Button onClick={closeDrew}>
+                            <Button
+                                onClick={closeDrew}
+                                sx={{
+                                    '@media (max-width: 600px)': {
+                                        marginTop: '0.5vh',
+                                    },
+                                }}
+                            >
                                 <CloseIcon
                                     sx={{
                                         fontSize: '3vw',
                                         color: '#443322',
                                         '@media (max-width: 600px)': {
-                                            fontSize: '4vw',
+                                            fontSize: '6vw',
                                         },
                                     }}
                                 />

@@ -21,14 +21,6 @@
     margin-bottom: 2vh;
 }
 
-/* .barButton {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    z-index: 1000;
-    background-color: #FFF;
-} */
-
 .mapSideBarBackButton {
     margin-top: 1vh;
     margin-right: 4.5vw;
@@ -131,18 +123,12 @@
         right: -60vw;
         padding: 0;
     }
-    /* .barButton {
-       padding-right: 8vw;
-       right: 0px;
-       transform: translateX(30%);
-    } */
-    
     .mapSideBarBackButton {
         margin-top: 1vh;
         margin-right: 9vw;
     }
     .mapSideBarButtons {
-        margin-right: 3vw;
+        margin-right: 7vw;
         margin-bottom: 1vh;
     }
     .mapSideBarDuration {
