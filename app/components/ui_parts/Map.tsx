@@ -110,6 +110,10 @@ const Map: React.FC<MapProps> = ({ apiKey, origin, waypoints, setDuration, order
             zoom={15}
             options={{
               fullscreenControl: false,
+              mapTypeControl: true, // マップタイプ切り替えボタンを表示
+              mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU, // 小さくする
+              },
             }}
           >
             {directions ? <DirectionsRenderer directions={directions} /> : null}
