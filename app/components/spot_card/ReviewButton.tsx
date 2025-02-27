@@ -1,16 +1,23 @@
 'use client'
 
-import Link from 'next/link'; // Linkコンポーネントをインポート
+//import Link from 'next/link'; // Linkコンポーネントをインポート
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import { useRouter } from 'next/navigation';
 
 interface ReviewButtonProps {
     itemId: number;
 }
 
 export default function ReviewButton({ itemId }: ReviewButtonProps) {
+    const router = useRouter();
+    const handleClick = () => {
+        router.push(`/top/showReview/${itemId}`);
+    }
+
     return (
-        <Link href={`/top/showReview/${itemId}`} passHref>
-            <button>
+        // <Link href={`/top/showReview/${itemId}`} passHref>
+            <button
+                onClick={handleClick}>
                 <ChatBubbleOutlineIcon
                     sx={{
                         color: '#443322',
@@ -26,6 +33,6 @@ export default function ReviewButton({ itemId }: ReviewButtonProps) {
                         },
                     }} />
             </button>
-        </Link>
+        // </Link>
     );
 }
