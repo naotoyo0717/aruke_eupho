@@ -17,7 +17,7 @@ export default function ReviewButton({ itemId }: ReviewButtonProps) {
 
     return (
             <button
-                onClick={handleClick}
+                onPointerDown={handleClick}
             >
                 <ChatBubbleOutlineIcon
                     sx={{
