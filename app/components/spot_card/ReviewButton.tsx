@@ -16,7 +16,6 @@ export default function ReviewButton({ itemId }: ReviewButtonProps) {
     }
 
     return (
-        // <Link href={`/top/showReview/${itemId}`} passHref>
             <button
                 onClick={handleClick}
             >
@@ -28,13 +27,12 @@ export default function ReviewButton({ itemId }: ReviewButtonProps) {
                         height: 'auto',
                         '&:hover': {
                             color: '#3BC1FF',
-                            opacity: 5,
+                            opacity: 1,
                         },
                         '@media (max-width: 600px)': {
                             width: '4vw'
                         },
                     }} />
             </button>
-        // </Link>
     );
 }
