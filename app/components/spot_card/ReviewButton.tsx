@@ -2,7 +2,7 @@
 
 //import Link from 'next/link'; // Linkコンポーネントをインポート
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import { Button } from '@mui/material';
+//import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 interface ReviewButtonProps {
@@ -17,7 +17,7 @@ export default function ReviewButton({ itemId }: ReviewButtonProps) {
 
     return (
         // <Link href={`/top/showReview/${itemId}`} passHref>
-            <Button
+            <button
                 onClick={handleClick}
             >
                 <ChatBubbleOutlineIcon
@@ -34,7 +34,7 @@ export default function ReviewButton({ itemId }: ReviewButtonProps) {
                             width: '4vw'
                         },
                     }} />
-            </Button>
+            </button>
         // </Link>
     );
 }
