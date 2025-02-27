@@ -15,12 +15,18 @@ export default function TitleField ({content, handleContent}: ContentFieldProps)
                     handleContent(e);
                 }
             }}
-            label="問い合わせ内容を記入してください。(1000文字以内)"
+            label="本文を記入してください。(1000文字以内)"
             multiline
             rows={8}
+            slotProps={{
+                inputLabel: { shrink: true } // これを使う
+            }}
             sx={{
                 width: '75vw',
                 backgroundColor: 'white',
+                '@media (max-width: 600px)': {
+                        width: '90vw',
+                    },
             }}
         />
     );

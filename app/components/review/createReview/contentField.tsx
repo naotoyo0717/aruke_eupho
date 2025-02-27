@@ -18,6 +18,9 @@ export default function ContentField ({content, handleContent}: ContentFieldProp
             label="本文を記入してください。(600文字以内）"
             multiline
             rows={8}
+            slotProps={{
+                inputLabel: { shrink: true } // これを使う
+            }}
             sx={{
                 width: '75vw',
                 backgroundColor: 'white',

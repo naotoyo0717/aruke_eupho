@@ -45,4 +45,36 @@
     display: flex;
     justify-content: center;
     margin-top: 3rem;
+    margin-bottom: 2vh;
+}
+
+
+@media (max-width: 600px) {
+    .contactHeader {
+        margin-left: 4vw;
+        margin-right: 4vw;
+        margin-top: 1.5vh;
+        margin-bottom: 1rem;
+    }
+    .contactHeader h2 {
+        font-size: 3.8vw;
+        margin-left: 7vw;
+    }
+    .isBlankWarning {
+        font-size: 3vw;
+        margin-top: 0;
+        margin-bottom: 2vh;
+    }
+    .emailField {
+        margin-top: 0.5vh;
+    }
+    .titleField {
+        margin-top: 2.5vh;
+    }
+    .contentField {
+        margin-top: 2.5vh;
+    }
+    .contactModal {
+        margin-top: 4vh;
+    }
 }

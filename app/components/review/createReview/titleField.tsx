@@ -17,6 +17,9 @@ export default function TitleField ({title, handleTitle}: titleFieldProps) {
             }}
             label="レビューの見出しを記入してください。（30文字以内）"
             multiline
+            slotProps={{
+                inputLabel: { shrink: true } // これを使う
+            }}
             sx={{
                 width: '75vw',
                 backgroundColor: 'white',

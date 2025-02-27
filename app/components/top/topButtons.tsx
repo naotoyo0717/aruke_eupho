@@ -304,7 +304,7 @@ export function SelectStartingButton({
             "& .MuiSelect-select": {
                 padding: "8px",
                 '@media (max-width: 600px)': {
-                    padding: '1px',
+                    padding: '0.5px',
                     height: '0.1rem',
                     fontSize: '0.6rem',
                 },

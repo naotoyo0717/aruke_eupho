@@ -17,9 +17,16 @@ export default function EmailField ({email, handleEmail}: EmailFieldProps) {
             }}
             label="メールアドレスを記入してください。"
             multiline
+            rows={1}
+            slotProps={{
+                inputLabel: { shrink: true } // これを使う
+            }}
             sx={{
                 width: '75vw',
                 backgroundColor: 'white',
+                '@media (max-width: 600px)': {
+                        width: '90vw',
+                    },
             }}
         />
     );

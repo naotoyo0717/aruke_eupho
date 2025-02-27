@@ -56,6 +56,14 @@ export default function ContactModal ({
                         "&:hover": {
                             backgroundColor: "#35A8E0",
                         },
+                        '@media (max-width: 600px)': {
+                            width: '20vw',
+                            height: '2rem',
+                            fontSize: '3.5vw',
+                            padding: '2px 2px',
+                            minWidth: 'unset',
+                            borderRadius: "5px",
+                        },
                     }}
                 >
                     送信
@@ -80,6 +88,10 @@ export default function ContactModal ({
                         minWidth: 300,
                         width: '80vw',
                         maxHeight: '90vh',
+                        '@media (max-width: 600px)': {
+                            width: '90vw',
+                            height: '80vh',
+                        },
                     }}
                 >
                     <div className={styles.modalHeader}>

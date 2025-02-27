@@ -61,6 +61,14 @@ export function ContactSendButton({ email, setEmail, title, setTitle, content, s
                 "&:hover": {
                     backgroundColor: "#35A8E0",
                 },
+                '@media (max-width: 600px)': {
+                    width: '5rem',
+                    height: '1.8rem',
+                    fontSize: '1rem',
+                    borderRadius: "5px",
+                    padding: '2px 2px',
+                    minWidth: 'unset',
+                },
             }}
         >
             はい
@@ -77,6 +85,7 @@ type ContactModalCloseButtonProps = {
 export function ContantModalCloseButton( {handleClose}: ContactModalCloseButtonProps) {
     return (
         <Button
+            variant="contained"
             onClick={handleClose}
             sx = {{
                 width: "9rem",
@@ -88,6 +97,14 @@ export function ContantModalCloseButton( {handleClose}: ContactModalCloseButtonP
                 fontSize: "1.2rem",
                 "&:hover": {
                     backgroundColor: "#35A8E0",
+                },
+                '@media (max-width: 600px)': {
+                    width: '5rem',
+                    height: '1.8rem',
+                    fontSize: '1rem',
+                    borderRadius: "5px",
+                    padding: '2px 2px',
+                    minWidth: 'unset',
                 },
             }}
         >
@@ -114,10 +131,25 @@ export function ContactBackButton() {
                 "& .MuiSvgIcon-root": {
                     fontSize: "2.7rem", // アイコンのサイズを大きく
                     fontWeight: "bold"
-                }
+                },
+                '@media (max-width: 600px)': {
+                    width: '10vw',
+                    height: 'auto',
+                    fontSize: '2.5vw',
+                    minWidth: 'unset',
+                    padding: '2px 2px 2px 2px',
+                    borderRadius: '2px',
+                },
             }}
         >
-            <ArrowBackIcon/>
+            <ArrowBackIcon
+                sx={{
+                    width: '2vw',
+                    '@media (max-width: 600px)': {
+                        width: '3.5vw',
+                    },
+                }}   
+            />
             戻る
         </Button>
     )
