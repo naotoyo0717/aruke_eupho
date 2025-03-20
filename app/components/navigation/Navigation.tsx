@@ -19,7 +19,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentUser }) => {
                     <DrawerMenu/>
                 </div>
                 <div className={styles.title}>
-                        <Link href="/signin">
+                        <Link href="/top">
                             <h1>歩け！聖地巡礼 ♪</h1>
                         </Link>
                     </div>

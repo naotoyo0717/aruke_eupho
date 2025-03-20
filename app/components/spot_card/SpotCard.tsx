@@ -1,6 +1,6 @@
 import PlaceIcon from '@mui/icons-material/Place';
 import CheckBox from './CheckBox';
-import ReviewButton from '@/app/components/spot_card/ReviewButton'; // 修正後のCommentButton
+import ReviewButton from '@/app/components/spot_card/ReviewButton';
 import styles from '@/app/statics/styles/spotCard.module.css';
 import { SpotType } from '@/app/types';
 import Image from 'next/image';
@@ -73,7 +73,7 @@ export default function SpotCard({
                                         <CheckBox
                                             spotId={item.id}
                                             visited={visited}
-                                            onChange={handleVisitedChange} // 親の関数を渡す
+                                            onChange={handleVisitedChange}
                                         />
                                     </div>
                                 </div>
@@ -87,8 +87,8 @@ export default function SpotCard({
                                         <p>
                                             <PlaceIcon 
                                                 sx={{
-                                                    width: '1.5vw',  // アイコンの幅を4remに設定
-                                                    height: 'auto', // アイコンの高さを4remに設定
+                                                    width: '1.5vw',
+                                                    height: 'auto',
                                                 }}
                                             />
                                         </p>

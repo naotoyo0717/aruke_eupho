@@ -60,7 +60,7 @@ export function SelectedSpotButton({
             onClick={handleClick}
             sx={{
                 fontSize: '1rem',
-                width: '10rem',
+                width: '10vw',
                 height: '3rem',
                 borderRadius: '7px',
                 backgroundColor: isSelected ? '#FF951C' : '#3BC1FF',
@@ -80,6 +80,14 @@ export function SelectedSpotButton({
                 '@media (min-width: 601px) and (max-width: 834px)': {
                     width: '6rem',
                     height: 'auto',
+                    fontSize: '0.7rem',
+                    minWidth: 'unset',
+                    padding: '2px 2px 2px 2px',
+                    borderRadius: '4px',
+                },
+                '@media (min-width: 834px) and (max-width: 1080px)': {
+                    width: '6rem',
+                    height: '2rem',
                     fontSize: '0.7rem',
                     minWidth: 'unset',
                     padding: '2px 2px 2px 2px',
