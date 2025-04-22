@@ -20,6 +20,8 @@ export default function Top() {
     const [startingPoint, setStartingPoint] = useState<number>(1);
     const [selectedSpotsCounter, setSelectedSpotsCounter] = useState<number>(0);
     const [isFirstRender, setIsFirstRender] = useState<boolean>(false); // 初回表示フラグ
+    const [notOpenMap, setNotOpenMap] = useState<boolean>(false);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -95,12 +97,20 @@ export default function Top() {
             </div>
             <div className={styles.topButtonsContent}>
                 <h2>巡礼したい場所をルートに追加してください。</h2>
+                <p>現在の選択数：{selectedSpotsCounter}</p>
+                {notOpenMap &&
+                    <>
+                        <p>選択できるスポットは25個までです。</p>
+                        <p>現在の選択数：{selectedSpotsCounter}</p>
+                    </>
+                }
                 <OpenMapButton
                     startingPoint={startingPoint}
                     selectedSpots={selectedSpots}
                     selectedSpotsCounter={selectedSpotsCounter}
                     setIsFirstRender={setIsFirstRender}
                     isUserLocation={isUserLocation}
+                    setNotOpenMap={setNotOpenMap}
                 />
             </div>
             {isFirstRender === false || selectedSpotsCounter === 0 && ( // エラーメッセージの条件付き表示
@@ -131,6 +141,7 @@ export default function Top() {
                             selectedSpotsCounter={selectedSpotsCounter}
                             setSelectedSpotsCounter={setSelectedSpotsCounter}
                             setIsFirstRender={setIsFirstRender}
+                            setNotOpenMap={setNotOpenMap}
                         />
                     );
                 })
@@ -142,6 +153,7 @@ export default function Top() {
                     selectedSpotsCounter={selectedSpotsCounter}
                     setIsFirstRender={setIsFirstRender}
                     isUserLocation={isUserLocation}
+                    setNotOpenMap={setNotOpenMap}
                 />
             </div>
             <Comp />

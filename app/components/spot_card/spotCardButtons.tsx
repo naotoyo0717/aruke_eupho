@@ -9,6 +9,7 @@ interface SelectedSpotButtonProps {
     selectedSpotsCounter: number;
     setSelectedSpotsCounter: React.Dispatch<React.SetStateAction<number>>;
     setIsFirstRender: React.Dispatch<React.SetStateAction<boolean>>;
+    setNotOpenMap: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function SelectedSpotButton({ 
@@ -18,6 +19,7 @@ export function SelectedSpotButton({
     selectedSpotsCounter, 
     setSelectedSpotsCounter,
     setIsFirstRender,
+    setNotOpenMap,
 }: SelectedSpotButtonProps) {
 
     const toggleSelected = () => {
@@ -29,6 +31,10 @@ export function SelectedSpotButton({
         }
 
         setIsSelected(!isSelected);
+
+        if (selectedSpotsCounter <= 25) {
+            setNotOpenMap(false);
+        }
     };
 
     const handleClick = async () => {

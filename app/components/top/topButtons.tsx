@@ -108,17 +108,20 @@ type OpenMapButtonProps = {
     selectedSpotsCounter: number;
     setIsFirstRender: React.Dispatch<React.SetStateAction<boolean>>;
     isUserLocation: boolean;
+    setNotOpenMap: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function OpenMapButton({
     startingPoint,
     selectedSpotsCounter,
     setIsFirstRender,
-    isUserLocation
+    isUserLocation,
+    setNotOpenMap
 }: OpenMapButtonProps) {
     const handleClick = () => {
-        if (selectedSpotsCounter === 0) {
+        if (selectedSpotsCounter === 0 || selectedSpotsCounter >= 25) {
             setIsFirstRender(true);
+            setNotOpenMap(true);
             return;
         } else {
             window.location.href = `/map?startingPoint=${startingPoint}&isUserLocation=${isUserLocation}`;
