@@ -93,7 +93,7 @@ export default function Top() {
                     </div>
                 </div>
                 <div className={styles.visitedCounter}>
-                    <div>
+                    <div className={styles.selectedCounter}>
                         <SelectedCounter selectedSpotsCounter={selectedSpotsCounter}/>
                     </div>
                     <div>

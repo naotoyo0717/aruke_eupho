@@ -5,7 +5,6 @@ import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } 
 import { useState } from "react";
 
 export function ResetSelectionButton() {
-
     const handleClick = async () => {
         try {
             const response = await fetch('/api/resetSelected', {
@@ -14,12 +13,10 @@ export function ResetSelectionButton() {
                     'Content-Type': 'application/json',
                 },
             });
-
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.error || 'リセットに失敗しました。');
             }
-
             const result = await response.json();
             console.log('リセット成功:', result);
 
