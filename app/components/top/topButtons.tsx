@@ -119,8 +119,10 @@ export function OpenMapButton({
     setNotOpenMap
 }: OpenMapButtonProps) {
     const handleClick = () => {
-        if (selectedSpotsCounter === 0 || selectedSpotsCounter >= 25) {
+        if (selectedSpotsCounter === 0) {
             setIsFirstRender(true);
+            return;
+        } else if (selectedSpotsCounter >= 25) {
             setNotOpenMap(true);
             return;
         } else {

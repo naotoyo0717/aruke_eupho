@@ -59,6 +59,11 @@
     padding-bottom: 2rem;
 }
 
+.visitedCounter {
+    display: flex;
+    gap: 1.8vw;
+}
+
 
 @media (max-width: 600px) {
     .topButtons {

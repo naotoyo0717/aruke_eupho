@@ -9,6 +9,7 @@ import { SpotType } from "../types";
 import { fetchSelected, fetchSpots, fetchVisited } from "../actions/topActions";
 import { FilterSpotButton, IsUserLocationButton, OpenMapButton, ResetSelectionButton, SelectStartingButton } from "../components/top/topButtons";
 import { Comp } from "../components/ui_parts/goTopButton";
+import SelectedCounter from "../components/ui_parts/selectedCounter";
 
 export default function Top() {
     const [spots, setSpots] = useState<SpotType[]>([]);
@@ -92,18 +93,16 @@ export default function Top() {
                     </div>
                 </div>
                 <div className={styles.visitedCounter}>
-                    <VisitedCounter visitedCounter={visitedCounter} />
+                    <div>
+                        <SelectedCounter selectedSpotsCounter={selectedSpotsCounter}/>
+                    </div>
+                    <div>
+                        <VisitedCounter visitedCounter={visitedCounter} />
+                    </div>
                 </div>
             </div>
             <div className={styles.topButtonsContent}>
                 <h2>巡礼したい場所をルートに追加してください。</h2>
-                <p>現在の選択数：{selectedSpotsCounter}</p>
-                {notOpenMap &&
-                    <>
-                        <p>選択できるスポットは25個までです。</p>
-                        <p>現在の選択数：{selectedSpotsCounter}</p>
-                    </>
-                }
                 <OpenMapButton
                     startingPoint={startingPoint}
                     selectedSpots={selectedSpots}
@@ -118,6 +117,11 @@ export default function Top() {
                     <p>スポットは一つ以上選択してください。</p>
                 </div>
             )}
+            {notOpenMap &&
+                <div className={styles.errorMessage}>
+                    <p>選択できるスポットは25個までです。</p>
+                </div>
+            }
             {isLoading ? (
                 <Loading />
             ) : (
