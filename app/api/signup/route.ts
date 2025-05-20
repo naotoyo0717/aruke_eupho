@@ -14,11 +14,11 @@ export async function POST(request: Request) {
 
         // ユーザーの作成
         const response = await prisma.user.create({
-        data: {
-            email,
-            name,
-            hashedPassword,
-        },
+            data: {
+                email,
+                name,
+                hashedPassword,
+            },
         })
 
         return NextResponse.json(response)

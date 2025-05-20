@@ -7,7 +7,6 @@ const prisma = new PrismaClient();
 export async function POST(request: Request) {
     try {
         const currentUser = await getCurrentUser();
-        console.log("あああああ")
 
         if (!currentUser) {
             return NextResponse.json({ error: 'ユーザーIDが見つかりません。' }, { status: 401 });
